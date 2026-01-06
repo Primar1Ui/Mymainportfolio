@@ -4,25 +4,46 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-const FULL_TEXT = "Full-Stack Developer";
+const TEXTS = [
+  "Full-Stack Developer",
+  "Embedded System Analyst",
+  "Community Builder",
+  "SaaS Builder"
+];
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    let currentIndex = 0;
-    const typingInterval = setInterval(() => {
-      if (currentIndex < FULL_TEXT.length) {
-        setDisplayedText(FULL_TEXT.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 100);
+    let timeout: NodeJS.Timeout;
+    const currentText = TEXTS[currentTextIndex];
+    
+    if (!isDeleting && displayedText.length < currentText.length) {
+      // Typing
+      timeout = setTimeout(() => {
+        setDisplayedText(currentText.slice(0, displayedText.length + 1));
+      }, 100);
+    } else if (!isDeleting && displayedText.length === currentText.length) {
+      // Finished typing, wait before deleting
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2000);
+    } else if (isDeleting && displayedText.length > 0) {
+      // Deleting
+      timeout = setTimeout(() => {
+        setDisplayedText(currentText.slice(0, displayedText.length - 1));
+      }, 50);
+    } else if (isDeleting && displayedText.length === 0) {
+      // Finished deleting, move to next text
+      setIsDeleting(false);
+      setCurrentTextIndex((prev) => (prev + 1) % TEXTS.length);
+    }
 
-    return () => clearInterval(typingInterval);
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, currentTextIndex]);
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
