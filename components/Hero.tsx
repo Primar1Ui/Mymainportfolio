@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Rocket, Mail, MessageCircle, ArrowRight } from 'lucide-react';
 
 const TEXTS = [
   "Full-Stack Developer",
@@ -139,6 +140,76 @@ export default function Hero() {
           <span className="text-cyan-400 font-semibold">meaningful</span> tech solutions.
           Turning ideas into reality through code, creativity, and collaboration.
         </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+        >
+          <a
+            href="https://sites.google.com/view/primarportfolio/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+          >
+            <Rocket className="w-5 h-5" />
+            <span>View My Projects</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a
+            href="https://wa.me/16722749582"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-500 border-2 border-blue-400 rounded-xl font-semibold text-white hover:bg-blue-600 transition-all duration-300"
+          >
+            <Mail className="w-5 h-5" />
+            <span>Get In Touch</span>
+          </a>
+        </motion.div>
+
+        {/* Statistics */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="flex items-center justify-center gap-8 md:gap-12 mb-8"
+        >
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-1">12+</div>
+            <div className="text-sm md:text-base text-gray-400">Projects</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-green-400 mb-1">7+</div>
+            <div className="text-sm md:text-base text-gray-400">Clients</div>
+          </div>
+        </motion.div>
+
+        {/* Social Icons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="flex items-center justify-center gap-4"
+        >
+          <a
+            href="mailto:davidtosin306@gmail.com"
+            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white hover:bg-gray-700 hover:border-blue-400 transition-all duration-300 group"
+            aria-label="Email"
+          >
+            <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          </a>
+          <a
+            href="https://wa.me/16722749582"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-green-400 hover:bg-gray-700 hover:border-green-400 transition-all duration-300 group"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
