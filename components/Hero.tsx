@@ -1,9 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Rocket, Mail, MessageCircle, ArrowRight } from 'lucide-react';
+import { Rocket, Mail, MessageCircle, ArrowRight, X } from 'lucide-react';
 
 const TEXTS = [
   "Full-Stack Developer",
@@ -17,6 +17,7 @@ export default function Hero() {
   const [showCursor, setShowCursor] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showPortfolio, setShowPortfolio] = useState(false);
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -148,16 +149,14 @@ export default function Hero() {
           transition={{ delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <a
-            href="https://sites.google.com/view/primarportfolio/home"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setShowPortfolio(true)}
             className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
           >
             <Rocket className="w-5 h-5" />
             <span>View My Projects</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
           <a
             href="https://wa.me/16722749582"
             target="_blank"
@@ -211,6 +210,44 @@ export default function Hero() {
           </a>
         </motion.div>
       </div>
+
+      {/* Portfolio Modal */}
+      <AnimatePresence>
+        {showPortfolio && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={() => setShowPortfolio(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-6xl h-[90vh] bg-[#0B0F19] rounded-2xl border border-gray-800 shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowPortfolio(false)}
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300"
+                aria-label="Close portfolio"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Embedded Portfolio */}
+              <iframe
+                src="https://sites.google.com/view/primarportfolio/home"
+                className="w-full h-full border-0"
+                title="Portfolio"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
