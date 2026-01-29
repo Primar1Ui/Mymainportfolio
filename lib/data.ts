@@ -34,10 +34,10 @@ export const projects = [
     description: "A modern AI-powered SaaS platform with authentication and analytics.",
     tech: ["Next.js", "Supabase", "Tailwind"],
     github: "https://github.com/Primar1Ui/ai-web-canvas",
-    live: "#",   // TODO: replace with real live URL if deployed
+    live: "https://ai-web-canvas.vercel.app/",
     role: "Full-stack developer",
     results: "Implemented authentication, dashboard analytics, and AI-powered features for early-stage users.",
-    image: "/images/projects/placeholder.svg", // Replace with ai-saas-dashboard.jpg when added
+    image: "/images/projects/placeholder.svg",
     featured: true,
   },
   {
@@ -45,39 +45,49 @@ export const projects = [
     description: "Custom finance and budgeting tracker with real-time data.",
     tech: ["React", "Supabase"],
     github: "https://github.com/Primar1Ui/dapper-access",
-    live: "#",   // TODO: replace with real live URL if deployed
+    live: "https://dapper-access.vercel.app/",
     role: "Frontend & backend developer",
     results: "Built real-time expense tracking with Supabase, improving client visibility into cash flow.",
-    image: "/images/projects/placeholder.svg", // Replace with finance-tracker.jpg when added
+    image: "/images/projects/placeholder.svg",
   },
   {
     title: "Portfolio Website",
     description: "High-performance developer portfolio optimized for SEO.",
     tech: ["Next.js", "Framer Motion"],
     github: "https://github.com/Primar1Ui/refined-man-page",
-    live: "#",   // TODO: replace with real live URL if deployed
+    live: "https://v0-personal-portfolio-website-mocha-eta.vercel.app/",
     role: "Designer & developer",
     results: "Designed and developed a fast, SEO-friendly personal brand site with a strong contact funnel.",
-    image: "/images/projects/placeholder.svg", // Replace with portfolio.jpg when added
+    image: "/images/projects/placeholder.svg",
   },
   {
     title: "BaxAuto Website",
     description: "Marketing website for BaxAuto, focused on clear service presentation and clean UI.",
     tech: ["Next.js", "Tailwind CSS"],
     github: "https://github.com/Primar1Ui/v0-baxauto-website-development",
-    live: "#",   // TODO: replace with real live URL if deployed
+    live: "https://v0-baxauto-website-development-qyak.vercel.app/",
     role: "Frontend developer",
     results: "Delivered a responsive landing experience tailored to the client brand.",
-    image: "/images/projects/placeholder.svg", // Replace with baxauto.jpg when added
+    image: "/images/projects/placeholder.svg",
   },
   {
     title: "Smart Expense & Budget Dashboard",
     description: "Web app for tracking expenses and managing budgets with an intuitive dashboard.",
     tech: ["React", "Next.js", "Tailwind CSS"],
     github: "https://github.com/Primar1Ui/smart-spend-dashboard",
-    live: "#",
+    live: "https://smart-spend-dashboard.vercel.app/",
     role: "Full-stack developer",
     results: "Built a smart spend dashboard for expense tracking and budget visibility.",
+    image: "/images/projects/placeholder.svg",
+  },
+  {
+    title: "Refined Man",
+    description: "Premium men's accessories e-commerce site with clean UI and smooth experience.",
+    tech: ["Next.js", "Tailwind CSS"],
+    github: "#", // Add repo URL when available
+    live: "https://refined-man.vercel.app/",
+    role: "Frontend developer",
+    results: "Designed and built a polished men's accessories storefront.",
     image: "/images/projects/placeholder.svg",
   }
 ];
