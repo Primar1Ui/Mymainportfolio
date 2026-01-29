@@ -1,0 +1,37 @@
+/* Print styles: hide non-essential UI, optimize for A4 */
+@media print {
+  /* Hide navigation, footer, and interactive elements */
+  nav,
+  footer,
+  .skip-to-content,
+  [class*="BackToTop"],
+  [class*="ThemeToggle"],
+  button[aria-label="Toggle menu"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure body and main use white background for print */
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  /* Avoid breaking sections across pages where possible */
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Links: show URL after text */
+  a[href^="http"]:not([href*="david-portfolio"]):after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #666;
+  }
+
+  /* Remove shadows and heavy borders for cleaner print */
+  * {
+    box-shadow: none !important;
+  }
+}

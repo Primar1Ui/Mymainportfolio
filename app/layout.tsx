@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { LocaleProvider } from '@/contexts/LocaleContext';
+import KeyboardShortcuts from '@/components/KeyboardShortcuts';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import PWARegister from '@/components/PWARegister';
 import "./globals.css";
+import "./print.css";
 
 export const metadata: Metadata = {
   title: "David | Full-Stack & AI Web Developer",
@@ -24,12 +31,21 @@ export const metadata: Metadata = {
     description:
       "David is a full-stack developer specializing in modern web apps, AI integrations, Supabase backends, and SaaS MVP development.",
     siteName: "David Portfolio",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "David - Full-Stack & AI Web Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "David | Full-Stack & AI Web Developer",
     description:
       "David is a full-stack developer specializing in modern web apps, AI integrations, Supabase backends, and SaaS MVP development.",
+    images: ["/images/og-image.png"],
   },
   robots: {
     index: true,
@@ -47,6 +63,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
+  metadataBase: new URL("https://david-portfolio.vercel.app"),
 };
 
 export default function RootLayout({
@@ -55,8 +72,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');if(s==='light')document.documentElement.classList.add('light');else if(s==='dark')document.documentElement.classList.add('dark');else document.documentElement.classList.add('dark');}catch(e){document.documentElement.classList.add('dark');}})();`,
+          }}
+        />
+        <link rel="canonical" href="https://david-portfolio.vercel.app" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0B0F19" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -67,8 +95,68 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        {/* Person Schema */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "David",
+              jobTitle: "Full-Stack & AI Web Developer",
+              url: "https://david-portfolio.vercel.app",
+              email: "mailto:davidtosin306@gmail.com",
+              sameAs: [
+                "https://github.com/Primar1Ui",
+                "https://t.me/mar_gdd",
+              ],
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "Supabase",
+                "Tailwind CSS",
+                "AI Integration",
+                "SaaS MVP Development",
+              ],
+            }),
+          }}
+        />
+        {/* WebSite Schema */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "David Portfolio",
+              url: "https://david-portfolio.vercel.app",
+              description:
+                "David is a full-stack developer specializing in modern web apps, AI integrations, Supabase backends, and SaaS MVP development.",
+              author: {
+                "@type": "Person",
+                name: "David",
+              },
+            }),
+          }}
+        />
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          <LocaleProvider>
+            <ErrorBoundary>
+              <PWARegister />
+              <KeyboardShortcuts />
+            <a href="#home" className="skip-to-content">
+              Skip to content
+            </a>
+            {children}
+            </ErrorBoundary>
+          </LocaleProvider>
+        </ThemeProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }

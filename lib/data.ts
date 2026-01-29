@@ -1,31 +1,31 @@
 export const skills = {
   frontend: [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Tailwind CSS"
+    { name: 'HTML', level: 95 },
+    { name: 'CSS', level: 95 },
+    { name: 'JavaScript', level: 90 },
+    { name: 'TypeScript', level: 88 },
+    { name: 'React', level: 90 },
+    { name: 'Next.js', level: 88 },
+    { name: 'Tailwind CSS', level: 92 },
   ],
   backend: [
-    "Node.js",
-    "Supabase",
-    "Firebase",
-    "REST APIs"
+    { name: 'Node.js', level: 85 },
+    { name: 'Supabase', level: 88 },
+    { name: 'Firebase', level: 80 },
+    { name: 'REST APIs', level: 90 },
   ],
   tools: [
-    "Cursor",
-    "GitHub",
-    "Replit",
-    "Vercel",
-    "Rork AI"
+    { name: 'Cursor', level: 90 },
+    { name: 'GitHub', level: 92 },
+    { name: 'Replit', level: 85 },
+    { name: 'Vercel', level: 90 },
+    { name: 'Rork AI', level: 82 },
   ],
   deployment: [
-    "Vercel",
-    "CI/CD",
-    "Database Management"
-  ]
+    { name: 'Vercel', level: 90 },
+    { name: 'CI/CD', level: 80 },
+    { name: 'Database Management', level: 85 },
+  ],
 };
 
 export const projects = [
@@ -33,22 +33,52 @@ export const projects = [
     title: "AI SaaS Dashboard",
     description: "A modern AI-powered SaaS platform with authentication and analytics.",
     tech: ["Next.js", "Supabase", "Tailwind"],
-    github: "#",
-    live: "#"
+    github: "https://github.com/Primar1Ui/ai-web-canvas",
+    live: "#",   // TODO: replace with real live URL if deployed
+    role: "Full-stack developer",
+    results: "Implemented authentication, dashboard analytics, and AI-powered features for early-stage users.",
+    image: "/images/projects/placeholder.svg", // Replace with ai-saas-dashboard.jpg when added
+    featured: true,
   },
   {
     title: "Finance Tracker App",
     description: "Custom finance and budgeting tracker with real-time data.",
     tech: ["React", "Supabase"],
-    github: "#",
-    live: "#"
+    github: "https://github.com/Primar1Ui/dapper-access",
+    live: "#",   // TODO: replace with real live URL if deployed
+    role: "Frontend & backend developer",
+    results: "Built real-time expense tracking with Supabase, improving client visibility into cash flow.",
+    image: "/images/projects/placeholder.svg", // Replace with finance-tracker.jpg when added
   },
   {
     title: "Portfolio Website",
     description: "High-performance developer portfolio optimized for SEO.",
     tech: ["Next.js", "Framer Motion"],
-    github: "#",
-    live: "#"
+    github: "https://github.com/Primar1Ui/refined-man-page",
+    live: "#",   // TODO: replace with real live URL if deployed
+    role: "Designer & developer",
+    results: "Designed and developed a fast, SEO-friendly personal brand site with a strong contact funnel.",
+    image: "/images/projects/placeholder.svg", // Replace with portfolio.jpg when added
+  },
+  {
+    title: "BaxAuto Website",
+    description: "Marketing website for BaxAuto, focused on clear service presentation and clean UI.",
+    tech: ["Next.js", "Tailwind CSS"],
+    github: "https://github.com/Primar1Ui/v0-baxauto-website-development",
+    live: "#",   // TODO: replace with real live URL if deployed
+    role: "Frontend developer",
+    results: "Delivered a responsive landing experience tailored to the client brand.",
+    image: "/images/projects/placeholder.svg", // Replace with baxauto.jpg when added
+  },
+  {
+    title: "Smart Expense & Budget Dashboard",
+    description: "Web app for tracking expenses and managing budgets with an intuitive dashboard.",
+    tech: ["React", "Next.js", "Tailwind CSS"],
+    github: "https://github.com/Primar1Ui/smart-spend-dashboard",
+    live: "#",
+    role: "Full-stack developer",
+    results: "Built a smart spend dashboard for expense tracking and budget visibility.",
+    image: "/images/projects/placeholder.svg",
   }
 ];
 

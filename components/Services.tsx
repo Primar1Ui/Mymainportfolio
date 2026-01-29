@@ -28,10 +28,10 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={service}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
               className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 group"
             >
               <div className="flex items-start gap-4">

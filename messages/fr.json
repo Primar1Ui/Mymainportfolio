@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Compétences",
+    "projects": "Projets",
+    "caseStudies": "Études de cas",
+    "blog": "Blog",
+    "services": "Services",
+    "contact": "Contact",
+    "theme": "Thème"
+  },
+  "common": {
+    "getInTouch": "Me contacter",
+    "viewMore": "Voir plus",
+    "readMore": "Lire la suite",
+    "backToHome": "Retour à l'accueil",
+    "subscribe": "S'abonner",
+    "loading": "Chargement..."
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis David",
+    "tagline": "Développeur Full-Stack & IA",
+    "description": "Je crée des applications web modernes, des intégrations IA et des produits SaaS. Créons quelque chose de grand ensemble.",
+    "downloadCV": "Télécharger le CV",
+    "viewProjects": "Voir les projets",
+    "contactMe": "Me contacter"
+  },
+  "footer": {
+    "rights": "Tous droits réservés"
+  }
+}

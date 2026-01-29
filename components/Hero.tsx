@@ -1,9 +1,11 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Rocket, Mail, MessageCircle, ArrowRight, X } from 'lucide-react';
+import { Rocket, Mail, MessageCircle, ArrowRight, Download } from 'lucide-react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { trackFunnel } from '@/lib/analytics';
 
 const TEXTS = [
   "Full-Stack Developer",
@@ -17,7 +19,8 @@ export default function Hero() {
   const [showCursor, setShowCursor] = useState(true);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [showPortfolio, setShowPortfolio] = useState(false);
+  const [imageError, setImageError] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -55,6 +58,14 @@ export default function Hero() {
     return () => clearInterval(cursorInterval);
   }, []);
 
+  const handleViewProjects = () => {
+    trackFunnel.heroViewProjects();
+    const element = document.querySelector('#projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -65,28 +76,27 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.6 }}
           className="flex justify-center mb-8"
         >
           <div className="relative">
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 blur-xl opacity-50 animate-pulse" />
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-cyan-400/50 overflow-hidden shadow-2xl shadow-cyan-500/20">
-              <Image
-                src="/images/profile.jpg"
-                alt="David - Full-Stack Developer"
-                width={256}
-                height={256}
-                className="w-full h-full object-cover"
-                priority
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-4xl"><span class="text-white font-bold">D</span></div>';
-                  }
-                }}
-              />
+              {!imageError ? (
+                <Image
+                  src="/images/profile.jpg"
+                  alt="David - Full-Stack Developer"
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-cover"
+                  priority
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-4xl" role="img" aria-label="David - Full-Stack Developer">
+                  <span className="text-white font-bold">D</span>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
@@ -95,7 +105,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.2 }}
           className="flex items-center justify-center gap-2 mb-4"
         >
           <span className="text-2xl md:text-3xl">👋</span>
@@ -106,7 +116,7 @@ export default function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.3 }}
           className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
         >
           <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
@@ -118,7 +128,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.4 }}
           className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-8 min-h-[3rem]"
         >
           <span className="text-gray-300">I'm a </span>
@@ -132,7 +142,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.5 }}
           className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8"
         >
           Passionate about building{' '}
@@ -146,12 +156,12 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
           <button
-            onClick={() => setShowPortfolio(true)}
-            className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+            onClick={handleViewProjects}
+            className="group flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
           >
             <Rocket className="w-5 h-5" />
             <span>View My Projects</span>
@@ -161,10 +171,19 @@ export default function Hero() {
             href="https://wa.me/16722749582"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 bg-blue-500 border-2 border-blue-400 rounded-xl font-semibold text-white hover:bg-blue-600 transition-all duration-300"
+            className="flex items-center gap-2 px-6 py-3 bg-blue-500 border-2 border-blue-400 rounded-xl font-semibold text-white hover:bg-blue-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
           >
             <Mail className="w-5 h-5" />
             <span>Get In Touch</span>
+          </a>
+          <a
+            href="/cv.pdf"
+            download
+            onClick={() => trackFunnel.heroDownloadCV()}
+            className="flex items-center gap-2 px-6 py-3 bg-gray-800 border-2 border-gray-700 rounded-xl font-semibold text-white hover:bg-gray-700 hover:border-gray-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+          >
+            <Download className="w-5 h-5" />
+            <span>Download CV</span>
           </a>
         </motion.div>
 
@@ -172,7 +191,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.7 }}
           className="flex items-center justify-center gap-8 md:gap-12 mb-8"
         >
           <div className="text-center">
@@ -189,12 +208,12 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
+          transition={prefersReducedMotion ? { duration: 0 } : { delay: 0.8 }}
           className="flex items-center justify-center gap-4"
         >
           <a
             href="mailto:davidtosin306@gmail.com"
-            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white hover:bg-gray-700 hover:border-blue-400 transition-all duration-300 group"
+            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white hover:bg-gray-700 hover:border-blue-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
             aria-label="Email"
           >
             <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -203,51 +222,24 @@ export default function Hero() {
             href="https://wa.me/16722749582"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-green-400 hover:bg-gray-700 hover:border-green-400 transition-all duration-300 group"
+            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-green-400 hover:bg-gray-700 hover:border-green-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
             aria-label="WhatsApp"
           >
             <MessageCircle className="w-5 h-5 group-hover:scale-110 transition-transform" />
           </a>
+          <a
+            href="https://t.me/mar_gdd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-12 h-12 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-blue-400 hover:bg-gray-700 hover:border-blue-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+            aria-label="Telegram"
+          >
+            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </a>
         </motion.div>
       </div>
-
-      {/* Portfolio Modal */}
-      <AnimatePresence>
-        {showPortfolio && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setShowPortfolio(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-6xl h-[90vh] bg-[#0B0F19] rounded-2xl border border-gray-800 shadow-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setShowPortfolio(false)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-white hover:bg-gray-700 transition-all duration-300"
-                aria-label="Close portfolio"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              {/* Embedded Portfolio */}
-              <iframe
-                src="https://sites.google.com/view/primarportfolio/home"
-                className="w-full h-full border-0"
-                title="Portfolio"
-                allowFullScreen
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

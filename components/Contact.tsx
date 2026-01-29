@@ -1,21 +1,32 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
-import { motion } from 'framer-motion';
+import { useState, FormEvent, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mail, Phone, Loader2, CheckCircle2 } from 'lucide-react';
+import { trackFunnel } from '@/lib/analytics';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
+    website: '', // Honeypot field - should remain empty
   });
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
+  const [showSuccessAnimation, setShowSuccessAnimation] = useState(false);
+
+  useEffect(() => {
+    if (status !== 'success') return;
+    setShowSuccessAnimation(true);
+    const t = setTimeout(() => setShowSuccessAnimation(false), 2500);
+    return () => clearTimeout(t);
+  }, [status]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    trackFunnel.contactFormSubmit();
     setIsLoading(true);
     setStatus('idle');
     setStatusMessage('');
@@ -32,16 +43,25 @@ export default function Contact() {
       const data = await response.json();
 
       if (response.ok) {
+        trackFunnel.contactFormSuccess();
         setStatus('success');
         setStatusMessage('Message sent successfully! I\'ll get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', website: '' });
       } else {
+        trackFunnel.contactFormError(data.errorType || 'unknown');
         setStatus('error');
-        setStatusMessage(data.error || 'Failed to send message. Please try again.');
+        // Check if it's a config error (form unavailable)
+        if (data.errorType === 'config') {
+          setStatusMessage('The contact form is temporarily unavailable. Please reach me directly via WhatsApp or email using the links above.');
+        } else if (data.errorType === 'rate_limit') {
+          setStatusMessage('You\'ve sent too many messages recently. Please wait a bit before trying again, or contact me directly via WhatsApp or email.');
+        } else {
+          setStatusMessage(data.error || 'Failed to send message. Please try again or contact me directly via WhatsApp or email.');
+        }
       }
     } catch (error) {
       setStatus('error');
-      setStatusMessage('An error occurred. Please try again later.');
+      setStatusMessage('Network error occurred. Please check your connection and try again, or contact me directly via WhatsApp or email.');
     } finally {
       setIsLoading(false);
     }
@@ -50,8 +70,60 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8"
+      className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 relative"
     >
+      <AnimatePresence>
+        {showSuccessAnimation && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+          >
+            <div className="absolute inset-0 flex items-center justify-center">
+              {[...Array(16)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 1, x: 0, y: 0, opacity: 0.9 }}
+                  animate={{
+                    scale: 0,
+                    x: Math.cos((i / 16) * Math.PI * 2) * 120,
+                    y: Math.sin((i / 16) * Math.PI * 2) * 120,
+                    opacity: 0,
+                  }}
+                  transition={{ duration: 0.7, delay: 0.1 + i * 0.02 }}
+                  className="absolute left-1/2 top-1/2 w-2 h-2 -ml-1 -mt-1 rounded-full bg-blue-400"
+                />
+              ))}
+            </div>
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="flex flex-col items-center gap-4 relative z-10"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15, delay: 0.15 }}
+                className="w-24 h-24 rounded-full bg-green-500/20 border-2 border-green-500/50 flex items-center justify-center"
+              >
+                <CheckCircle2 className="w-14 h-14 text-green-400" />
+              </motion.div>
+              <motion.p
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.35 }}
+                className="text-lg font-semibold text-white"
+              >
+                Message sent!
+              </motion.p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -91,7 +163,7 @@ export default function Contact() {
                       href="https://wa.me/16722749582"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-400 transition-colors"
+                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
                     >
                       +1 672 274 9582
                     </a>
@@ -107,7 +179,7 @@ export default function Contact() {
                       href="https://wa.me/4915213856751"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-400 transition-colors"
+                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
                     >
                       +49 152 138 56751
                     </a>
@@ -121,7 +193,7 @@ export default function Contact() {
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
                       href="mailto:davidtosin306@gmail.com"
-                      className="text-white hover:text-blue-400 transition-colors"
+                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
                     >
                       davidtosin306@gmail.com
                     </a>
@@ -138,7 +210,20 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 relative">
+              {/* Honeypot field - hidden from users */}
+              <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                />
+              </div>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                   Name
@@ -149,7 +234,7 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors"
                   placeholder="Your name"
                 />
               </div>
@@ -163,7 +248,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -177,7 +262,7 @@ export default function Contact() {
                   rows={6}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors resize-none"
                   placeholder="Your message..."
                 />
               </div>
@@ -200,7 +285,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
               >
                 {isLoading ? (
                   <>
@@ -214,6 +299,9 @@ export default function Contact() {
                   </>
                 )}
               </button>
+              <p className="text-sm text-gray-500 text-center mt-4">
+                I usually reply within 24 hours via email or WhatsApp
+              </p>
             </form>
           </motion.div>
         </div>

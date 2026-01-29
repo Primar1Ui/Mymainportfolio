@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+.dark {
   --background: #0B0F19;
   --foreground: #FFFFFF;
+}
+
+.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 * {
@@ -25,11 +31,49 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+/* Accessibility: Focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content link (hidden until focused) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -39,7 +83,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -47,7 +91,31 @@ body {
   border-radius: 5px;
 }
 
+.light ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #2a2f3e;
+}
+
+/* Light mode overrides for key surfaces */
+.navbar-bg {
+  background-color: rgba(11, 15, 25, 0.95);
+}
+.light .navbar-bg {
+  background-color: rgba(248, 250, 252, 0.98);
+  border-color: rgba(226, 232, 240, 0.5);
+}
+.light .navbar-bg .text-gray-300 {
+  color: #475569;
+}
+.light .navbar-bg .hover\:text-white:hover,
+.light .navbar-bg button:hover {
+  color: #0f172a;
 }
 
