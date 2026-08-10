@@ -15,6 +15,7 @@ import {
   type NavItem,
   type NavDropdown,
 } from '@/lib/navigation';
+import { isHomePath } from '@/lib/i18n/config';
 import ThemeToggle from '@/components/ThemeToggle';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { SITE_BRAND } from '@/lib/site';
@@ -341,7 +342,7 @@ export default function Navbar() {
                 onClick={closeMenu}
                 className="inline-flex items-center min-h-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 aria-label={`B20 ${SITE_BRAND} home`}
-                aria-current={pathname === '/' ? 'page' : undefined}
+                aria-current={isHomePath(pathname) ? 'page' : undefined}
               >
                 <Image
                   src="/images/logo-bambi20.svg"

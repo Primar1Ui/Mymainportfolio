@@ -1,9 +1,12 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import enMessages from '@/messages/en.json';
+import { LOCALE_COOKIE, defaultLocale, type Locale } from '@/lib/i18n/config';
+import { detectClientLocale } from '@/lib/i18n/client';
 
-export type Locale = 'en' | 'es' | 'fr';
+export type { Locale };
 
 type Messages = Record<string, Record<string, string>>;
 
@@ -15,8 +18,6 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
-const LOCALE_STORAGE_KEY = 'portfolio-locale';
-
 function getNested(obj: Record<string, unknown>, path: string): string | undefined {
   const keys = path.split('.');
   let current: unknown = obj;
@@ -27,18 +28,23 @@ function getNested(obj: Record<string, unknown>, path: string): string | undefin
   return typeof current === 'string' ? current : undefined;
 }
 
+function readInitialLocale(pathname: string): Locale {
+  if (typeof window === 'undefined') return defaultLocale;
+  return detectClientLocale(pathname);
+}
+
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const pathname = usePathname();
+  const [locale, setLocaleState] = useState<Locale>(() => readInitialLocale(pathname));
   const [messages, setMessages] = useState<Messages>(enMessages as Messages);
 
   useEffect(() => {
+    const detected = detectClientLocale(pathname);
+    setLocaleState(detected);
     try {
-      const stored = localStorage.getItem(LOCALE_STORAGE_KEY) as Locale | null;
-      if (stored === 'en' || stored === 'es' || stored === 'fr') {
-        setLocaleState(stored);
-      }
+      localStorage.setItem(LOCALE_COOKIE, detected);
     } catch {}
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (locale === 'en') {
@@ -68,7 +74,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     try {
-      localStorage.setItem(LOCALE_STORAGE_KEY, newLocale);
+      localStorage.setItem(LOCALE_COOKIE, newLocale);
     } catch {}
   }, []);
 

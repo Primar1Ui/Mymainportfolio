@@ -7,7 +7,7 @@ import LegacyHashRedirect from '@/components/LegacyHashRedirect';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 
-export default function Home() {
+export default function LocalizedHomePage() {
   return (
     <main id="main-content" className="min-h-screen" tabIndex={-1}>
       <LegacyHashRedirect />

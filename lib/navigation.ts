@@ -1,3 +1,5 @@
+import { isHomePath } from '@/lib/i18n/config';
+
 export type NavItem = {
   key: string;
   href: string;
@@ -65,7 +67,7 @@ export function isNavItemActive(
   hash: string
 ): boolean {
   if (item.matchPath === '/') {
-    return pathname === '/';
+    return isHomePath(pathname);
   }
 
   const pathMatches = item.matchNested
