@@ -17,10 +17,10 @@ const categories = Array.from(
 function filterButtonClass(isActive: boolean, variant: 'category' | 'tag' | 'all') {
   const active =
     variant === 'category'
-      ? 'bg-red-700/30 text-red-300 border border-red-500/50'
-      : 'bg-red-500/30 text-red-300 border border-red-500/50';
+      ? 'bg-red-700/30 text-red-400 border border-red-500/50'
+      : 'bg-red-500/30 text-red-400 border border-red-500/50';
   const inactive =
-    'bg-gray-800/50 text-gray-400 border border-gray-700 hover:border-gray-600 hover:text-gray-300';
+    'bg-gray-800/50 text-gray-400 border border-gray-700 hover:border-red-500/40 hover:text-red-500';
   return `px-4 py-2 min-h-11 rounded-full text-sm font-medium capitalize transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
     isActive ? active : inactive
   }`;

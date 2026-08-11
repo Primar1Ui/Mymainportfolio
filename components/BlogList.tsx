@@ -31,7 +31,7 @@ export default function BlogList({ posts }: BlogListProps) {
           aria-pressed={activeTag === 'all'}
           className={`px-3 py-1.5 min-h-11 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 ${
             activeTag === 'all'
-              ? 'bg-red-500/30 text-red-300 border border-red-500/50'
+              ? 'bg-red-500/30 text-red-400 border border-red-500/50'
               : 'bg-gray-800/50 text-gray-400 border border-gray-700 hover:text-gray-200'
           }`}
         >
@@ -45,7 +45,7 @@ export default function BlogList({ posts }: BlogListProps) {
             aria-pressed={activeTag === tag}
             className={`px-3 py-1.5 min-h-11 rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 ${
               activeTag === tag
-                ? 'bg-red-500/30 text-red-300 border border-red-500/50'
+                ? 'bg-red-500/30 text-red-400 border border-red-500/50'
                 : 'bg-gray-800/50 text-gray-400 border border-gray-700 hover:text-gray-200'
             }`}
           >

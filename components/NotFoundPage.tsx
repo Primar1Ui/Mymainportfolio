@@ -27,7 +27,7 @@ export default function NotFoundPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="btn-primary gap-2 min-h-11 px-5 py-2.5 rounded-lg text-sm"
             >
               <Home className="w-4 h-4" aria-hidden />
               {t('notFound.backHome')}

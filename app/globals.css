@@ -168,8 +168,17 @@ body {
 .light .text-gray-400 {
   color: var(--muted);
 }
+.light .text-gray-200 {
+  color: var(--muted-strong);
+}
+.light .hover\:text-gray-200:hover {
+  color: var(--muted-strong);
+}
+.light .hover\:text-gray-400:hover {
+  color: var(--muted);
+}
 .light .hover\:text-white:hover {
-  color: var(--foreground);
+  color: var(--accent);
 }
 .light .hover\:text-gray-300:hover {
   color: var(--muted-strong);
@@ -251,7 +260,64 @@ body {
 .light input.text-white,
 .light textarea.text-white,
 .light select.text-white {
-  color: #fafafa;
+  color: var(--foreground);
+}
+
+/* Light mode: stronger, darker red accents for readability on white */
+.light .text-red-300 {
+  color: #b91c1c;
+}
+.light .text-red-400 {
+  color: #dc2626;
+}
+.light .text-red-500 {
+  color: #dc2626;
+}
+.light .hover\:text-red-300:hover,
+.light .hover\:text-red-400:hover,
+.light .hover\:text-red-500:hover {
+  color: #b91c1c;
+}
+.light .group-hover\:text-red-400:is(:where(.group):hover *) {
+  color: #dc2626;
+}
+
+.light .bg-red-500\/10 {
+  background-color: rgba(220, 38, 38, 0.12);
+}
+.light .bg-red-500\/15 {
+  background-color: rgba(220, 38, 38, 0.14);
+}
+.light .bg-red-500\/20 {
+  background-color: rgba(220, 38, 38, 0.16);
+}
+.light .bg-red-500\/30 {
+  background-color: rgba(220, 38, 38, 0.2);
+}
+.light .bg-red-600\/20 {
+  background-color: rgba(220, 38, 38, 0.16);
+}
+.light .bg-red-700\/30 {
+  background-color: rgba(185, 28, 28, 0.18);
+}
+
+.light .bg-white\/10 {
+  background-color: var(--accent-muted);
+}
+.light .hover\:bg-white\/5:hover {
+  background-color: rgba(220, 38, 38, 0.06);
+}
+
+.light .text-white.bg-white\/10,
+.light .bg-white\/10.text-white {
+  color: var(--accent) !important;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #d6d3d1;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #fca5a5;
 }
 
 /* Dark-mode card/surfaces: warm charcoal instead of navy */

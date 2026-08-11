@@ -87,7 +87,7 @@ export default function HireLanding() {
               <Link
                 href="/contact"
                 onClick={() => trackFunnel.contactCtaClick('hire-hero')}
-                className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-sm font-semibold hover:opacity-90 transition-opacity"
+                className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
               >
                 Send project details
                 <ArrowRight className="w-4 h-4" />
@@ -226,7 +226,7 @@ export default function HireLanding() {
           <Link
             href="/contact"
             onClick={() => trackFunnel.contactCtaClick('hire-footer')}
-            className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg bg-[var(--foreground)] text-[var(--background)] text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
           >
             Go to contact form
             <ArrowRight className="w-4 h-4" />

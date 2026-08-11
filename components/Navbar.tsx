@@ -25,8 +25,8 @@ function navLinkClass(isActive: boolean) {
     'inline-flex items-center min-h-11 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]',
     isActive
-      ? 'text-white bg-white/10'
-      : 'text-gray-300 hover:text-white hover:bg-white/5',
+      ? 'text-red-400 bg-red-500/15'
+      : 'text-gray-300 hover:text-red-400 hover:bg-red-500/10',
   ].join(' ');
 }
 
@@ -34,7 +34,7 @@ function mobileLinkClass(isActive: boolean) {
   return [
     'block w-full text-left min-h-11 text-base py-3 px-3 rounded-lg transition-colors',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]',
-    isActive ? 'text-red-300 bg-white/10' : 'text-gray-100 hover:text-red-300 hover:bg-white/5',
+    isActive ? 'text-red-400 bg-red-500/15' : 'text-gray-100 hover:text-red-400 hover:bg-red-500/10',
   ].join(' ');
 }
 
@@ -116,8 +116,8 @@ function DesktopDropdown({ dropdown, isActive, isItemActive, t, onNavigate }: De
                     }}
                     className={`block px-4 py-2.5 text-sm transition-colors ${
                       active
-                        ? 'text-red-300 bg-white/10'
-                        : 'text-gray-200 hover:text-white hover:bg-white/5'
+                        ? 'text-red-400 bg-red-500/15'
+                        : 'text-gray-200 hover:text-red-400 hover:bg-red-500/10'
                     }`}
                     aria-current={active ? 'page' : undefined}
                   >
@@ -149,7 +149,7 @@ function MobileDropdown({ dropdown, isItemActive, t, onNavigate }: MobileDropdow
       <button
         type="button"
         className={`flex w-full items-center justify-between min-h-11 py-3 px-3 rounded-lg text-lg transition-colors ${
-          groupActive ? 'text-red-300' : 'text-gray-100'
+          groupActive ? 'text-red-400' : 'text-gray-100'
         }`}
         aria-expanded={expanded}
         onClick={() => setExpanded((prev) => !prev)}
