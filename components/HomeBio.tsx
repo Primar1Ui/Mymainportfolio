@@ -44,14 +44,14 @@ export default function HomeBio() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackFunnel.whatsappClick('home-bio')}
-            className="inline-flex items-center justify-center gap-2 min-h-12 px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-blue-500/30 text-white text-sm sm:text-base font-semibold uppercase tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-solid)]"
+            className="inline-flex items-center justify-center gap-2 min-h-12 px-6 sm:px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:shadow-lg hover:shadow-red-500/30 text-white text-sm sm:text-base font-semibold uppercase tracking-wide transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-solid)]"
           >
             Message on WhatsApp
             <ChevronRight className="w-5 h-5 shrink-0" aria-hidden="true" />
           </a>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 min-h-12 px-6 sm:px-8 py-3 border border-[var(--border)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-blue-500/50 text-sm sm:text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-solid)]"
+            className="inline-flex items-center justify-center gap-2 min-h-12 px-6 sm:px-8 py-3 border border-[var(--border)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-red-500/50 text-sm sm:text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-solid)]"
           >
             Contact page
           </Link>

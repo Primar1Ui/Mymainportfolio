@@ -4,8 +4,8 @@
   "description": "Oluwatosin David (Bambi20) builds modern web apps, Supabase backends, AI integrations, and workflow automation.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#070f1c",
-  "theme_color": "#070f1c",
+  "background_color": "#0f0a0a",
+  "theme_color": "#0f0a0a",
   "orientation": "portrait-primary",
   "icons": [
     {

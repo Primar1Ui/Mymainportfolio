@@ -28,11 +28,11 @@ export default function Services() {
                 delay: reduce ? 0 : index * 0.05,
                 duration: reduce ? 0 : 0.4,
               }}
-              className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 group"
+              className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300 group"
             >
               <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 group-hover:scale-110 transition-transform">
-                  <CheckCircle2 className="w-6 h-6 text-blue-400" />
+                <div className="p-2 rounded-lg bg-gradient-to-br from-red-500/20 to-red-600/20 group-hover:scale-110 transition-transform">
+                  <CheckCircle2 className="w-6 h-6 text-red-400" />
                 </div>
                 <p className="text-lg text-gray-300 font-medium pt-1">
                   {service}

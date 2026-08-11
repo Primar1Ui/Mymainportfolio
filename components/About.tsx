@@ -69,11 +69,11 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300"
+                className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                    <feature.icon className="w-6 h-6 text-blue-400" />
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20">
+                    <feature.icon className="w-6 h-6 text-red-400" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-white">

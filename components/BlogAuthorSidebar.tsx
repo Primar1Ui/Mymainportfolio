@@ -25,22 +25,22 @@ export default function BlogAuthorSidebar() {
       </p>
       <ul className="space-y-2 text-sm">
         <li>
-          <Link href="/about" className="text-blue-500 hover:text-blue-400">
+          <Link href="/about" className="text-red-500 hover:text-red-400">
             About page
           </Link>
         </li>
         <li>
-          <Link href="/hire" className="text-blue-500 hover:text-blue-400">
+          <Link href="/hire" className="text-red-500 hover:text-red-400">
             Hire me
           </Link>
         </li>
         <li>
-          <Link href="/contact" className="text-blue-500 hover:text-blue-400">
+          <Link href="/contact" className="text-red-500 hover:text-red-400">
             Contact
           </Link>
         </li>
         <li>
-          <a href={`mailto:${SITE_EMAIL}`} className="text-blue-500 hover:text-blue-400">
+          <a href={`mailto:${SITE_EMAIL}`} className="text-red-500 hover:text-red-400">
             {SITE_EMAIL}
           </a>
         </li>
@@ -49,7 +49,7 @@ export default function BlogAuthorSidebar() {
             href={SITE_GITHUB}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-400"
+            className="text-red-500 hover:text-red-400"
           >
             GitHub
           </a>

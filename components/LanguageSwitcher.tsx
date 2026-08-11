@@ -23,9 +23,9 @@ export default function LanguageSwitcher() {
           key={code}
           type="button"
           onClick={() => setLocale(code)}
-          className={`min-h-9 min-w-9 px-2 py-1 text-xs font-semibold rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
+          className={`min-h-9 min-w-9 px-2 py-1 text-xs font-semibold rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
             locale === code
-              ? 'bg-blue-500/20 text-blue-500'
+              ? 'bg-red-500/20 text-red-500'
               : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--surface)]'
           }`}
           aria-label={`Switch to ${label}`}

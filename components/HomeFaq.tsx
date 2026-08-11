@@ -64,7 +64,7 @@ export default function HomeFaq() {
                     aria-expanded={isOpen}
                     aria-controls={panelId}
                     onClick={() => toggleItem(index)}
-                    className="flex w-full items-center justify-between gap-4 min-h-14 px-5 py-4 text-left text-base font-semibold text-[var(--foreground)] hover:bg-[var(--surface)]/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+                    className="flex w-full items-center justify-between gap-4 min-h-14 px-5 py-4 text-left text-base font-semibold text-[var(--foreground)] hover:bg-[var(--surface)]/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500"
                   >
                     <span>{item.question}</span>
                     <ChevronDown

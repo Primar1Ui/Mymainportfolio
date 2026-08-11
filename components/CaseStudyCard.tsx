@@ -16,7 +16,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300"
+      className="p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300"
     >
       {/* Header */}
       <div className="mb-6">
@@ -30,7 +30,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
             )}
           </div>
           {caseStudy.featured && (
-            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/30">
               Featured
             </span>
           )}
@@ -39,8 +39,8 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
 
       {/* Problem */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-blue-400 mb-2 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+        <h3 className="text-lg font-semibold text-red-400 mb-2 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-red-400"></span>
           Problem
         </h3>
         <p className="text-gray-300 leading-relaxed">{caseStudy.problem}</p>
@@ -57,15 +57,15 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
 
       {/* Tech Stack */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-purple-400 mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-purple-400"></span>
+        <h3 className="text-lg font-semibold text-red-400 mb-3 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-red-400"></span>
           Tech Stack
         </h3>
         <div className="flex flex-wrap gap-2">
           {caseStudy.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 text-sm rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30"
+              className="px-3 py-1 text-sm rounded-full bg-red-600/20 text-red-400 border border-red-500/30"
             >
               {tech}
             </span>
@@ -75,7 +75,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
 
       {/* Results */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+        <h3 className="text-lg font-semibold text-red-400 mb-2 flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5" />
           Results
         </h3>
@@ -84,7 +84,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
           <ul className="space-y-2 mt-3">
             {caseStudy.metrics.map((metric, idx) => (
               <li key={idx} className="flex items-center gap-2 text-gray-400 text-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span>
                 {metric}
               </li>
             ))}
@@ -100,7 +100,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
               href={caseStudy.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 hover:border-blue-400 hover:text-blue-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 hover:border-red-400 hover:text-red-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               <Github className="w-4 h-4" />
               <span className="text-sm font-medium">View Code</span>
@@ -111,7 +111,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
               href={caseStudy.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               <ExternalLink className="w-4 h-4" />
               <span className="text-sm font-medium">View Live</span>

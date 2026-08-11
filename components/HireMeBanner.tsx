@@ -34,7 +34,7 @@ export default function HireMeBanner() {
     <div
       role="region"
       aria-label="Availability notice"
-      className="sticky top-16 md:top-20 z-40 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 border-b border-blue-500/30 print:hidden shadow-md"
+      className="sticky top-16 md:top-20 z-40 bg-gradient-to-r from-red-700 to-red-600 text-white py-3 px-4 border-b border-red-500/30 print:hidden shadow-md"
     >
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <p className="text-sm md:text-base flex items-start sm:items-center gap-2 flex-1 min-w-0">
@@ -44,7 +44,7 @@ export default function HireMeBanner() {
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <Link
             href="/contact"
-            className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 min-h-11 px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-600"
+            className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 min-h-11 px-4 py-2 bg-white text-red-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-red-600"
           >
             Get in touch
           </Link>

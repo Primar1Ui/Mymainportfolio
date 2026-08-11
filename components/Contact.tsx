@@ -139,7 +139,7 @@ export default function Contact() {
                     opacity: 0,
                   }}
                   transition={{ duration: 0.7, delay: 0.1 + i * 0.02 }}
-                  className="absolute left-1/2 top-1/2 w-2 h-2 -ml-1 -mt-1 rounded-full bg-blue-400"
+                  className="absolute left-1/2 top-1/2 w-2 h-2 -ml-1 -mt-1 rounded-full bg-red-400"
                 />
               ))}
             </div>
@@ -190,8 +190,8 @@ export default function Contact() {
               <div className="space-y-4">
                 {whatsappContacts.map((contact) => (
                   <div key={contact.id} className="flex items-center gap-4">
-                    <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                      <Phone className="w-5 h-5 text-blue-400" />
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-red-500/20 to-red-600/20">
+                      <Phone className="w-5 h-5 text-red-400" />
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">
@@ -203,7 +203,7 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackFunnel.whatsappClick(`contact-${contact.id}`)}
-                        className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
+                        className="text-white hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-1"
                       >
                         {contact.display}
                       </a>
@@ -211,23 +211,23 @@ export default function Contact() {
                   </div>
                 ))}
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                    <Mail className="w-5 h-5 text-blue-400" />
+                  <div className="p-3 rounded-lg bg-gradient-to-br from-red-500/20 to-red-600/20">
+                    <Mail className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Email</p>
                     <a
                       href="mailto:davidtosin306@gmail.com"
                       onClick={() => trackFunnel.emailClick('contact')}
-                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
+                      className="text-white hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-1"
                     >
                       davidtosin306@gmail.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                    <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <div className="p-3 rounded-lg bg-gradient-to-br from-red-500/20 to-red-600/20">
+                    <svg className="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                       <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                     </svg>
                   </div>
@@ -238,15 +238,15 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackFunnel.telegramClick('contact')}
-                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
+                      className="text-white hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-1"
                     >
                       @mar_gdd
                     </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="p-3 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-                    <Github className="w-5 h-5 text-blue-400" />
+                  <div className="p-3 rounded-lg bg-gradient-to-br from-red-500/20 to-red-600/20">
+                    <Github className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">GitHub</p>
@@ -255,7 +255,7 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackFunnel.githubClick('contact')}
-                      className="text-white hover:text-blue-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded px-1"
+                      className="text-white hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-1"
                     >
                       github.com/Primar1Ui
                     </a>
@@ -267,7 +267,7 @@ export default function Contact() {
                     <a
                       href="mailto:davidtosin306@gmail.com"
                       onClick={() => trackFunnel.emailClick('contact-quick')}
-                      className="inline-flex items-center gap-2 min-h-10 px-4 py-2 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 hover:bg-blue-500/20 transition-colors text-sm font-medium"
+                      className="inline-flex items-center gap-2 min-h-10 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-colors text-sm font-medium"
                     >
                       <Mail className="w-4 h-4" aria-hidden="true" />
                       Email
@@ -329,10 +329,10 @@ export default function Contact() {
                   }}
                   aria-invalid={Boolean(fieldErrors.name)}
                   aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors ${
+                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] transition-colors ${
                     fieldErrors.name
                       ? 'border-red-500/70 focus:border-red-500'
-                      : 'border-gray-800 focus:border-blue-500'
+                      : 'border-gray-800 focus:border-red-500'
                   }`}
                   placeholder="Your name"
                 />
@@ -359,10 +359,10 @@ export default function Contact() {
                   }}
                   aria-invalid={Boolean(fieldErrors.email)}
                   aria-describedby={fieldErrors.email ? 'email-error' : undefined}
-                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors ${
+                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] transition-colors ${
                     fieldErrors.email
                       ? 'border-red-500/70 focus:border-red-500'
-                      : 'border-gray-800 focus:border-blue-500'
+                      : 'border-gray-800 focus:border-red-500'
                   }`}
                   placeholder="your.email@example.com"
                 />
@@ -389,10 +389,10 @@ export default function Contact() {
                   }}
                   aria-invalid={Boolean(fieldErrors.message)}
                   aria-describedby={fieldErrors.message ? 'message-error' : undefined}
-                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] transition-colors resize-none ${
+                  className={`w-full px-4 py-3 rounded-xl bg-gray-900/50 border text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] transition-colors resize-none ${
                     fieldErrors.message
                       ? 'border-red-500/70 focus:border-red-500'
-                      : 'border-gray-800 focus:border-blue-500'
+                      : 'border-gray-800 focus:border-red-500'
                   }`}
                   placeholder="Your message..."
                 />
@@ -423,7 +423,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 {isLoading ? (
                   <>

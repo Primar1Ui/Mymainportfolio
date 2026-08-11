@@ -47,7 +47,7 @@ export default function AutomationShowcase() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: reduce ? 0 : index * 0.08, duration: reduce ? 0 : 0.5 }}
-                className="overflow-hidden rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-cyan-500/50 transition-colors"
+                className="overflow-hidden rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-colors"
               >
                 <div className="relative aspect-[16/9] bg-white overflow-hidden">
                   <Image
@@ -60,7 +60,7 @@ export default function AutomationShowcase() {
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="inline-flex p-2 rounded-lg bg-cyan-500/15 text-cyan-400">
+                    <span className="inline-flex p-2 rounded-lg bg-red-500/15 text-red-400">
                       <Icon className="w-5 h-5" aria-hidden />
                     </span>
                     <h3 className="text-xl font-semibold text-white">{automation.title}</h3>
@@ -70,7 +70,7 @@ export default function AutomationShowcase() {
                     {automation.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        className="px-3 py-1 text-xs rounded-full bg-red-500/10 text-red-400 border border-red-500/20"
                       >
                         {tag}
                       </span>
@@ -85,7 +85,7 @@ export default function AutomationShowcase() {
         <div className="text-center mt-10">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Discuss an automation project
           </a>

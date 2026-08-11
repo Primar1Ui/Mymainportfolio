@@ -9,11 +9,11 @@ export default function Skills() {
   const reduce = usePrefersReducedMotion();
 
   const skillCategories = [
-    { title: 'Frontend', skills: skills.frontend, color: 'from-blue-500 to-cyan-500' },
-    { title: 'Backend', skills: skills.backend, color: 'from-purple-500 to-pink-500' },
-    { title: 'Tools', skills: skills.tools, color: 'from-cyan-500 to-blue-500' },
-    { title: 'Automation', skills: skills.automation, color: 'from-emerald-400 to-cyan-500' },
-    { title: 'Deployment', skills: skills.deployment, color: 'from-pink-500 to-purple-500' },
+    { title: 'Frontend', skills: skills.frontend, color: 'from-red-600 to-red-400' },
+    { title: 'Backend', skills: skills.backend, color: 'from-red-700 to-red-500' },
+    { title: 'Tools', skills: skills.tools, color: 'from-red-500 to-red-600' },
+    { title: 'Automation', skills: skills.automation, color: 'from-red-500 to-red-400' },
+    { title: 'Deployment', skills: skills.deployment, color: 'from-red-600 to-red-700' },
   ];
 
   return (
@@ -35,7 +35,7 @@ export default function Skills() {
                 delay: reduce ? 0 : categoryIndex * 0.1,
                 duration: reduce ? 0 : 0.4,
               }}
-              className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300"
+              className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300"
             >
               <h3 className="text-xl font-semibold mb-4 text-white">
                 {category.title}

@@ -28,7 +28,7 @@ export default function FeaturedProject() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl overflow-hidden bg-gray-900/80 border border-gray-800 shadow-xl shadow-blue-500/5"
+          className="rounded-2xl overflow-hidden bg-gray-900/80 border border-gray-800 shadow-xl shadow-red-500/5"
         >
           <div className="grid lg:grid-cols-2 gap-0">
             <div className="relative aspect-video lg:aspect-auto lg:min-h-[360px] bg-gray-800/50">
@@ -50,7 +50,7 @@ export default function FeaturedProject() {
               </p>
               {featuredProject.results && (
                 <p className="text-sm text-gray-400 mb-6">
-                  <span className="font-semibold text-blue-400">Impact:</span>{' '}
+                  <span className="font-semibold text-red-400">Impact:</span>{' '}
                   {featuredProject.results}
                 </p>
               )}
@@ -58,7 +58,7 @@ export default function FeaturedProject() {
                 {metrics.map((metric, i) => (
                   <li
                     key={i}
-                    className="px-3 py-1.5 text-xs rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    className="px-3 py-1.5 text-xs rounded-full bg-red-500/20 text-red-400 border border-red-500/30"
                   >
                     {metric}
                   </li>
@@ -71,7 +71,7 @@ export default function FeaturedProject() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackFunnel.projectViewCode(featuredProject.title)}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 font-semibold hover:border-blue-500 hover:text-blue-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 font-semibold hover:border-red-500 hover:text-red-400 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
                     <Github className="w-5 h-5" />
                     View Code
@@ -83,7 +83,7 @@ export default function FeaturedProject() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackFunnel.projectViewLive(featuredProject.title)}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   >
                     <ExternalLink className="w-5 h-5" />
                     View Live

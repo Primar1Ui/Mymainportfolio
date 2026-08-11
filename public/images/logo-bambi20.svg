@@ -1,21 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="B20 Bambi20">
   <defs>
     <linearGradient id="badge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b1628"/>
-      <stop offset="100%" stop-color="#070f1c"/>
+      <stop offset="0%" stop-color="#1a1212"/>
+      <stop offset="100%" stop-color="#0f0a0a"/>
     </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="55%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="55%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#dc2626"/>
     </linearGradient>
     <linearGradient id="word" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#67e8f9"/>
-      <stop offset="45%" stop-color="#60a5fa"/>
-      <stop offset="100%" stop-color="#c4b5fd"/>
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="45%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#ef4444"/>
     </linearGradient>
   </defs>
-  <!-- Icon badge -->
   <rect x="0" y="2" width="44" height="44" rx="12" fill="url(#badge)"/>
   <rect x="1.5" y="3.5" width="41" height="41" rx="10.5" fill="none" stroke="url(#accent)" stroke-width="1.75"/>
   <text
@@ -28,7 +27,6 @@
     letter-spacing="-0.8"
     fill="url(#accent)"
   >B20</text>
-  <!-- Wordmark -->
   <text
     x="56"
     y="32"

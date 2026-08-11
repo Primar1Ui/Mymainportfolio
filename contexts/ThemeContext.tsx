@@ -12,8 +12,8 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const THEME_COLORS = {
-  dark: '#070f1c',
-  light: '#f4f4f5',
+  dark: '#0f0a0a',
+  light: '#fafafa',
 } as const;
 
 function getPreferredTheme(): Theme {

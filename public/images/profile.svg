@@ -1,16 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="David">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a8a"/>
-      <stop offset="50%" stop-color="#0e7490"/>
-      <stop offset="100%" stop-color="#1e40af"/>
+      <stop offset="0%" stop-color="#1a1212"/>
+      <stop offset="100%" stop-color="#0f0a0a"/>
     </linearGradient>
     <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="100%" stop-color="#60a5fa"/>
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#ef4444"/>
     </linearGradient>
   </defs>
   <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
-  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#ring)" stroke-width="8" opacity="0.7"/>
-  <text x="256" y="290" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="220" font-weight="700" fill="#ffffff">D</text>
+  <circle cx="256" cy="256" r="236" fill="none" stroke="url(#ring)" stroke-width="8" opacity="0.85"/>
+  <text x="256" y="290" text-anchor="middle" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="220" font-weight="700" fill="#fafafa">D</text>
 </svg>

@@ -17,11 +17,11 @@ const categories = Array.from(
 function filterButtonClass(isActive: boolean, variant: 'category' | 'tag' | 'all') {
   const active =
     variant === 'category'
-      ? 'bg-purple-500/30 text-purple-300 border border-purple-500/50'
-      : 'bg-blue-500/30 text-blue-300 border border-blue-500/50';
+      ? 'bg-red-700/30 text-red-300 border border-red-500/50'
+      : 'bg-red-500/30 text-red-300 border border-red-500/50';
   const inactive =
     'bg-gray-800/50 text-gray-400 border border-gray-700 hover:border-gray-600 hover:text-gray-300';
-  return `px-4 py-2 min-h-11 rounded-full text-sm font-medium capitalize transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+  return `px-4 py-2 min-h-11 rounded-full text-sm font-medium capitalize transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
     isActive ? active : inactive
   }`;
 }
@@ -70,7 +70,7 @@ export default function Projects() {
           <Link
             href="/case-studies"
             onClick={() => trackFunnel.projectsViewCaseStudies()}
-            className="inline-flex items-center gap-2 text-[var(--muted)] hover:text-blue-500 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-2 py-1"
+            className="inline-flex items-center gap-2 text-[var(--muted)] hover:text-red-500 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-2 py-1"
           >
             View detailed case studies →
           </Link>
@@ -93,7 +93,7 @@ export default function Projects() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search projects..."
-              className="w-full pl-12 pr-4 py-3 min-h-11 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-colors"
+              className="w-full pl-12 pr-4 py-3 min-h-11 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 transition-colors"
               aria-label="Search projects"
             />
           </div>
@@ -105,13 +105,13 @@ export default function Projects() {
             onClick={() => setFiltersOpen((open) => !open)}
             aria-expanded={filtersOpen}
             aria-controls="project-filters"
-            className="md:hidden w-full flex items-center justify-between gap-3 min-h-11 px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-gray-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="md:hidden w-full flex items-center justify-between gap-3 min-h-11 px-4 py-3 rounded-xl bg-gray-900/50 border border-gray-800 text-gray-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="inline-flex items-center gap-2">
-              <SlidersHorizontal className="w-4 h-4 text-blue-400" aria-hidden="true" />
+              <SlidersHorizontal className="w-4 h-4 text-red-400" aria-hidden="true" />
               Filters
               {activeFilter !== 'all' && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
                   {activeFilterLabel}
                 </span>
               )}
@@ -172,7 +172,7 @@ export default function Projects() {
                 setActiveFilter('all');
                 setFiltersOpen(false);
               }}
-              className="inline-flex items-center justify-center min-h-11 px-6 py-2 rounded-xl border border-gray-700 text-gray-200 font-medium hover:border-blue-400 hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="inline-flex items-center justify-center min-h-11 px-6 py-2 rounded-xl border border-gray-700 text-gray-200 font-medium hover:border-red-400 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               Clear search and filters
             </button>
@@ -186,7 +186,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
+              className="group p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10"
             >
               {'image' in project && project.image && (
                 <div className="relative w-full h-44 sm:h-48 mb-4 rounded-xl overflow-hidden bg-gray-800/50">
@@ -199,7 +199,7 @@ export default function Projects() {
                   />
                 </div>
               )}
-              <h3 className="text-2xl font-semibold mb-3 text-white group-hover:text-blue-400 transition-colors">
+              <h3 className="text-2xl font-semibold mb-3 text-white group-hover:text-red-400 transition-colors">
                 {project.title}
               </h3>
               <p className="text-gray-400 mb-4 leading-relaxed">
@@ -207,14 +207,14 @@ export default function Projects() {
               </p>
               {project.results && (
                 <p className="text-sm text-gray-400 mb-3">
-                  <span className="font-semibold text-blue-400">Impact:</span> {project.results}
+                  <span className="font-semibold text-red-400">Impact:</span> {project.results}
                 </p>
               )}
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                    className="px-3 py-1 text-xs rounded-full bg-red-500/20 text-red-400 border border-red-500/30"
                   >
                     {tech}
                   </span>
@@ -228,7 +228,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackFunnel.projectViewLive(project.title)}
-                      className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                      className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
                       <span>View Live</span>
@@ -240,7 +240,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => trackFunnel.projectViewCode(project.title)}
-                      className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 font-semibold hover:border-blue-400 hover:text-blue-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                      className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 font-semibold hover:border-red-400 hover:text-red-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <Github className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
                       <span>View Code</span>
@@ -250,7 +250,7 @@ export default function Projects() {
                     <Link
                       href="/contact"
                       onClick={handleContactClick}
-                      className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                      className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
                       <span>Discuss a Similar Project</span>
@@ -263,7 +263,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackFunnel.whatsappClick('projects-card')}
-                  className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+                  className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                   aria-label={`WhatsApp ${primaryWhatsApp.label}`}
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />

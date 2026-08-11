@@ -40,13 +40,13 @@ export default function CaseStudiesPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
                   Contact
                 </Link>
                 <Link
                   href="/projects"
-                  className="px-6 py-3 bg-gray-800 border border-gray-700 rounded-xl font-semibold text-gray-100 hover:border-blue-400 hover:text-blue-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                  className="px-6 py-3 bg-gray-800 border border-gray-700 rounded-xl font-semibold text-gray-100 hover:border-red-400 hover:text-red-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
                   View Projects
                 </Link>

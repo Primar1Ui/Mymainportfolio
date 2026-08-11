@@ -91,7 +91,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='light'||s==='dark')?s:'dark';document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#f4f4f5':'#070f1c');}catch(e){document.documentElement.classList.add('dark');}})();`,
+            __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='light'||s==='dark')?s:'dark';document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#fafafa':'#0f0a0a');}catch(e){document.documentElement.classList.add('dark');}})();`,
           }}
         />
         <link rel="canonical" href={SITE_URL} />
@@ -102,7 +102,7 @@ export default function RootLayout({
           title={`${SITE_BRAND} Blog RSS`}
           href={`${SITE_URL}/feed`}
         />
-        <meta name="theme-color" content="#070f1c" />
+        <meta name="theme-color" content="#0f0a0a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="geo.region" content="NG" />

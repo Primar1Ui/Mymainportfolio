@@ -50,12 +50,12 @@ export default function KeyboardShortcuts() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ duration: 0.18 }}
-            className="w-full max-w-md rounded-2xl border border-gray-800 bg-[#0b1628] shadow-2xl"
+            className="w-full max-w-md rounded-2xl border border-gray-800 bg-[var(--surface-solid)] shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-gray-800">
               <div className="flex items-center gap-2">
-                <Keyboard className="w-5 h-5 text-cyan-400" aria-hidden />
+                <Keyboard className="w-5 h-5 text-red-400" aria-hidden />
                 <h2 id="shortcuts-title" className="text-lg font-semibold text-white">
                   Keyboard shortcuts
                 </h2>
@@ -64,7 +64,7 @@ export default function KeyboardShortcuts() {
                 ref={closeRef}
                 type="button"
                 onClick={closeHelp}
-                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                 aria-label="Close shortcuts help"
               >
                 <X className="w-5 h-5" />

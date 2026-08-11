@@ -23,18 +23,18 @@ export default function CurrentWork() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/40 transition-colors"
+            className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/40 transition-colors"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-blue-500/20">
-                <Sparkles className="w-5 h-5 text-blue-400" />
+              <div className="p-2 rounded-lg bg-red-500/20">
+                <Sparkles className="w-5 h-5 text-red-400" />
               </div>
               <h3 className="text-lg font-semibold text-white">Active projects</h3>
             </div>
             <ul className="space-y-2">
               {currentWork.projects.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-400 text-sm">
-                  <span className="text-blue-400 mt-0.5">•</span>
+                  <span className="text-red-400 mt-0.5">•</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -46,18 +46,18 @@ export default function CurrentWork() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/40 transition-colors"
+            className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/40 transition-colors"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-purple-500/20">
-                <BookOpen className="w-5 h-5 text-purple-400" />
+              <div className="p-2 rounded-lg bg-red-600/20">
+                <BookOpen className="w-5 h-5 text-red-400" />
               </div>
               <h3 className="text-lg font-semibold text-white">Learning</h3>
             </div>
             <ul className="space-y-2">
               {currentWork.learning.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-400 text-sm">
-                  <span className="text-purple-400 mt-0.5">•</span>
+                  <span className="text-red-400 mt-0.5">•</span>
                   <span>{item}</span>
                 </li>
               ))}

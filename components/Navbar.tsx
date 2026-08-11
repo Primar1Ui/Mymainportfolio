@@ -23,7 +23,7 @@ import { SITE_BRAND } from '@/lib/site';
 function navLinkClass(isActive: boolean) {
   return [
     'inline-flex items-center min-h-11 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]',
     isActive
       ? 'text-white bg-white/10'
       : 'text-gray-300 hover:text-white hover:bg-white/5',
@@ -33,8 +33,8 @@ function navLinkClass(isActive: boolean) {
 function mobileLinkClass(isActive: boolean) {
   return [
     'block w-full text-left min-h-11 text-base py-3 px-3 rounded-lg transition-colors',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070f1c]',
-    isActive ? 'text-cyan-300 bg-white/10' : 'text-gray-100 hover:text-cyan-300 hover:bg-white/5',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]',
+    isActive ? 'text-red-300 bg-white/10' : 'text-gray-100 hover:text-red-300 hover:bg-white/5',
   ].join(' ');
 }
 
@@ -116,7 +116,7 @@ function DesktopDropdown({ dropdown, isActive, isItemActive, t, onNavigate }: De
                     }}
                     className={`block px-4 py-2.5 text-sm transition-colors ${
                       active
-                        ? 'text-cyan-300 bg-white/10'
+                        ? 'text-red-300 bg-white/10'
                         : 'text-gray-200 hover:text-white hover:bg-white/5'
                     }`}
                     aria-current={active ? 'page' : undefined}
@@ -149,7 +149,7 @@ function MobileDropdown({ dropdown, isItemActive, t, onNavigate }: MobileDropdow
       <button
         type="button"
         className={`flex w-full items-center justify-between min-h-11 py-3 px-3 rounded-lg text-lg transition-colors ${
-          groupActive ? 'text-cyan-300' : 'text-gray-100'
+          groupActive ? 'text-red-300' : 'text-gray-100'
         }`}
         aria-expanded={expanded}
         onClick={() => setExpanded((prev) => !prev)}
@@ -340,7 +340,7 @@ export default function Navbar() {
               <Link
                 href="/"
                 onClick={closeMenu}
-                className="inline-flex items-center min-h-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
+                className="inline-flex items-center min-h-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 aria-label={`B20 ${SITE_BRAND} home`}
                 aria-current={isHomePath(pathname) ? 'page' : undefined}
               >
@@ -365,7 +365,7 @@ export default function Navbar() {
               ref={menuButtonRef}
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden inline-flex items-center justify-center min-h-11 min-w-11 text-gray-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19] rounded-lg"
+              className="md:hidden inline-flex items-center justify-center min-h-11 min-w-11 text-gray-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded-lg"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"

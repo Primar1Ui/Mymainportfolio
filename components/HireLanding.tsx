@@ -128,7 +128,7 @@ export default function HireLanding() {
                 transition={{ delay: index * 0.06, duration: 0.4 }}
                 className="rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] p-6"
               >
-                <div className="inline-flex p-2 rounded-lg bg-blue-500/10 text-blue-500 mb-4">
+                <div className="inline-flex p-2 rounded-lg bg-red-500/10 text-red-500 mb-4">
                   {index === 0 ? (
                     <Layers className="w-5 h-5" aria-hidden />
                   ) : index === 1 ? (
@@ -164,7 +164,7 @@ export default function HireLanding() {
                 transition={{ delay: index * 0.06, duration: 0.4 }}
                 className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-5"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/15 text-blue-500 font-bold">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-500/15 text-red-500 font-bold">
                   {item.step}
                 </span>
                 <div>
@@ -200,13 +200,13 @@ export default function HireLanding() {
             </p>
             <p className="text-sm text-[var(--muted)]">
               Email:{' '}
-              <a href={`mailto:${SITE_EMAIL}`} className="text-blue-500 hover:text-blue-400">
+              <a href={`mailto:${SITE_EMAIL}`} className="text-red-500 hover:text-red-400">
                 {SITE_EMAIL}
               </a>
             </p>
             <Link
               href="/case-studies"
-              className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-blue-500 hover:text-blue-400"
+              className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-red-500 hover:text-red-400"
             >
               Read case studies first
               <ArrowRight className="w-4 h-4" />

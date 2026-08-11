@@ -71,7 +71,7 @@ export default function HomeSelectedWork() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.06, duration: 0.4 }}
-              className="group rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] overflow-hidden hover:border-blue-500/40 transition-colors"
+              className="group rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] overflow-hidden hover:border-red-500/40 transition-colors"
             >
               <div className="relative aspect-video bg-[var(--surface)]">
                 <Image
@@ -102,7 +102,7 @@ export default function HomeSelectedWork() {
                 </ul>
                 <Link
                   href={item.href}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-500 hover:text-red-400 transition-colors"
                 >
                   {item.cta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

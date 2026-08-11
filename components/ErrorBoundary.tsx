@@ -54,7 +54,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                   retryKey: state.retryKey + 1,
                 }))
               }
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/50 font-medium hover:bg-blue-500/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/50 font-medium hover:bg-red-500/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               <RefreshCw className="w-4 h-4" />
               Try again

@@ -20,7 +20,7 @@ export default function LatestBlogTeaser() {
           className="mb-8"
         />
 
-        <article className="p-6 md:p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-blue-500/40 transition-colors">
+        <article className="p-6 md:p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/40 transition-colors">
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
             <Calendar className="w-4 h-4" aria-hidden="true" />
             <time dateTime={post.date}>{post.date}</time>
@@ -30,14 +30,14 @@ export default function LatestBlogTeaser() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <Link
               href={`/blog/${post.slug}`}
-              className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+              className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Read article
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
             <Link
               href="/blog"
-              className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 font-medium hover:border-blue-400 hover:text-blue-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F19]"
+              className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 font-medium hover:border-red-400 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               View all posts
             </Link>
