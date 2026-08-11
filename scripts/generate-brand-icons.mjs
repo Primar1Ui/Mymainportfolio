@@ -1,11 +1,25 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import sharp from 'sharp';
-import toIco from 'to-ico';
 
+/**
+ * Regenerates favicon/OG PNGs from SVG sources.
+ * Dev-only — run once locally before committing assets:
+ *   npm install --no-save sharp to-ico
+ *   npm run generate:icons
+ */
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const publicDir = join(root, 'public');
+
+let sharp;
+let toIco;
+try {
+  sharp = (await import('sharp')).default;
+  toIco = (await import('to-ico')).default;
+} catch {
+  console.error('Missing dev tools. Run: npm install --no-save sharp to-ico');
+  process.exit(1);
+}
 
 const iconSvg = readFileSync(join(publicDir, 'images', 'icon-bambi20.svg'));
 const ogSvg = readFileSync(join(publicDir, 'images', 'og-image.svg'));
