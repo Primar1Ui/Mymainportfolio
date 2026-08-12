@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ServicesPage() {
   return (
-    <PageShell breadcrumbs={[{ label: 'Services', path: '/services' }]}>
+    <PageShell breadcrumbs={[{ labelKey: 'nav.services', path: '/services' }]}>
       <Services />
     </PageShell>
   );

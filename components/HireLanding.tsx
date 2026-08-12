@@ -13,56 +13,16 @@ import {
 import { primaryWhatsApp } from '@/lib/data';
 import { trackFunnel } from '@/lib/analytics';
 import { SITE_BRAND, SITE_LEGAL_NAME, SITE_EMAIL } from '@/lib/site';
+import { useLocale } from '@/contexts/LocaleContext';
 
-const projectTypes = [
-  {
-    title: 'Web app or SaaS MVP',
-    description:
-      'A focused product build with auth, dashboard, and production deploy on Vercel and Supabase.',
-    timeline: '2 to 4 weeks',
-  },
-  {
-    title: 'Automation system',
-    description:
-      'n8n or Zapier workflows that connect Gmail, Sheets, Airtable, Slack, and AI models to remove manual work.',
-    timeline: '1 to 2 weeks',
-  },
-  {
-    title: 'Existing app support',
-    description:
-      'Bug fixes, performance work, new features, or Supabase and API integrations on a codebase you already have.',
-    timeline: 'Flexible',
-  },
-];
-
-const processSteps = [
-  {
-    step: '1',
-    title: 'Send a short brief',
-    description:
-      'Tell me what you are building, who it is for, and your timeline. A few sentences is enough to start.',
-  },
-  {
-    step: '2',
-    title: 'Get a clear plan',
-    description:
-      'I reply within 24 hours with scope, approach, and next steps. No vague proposals or endless back and forth.',
-  },
-  {
-    step: '3',
-    title: 'Build and ship',
-    description:
-      'We work in small milestones, keep communication simple, and deploy to production when the work is ready.',
-  },
-];
-
-const fitChecks = [
-  'You want something shipped, not a months-long discovery phase',
-  'You are fine working async over WhatsApp, email, or video when needed',
-  'You care about clean code, clear handoff, and production reliability',
-];
+const projectTypeKeys = ['webApp', 'automation', 'support'] as const;
+const stepKeys = ['one', 'two', 'three'] as const;
+const fitKeys = ['one', 'two', 'three'] as const;
 
 export default function HireLanding() {
+  const { t } = useLocale();
+  const brandVars = { brand: SITE_BRAND, name: SITE_LEGAL_NAME };
+
   return (
     <>
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[var(--border)]">
@@ -73,15 +33,13 @@ export default function HireLanding() {
             transition={{ duration: 0.45 }}
           >
             <p className="text-sm font-medium text-[var(--muted)] uppercase tracking-wide mb-3">
-              Hire {SITE_BRAND}
+              {t('hire.eyebrow', { brand: SITE_BRAND })}
             </p>
             <h1 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-5 leading-tight">
-              Let&apos;s build your web app or automation system
+              {t('hire.title')}
             </h1>
             <p className="text-lg text-[var(--muted)] leading-relaxed max-w-2xl mx-auto mb-8">
-              I am {SITE_LEGAL_NAME}, a full stack developer working as {SITE_BRAND}. I help
-              founders and small teams launch web products and workflow automations that actually
-              run in production.
+              {t('hire.intro', brandVars)}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <LocalizedLink
@@ -89,7 +47,7 @@ export default function HireLanding() {
                 onClick={() => trackFunnel.contactCtaClick('hire-hero')}
                 className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
               >
-                Send project details
+                {t('hire.sendDetails')}
                 <ArrowRight className="w-4 h-4" />
               </LocalizedLink>
               <a
@@ -100,7 +58,7 @@ export default function HireLanding() {
                 className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:bg-[var(--surface-solid)] transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                WhatsApp {primaryWhatsApp.display}
+                {t('common.whatsapp')} {primaryWhatsApp.display}
               </a>
             </div>
           </motion.div>
@@ -111,17 +69,14 @@ export default function HireLanding() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-3">
-              What I can help with
+              {t('hire.whatHelp')}
             </h2>
-            <p className="text-[var(--muted)] max-w-2xl mx-auto">
-              Pick the kind of work you need. Most clients come with one clear problem and want a
-              practical build, not a giant spec document.
-            </p>
+            <p className="text-[var(--muted)] max-w-2xl mx-auto">{t('hire.whatHelpDesc')}</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {projectTypes.map((item, index) => (
+            {projectTypeKeys.map((key, index) => (
               <motion.article
-                key={item.title}
+                key={key}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -137,11 +92,15 @@ export default function HireLanding() {
                     <CheckCircle2 className="w-5 h-5" aria-hidden />
                   )}
                 </div>
-                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-2">{item.title}</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">{item.description}</p>
+                <h3 className="text-xl font-semibold text-[var(--foreground)] mb-2">
+                  {t(`hire.types.${key}.title`)}
+                </h3>
+                <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
+                  {t(`hire.types.${key}.description`)}
+                </p>
                 <p className="text-xs font-medium text-[var(--muted-strong)] inline-flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5" aria-hidden />
-                  Typical timeline: {item.timeline}
+                  {t('hire.timelinePrefix')} {t(`hire.types.${key}.timeline`)}
                 </p>
               </motion.article>
             ))}
@@ -152,12 +111,12 @@ export default function HireLanding() {
       <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-[var(--surface-solid)]/40 border-y border-[var(--border)]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-10 text-center">
-            How hiring works
+            {t('hire.howWorks')}
           </h2>
           <ol className="space-y-6">
-            {processSteps.map((item, index) => (
+            {stepKeys.map((key, index) => (
               <motion.li
-                key={item.step}
+                key={key}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -165,11 +124,15 @@ export default function HireLanding() {
                 className="flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-5"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-500/15 text-red-500 font-bold">
-                  {item.step}
+                  {index + 1}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold text-[var(--foreground)] mb-1">{item.title}</h3>
-                  <p className="text-sm text-[var(--muted)] leading-relaxed">{item.description}</p>
+                  <h3 className="text-lg font-semibold text-[var(--foreground)] mb-1">
+                    {t(`hire.steps.${key}.title`)}
+                  </h3>
+                  <p className="text-sm text-[var(--muted)] leading-relaxed">
+                    {t(`hire.steps.${key}.description`)}
+                  </p>
                 </div>
               </motion.li>
             ))}
@@ -181,25 +144,30 @@ export default function HireLanding() {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-start">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-4">
-              Good fit if...
+              {t('hire.goodFit')}
             </h2>
             <ul className="space-y-3">
-              {fitChecks.map((item) => (
-                <li key={item} className="flex gap-3 text-[var(--muted)] text-sm leading-relaxed">
+              {fitKeys.map((key) => (
+                <li
+                  key={key}
+                  className="flex gap-3 text-[var(--muted)] text-sm leading-relaxed"
+                >
                   <CheckCircle2 className="w-5 h-5 shrink-0 text-green-500 mt-0.5" aria-hidden />
-                  {item}
+                  {t(`hire.fit.${key}`)}
                 </li>
               ))}
             </ul>
           </div>
           <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-solid)] p-6">
-            <h2 className="text-xl font-bold text-[var(--foreground)] mb-3">Before you reach out</h2>
+            <h2 className="text-xl font-bold text-[var(--foreground)] mb-3">
+              {t('hire.beforeReach')}
+            </h2>
             <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
               Include your goal, deadline, and any links to designs or references. If you are not
               sure about scope yet, say that too. I can help shape the first version.
             </p>
             <p className="text-sm text-[var(--muted)]">
-              Email:{' '}
+              {t('hire.emailLabel')}{' '}
               <a href={`mailto:${SITE_EMAIL}`} className="text-red-500 hover:text-red-400">
                 {SITE_EMAIL}
               </a>
@@ -208,7 +176,7 @@ export default function HireLanding() {
               href="/case-studies"
               className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-red-500 hover:text-red-400"
             >
-              Read case studies first
+              {t('hire.readCaseStudies')}
               <ArrowRight className="w-4 h-4" />
             </LocalizedLink>
           </div>
@@ -218,17 +186,15 @@ export default function HireLanding() {
       <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-4">
-            Ready to start?
+            {t('hire.readyStart')}
           </h2>
-          <p className="text-[var(--muted)] mb-8">
-            Send your project details and I will reply within 24 hours with next steps.
-          </p>
+          <p className="text-[var(--muted)] mb-8">{t('hire.readyDesc')}</p>
           <LocalizedLink
             href="/contact"
             onClick={() => trackFunnel.contactCtaClick('hire-footer')}
             className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
           >
-            Go to contact form
+            {t('hire.goContact')}
             <ArrowRight className="w-4 h-4" />
           </LocalizedLink>
         </div>

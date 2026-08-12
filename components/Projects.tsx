@@ -8,6 +8,7 @@ import { MessageCircle, Briefcase, Search, SlidersHorizontal, ChevronDown, Exter
 import { projects, primaryWhatsApp } from '@/lib/data';
 import { trackFunnel } from '@/lib/analytics';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tech))).sort();
 const categories = Array.from(
@@ -27,6 +28,7 @@ function filterButtonClass(isActive: boolean, variant: 'category' | 'tag' | 'all
 }
 
 export default function Projects() {
+  const { t } = useLocale();
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -57,7 +59,7 @@ export default function Projects() {
   };
 
   const activeFilterLabel =
-    activeFilter === 'all' ? 'All projects' : activeFilter;
+    activeFilter === 'all' ? t('projects.allProjects') : activeFilter;
 
   return (
     <section
@@ -66,13 +68,13 @@ export default function Projects() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <SectionHeading title="Featured Projects" className="mb-4" />
+          <SectionHeading title={t('projects.title')} className="mb-4" />
           <LocalizedLink
             href="/case-studies"
             onClick={() => trackFunnel.projectsViewCaseStudies()}
             className="inline-flex items-center gap-2 text-[var(--muted)] hover:text-red-500 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-2 py-1"
           >
-            View detailed case studies →
+            {t('projects.caseStudiesLink')}
           </LocalizedLink>
         </div>
 
@@ -83,7 +85,7 @@ export default function Projects() {
           className="max-w-md mx-auto mb-6"
         >
           <label htmlFor="project-search" className="sr-only">
-            Search projects by name, description, or tech
+            {t('projects.searchLabel')}
           </label>
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" aria-hidden="true" />
@@ -92,9 +94,9 @@ export default function Projects() {
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search projects..."
+              placeholder={t('projects.searchPlaceholder')}
               className="w-full pl-12 pr-4 py-3 min-h-11 rounded-xl bg-gray-900/50 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/30 transition-colors"
-              aria-label="Search projects"
+              aria-label={t('projects.searchLabel')}
             />
           </div>
         </motion.div>
@@ -109,7 +111,7 @@ export default function Projects() {
           >
             <span className="inline-flex items-center gap-2">
               <SlidersHorizontal className="w-4 h-4 text-red-400" aria-hidden="true" />
-              Filters
+              {t('projects.filters')}
               {activeFilter !== 'all' && (
                 <span className="text-xs px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
                   {activeFilterLabel}
@@ -132,7 +134,7 @@ export default function Projects() {
               aria-pressed={activeFilter === 'all'}
               className={filterButtonClass(activeFilter === 'all', 'all')}
             >
-              All
+              {t('common.all')}
             </button>
             {categories.map((category) => (
               <button
@@ -161,10 +163,8 @@ export default function Projects() {
 
         {filteredProjects.length === 0 ? (
           <div className="text-center py-16 px-4 rounded-2xl bg-gray-900/30 border border-gray-800">
-            <p className="text-lg font-medium text-white mb-2">No projects match your search</p>
-            <p className="text-gray-400 mb-6 max-w-md mx-auto">
-              Try a different keyword or clear your filters to see the full portfolio.
-            </p>
+            <p className="text-lg font-medium text-white mb-2">{t('projects.noMatch')}</p>
+            <p className="text-gray-400 mb-6 max-w-md mx-auto">{t('projects.noMatchHint')}</p>
             <button
               type="button"
               onClick={() => {
@@ -174,7 +174,7 @@ export default function Projects() {
               }}
               className="inline-flex items-center justify-center min-h-11 px-6 py-2 rounded-xl border border-gray-700 text-gray-200 font-medium hover:border-red-400 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              Clear search and filters
+              {t('projects.clearFilters')}
             </button>
           </div>
         ) : (
@@ -207,7 +207,7 @@ export default function Projects() {
               </p>
               {project.results && (
                 <p className="text-sm text-gray-400 mb-3">
-                  <span className="font-semibold text-red-400">Impact:</span> {project.results}
+                  <span className="font-semibold text-red-400">{t('projects.impact')}</span> {project.results}
                 </p>
               )}
               <div className="flex flex-wrap gap-2 mb-6">
@@ -231,7 +231,7 @@ export default function Projects() {
                       className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                      <span>View Live</span>
+                      <span>{t('common.viewLive')}</span>
                     </a>
                   )}
                   {project.github && project.github !== '#' && (
@@ -243,7 +243,7 @@ export default function Projects() {
                       className="flex-1 flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 font-semibold hover:border-red-400 hover:text-red-400 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <Github className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                      <span>View Code</span>
+                      <span>{t('common.viewCode')}</span>
                     </a>
                   )}
                   {(!project.live || project.live === '#') && (!project.github || project.github === '#') && (
@@ -253,7 +253,7 @@ export default function Projects() {
                       className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                      <span>Discuss a Similar Project</span>
+                      <span>{t('projects.discuss')}</span>
                     </LocalizedLink>
                   )}
                 </div>
@@ -267,7 +267,7 @@ export default function Projects() {
                   aria-label={`WhatsApp ${primaryWhatsApp.label}`}
                 >
                   <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm font-medium">Chat on WhatsApp</span>
+                  <span className="text-sm font-medium">{t('projects.chatWhatsapp')}</span>
                 </a>
               </div>
             </motion.div>

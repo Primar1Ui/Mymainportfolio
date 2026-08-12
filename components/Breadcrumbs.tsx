@@ -10,11 +10,16 @@ type BreadcrumbsProps = {
   items: BreadcrumbItem[];
 };
 
+function resolveLabel(item: BreadcrumbItem, t: (key: string) => string): string {
+  if (item.labelKey) return t(item.labelKey);
+  return item.label ?? '';
+}
+
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
-  const { locale } = useLocale();
-  const trail = [{ label: 'Home', path: '/' }, ...items];
+  const { locale, t } = useLocale();
+  const trail: BreadcrumbItem[] = [{ labelKey: 'nav.home', path: '/' }, ...items];
   const schemaTrail = trail.map((item) => ({
-    label: item.label,
+    label: resolveLabel(item, t),
     path: localizedPath(item.path, locale),
   }));
 
@@ -25,11 +30,12 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema(schemaTrail)) }}
       />
-      <nav aria-label="Breadcrumb" className="mb-6">
+      <nav aria-label={t('a11y.breadcrumb')} className="mb-6">
         <ol className="flex flex-wrap items-center gap-1.5 text-sm text-[var(--muted)]">
           {trail.map((item, index) => {
             const isLast = index === trail.length - 1;
             const href = localizedPath(item.path, locale);
+            const label = resolveLabel(item, t);
 
             return (
               <li key={`${item.path}-${index}`} className="inline-flex items-center gap-1.5">
@@ -38,14 +44,14 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
                 )}
                 {isLast ? (
                   <span aria-current="page" className="text-[var(--foreground)] font-medium">
-                    {item.label}
+                    {label}
                   </span>
                 ) : (
                   <Link
                     href={href}
                     className="hover:text-red-500 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-0.5"
                   >
-                    {item.label}
+                    {label}
                   </Link>
                 )}
               </li>

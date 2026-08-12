@@ -4,6 +4,7 @@ import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '@/lib/blog';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -11,6 +12,7 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, index = 0 }: BlogCardProps) {
+  const { t } = useLocale();
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
@@ -25,7 +27,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
           <time dateTime={post.date}>{post.date}</time>
           {post.featured && (
             <span className="px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 text-xs font-medium">
-              Featured
+              {t('common.featured')}
             </span>
           )}
         </div>
@@ -46,7 +48,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
           ))}
         </div>
         <span className="inline-flex items-center gap-2 text-sm font-medium text-red-400 group-hover:gap-3 transition-all">
-          Read more
+          {t('common.readMore')}
           <ArrowRight className="w-4 h-4" />
         </span>
       </LocalizedLink>

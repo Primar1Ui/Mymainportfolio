@@ -155,7 +155,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="max-w-6xl mx-auto">
         <Breadcrumbs
           items={[
-            { label: 'Blog', path: '/blog' },
+            { labelKey: 'nav.blog', path: '/blog' },
             { label: post.title, path: `/blog/${post.slug}` },
           ]}
         />

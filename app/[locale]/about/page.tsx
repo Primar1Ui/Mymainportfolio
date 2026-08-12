@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function AboutPage() {
   return (
-    <PageShell breadcrumbs={[{ label: 'About', path: '/about' }]}>
+    <PageShell breadcrumbs={[{ labelKey: 'nav.about', path: '/about' }]}>
       <HashScroll />
       <About />
       <CurrentWork />

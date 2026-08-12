@@ -5,9 +5,11 @@ import { services } from '@/lib/data';
 import { CheckCircle2 } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function Services() {
   const reduce = usePrefersReducedMotion();
+  const { t } = useLocale();
 
   return (
     <section
@@ -15,7 +17,7 @@ export default function Services() {
       className="py-20 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <SectionHeading title="My Services" />
+        <SectionHeading title={t('services.title')} />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (

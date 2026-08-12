@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function HirePage() {
   return (
-    <PageShell breadcrumbs={[{ label: 'Hire Me', path: '/hire' }]}>
+    <PageShell breadcrumbs={[{ labelKey: 'nav.hire', path: '/hire' }]}>
       <HireLanding />
     </PageShell>
   );

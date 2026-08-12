@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Loader2, Check, AlertCircle } from 'lucide-react';
 import LocalizedLink from '@/components/LocalizedLink';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const NEWSLETTER_ENABLED = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
 
 export default function Newsletter() {
+  const { t } = useLocale();
   const [email, setEmail] = useState('');
   const [website, setWebsite] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -28,14 +30,14 @@ export default function Newsletter() {
       if (res.ok) {
         setStatus('success');
         setEmail('');
-        setMessage(data.message ?? 'Thanks for subscribing!');
+        setMessage(data.message ?? t('newsletter.thanks'));
       } else {
         setStatus('error');
-        setMessage(data.error ?? 'Something went wrong. Please try again.');
+        setMessage(data.error ?? t('newsletter.error'));
       }
     } catch {
       setStatus('error');
-      setMessage('Something went wrong. Please try again.');
+      setMessage(t('newsletter.error'));
     }
   };
 
@@ -50,19 +52,15 @@ export default function Newsletter() {
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-500/20 text-red-400 mb-4">
           <Mail className="w-6 h-6" />
         </div>
-        <h2 className="text-2xl font-bold text-white mb-2">
-          Stay in the loop
-        </h2>
+        <h2 className="text-2xl font-bold text-white mb-2">{t('newsletter.title')}</h2>
         <p className="text-gray-400 mb-6">
-          {NEWSLETTER_ENABLED
-            ? 'Get occasional updates on new posts and projects. No spam.'
-            : 'Newsletter coming soon. For now, use the contact form or WhatsApp. I reply within 24 hours.'}
+          {NEWSLETTER_ENABLED ? t('newsletter.description') : t('newsletter.comingSoon')}
         </p>
         {NEWSLETTER_ENABLED ? (
           <>
             <form onSubmit={handleSubmit} className="relative flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
-                <label htmlFor="newsletter-website">Website</label>
+                <label htmlFor="newsletter-website">{t('contact.websiteHoneypot')}</label>
                 <input
                   id="newsletter-website"
                   type="text"
@@ -76,11 +74,11 @@ export default function Newsletter() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder={t('newsletter.emailPlaceholder')}
                 required
                 disabled={status === 'loading'}
                 className="flex-1 px-4 py-3 rounded-xl bg-gray-800/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:opacity-60"
-                aria-label="Email address"
+                aria-label={t('newsletter.emailLabel')}
               />
               <button
                 type="submit"
@@ -90,10 +88,10 @@ export default function Newsletter() {
                 {status === 'loading' ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Subscribing…
+                    {t('newsletter.subscribing')}
                   </>
                 ) : (
-                  'Subscribe'
+                  t('common.subscribe')
                 )}
               </button>
             </form>
@@ -115,7 +113,7 @@ export default function Newsletter() {
             href="/contact"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-background"
           >
-            Contact me instead
+            {t('newsletter.contactInstead')}
           </LocalizedLink>
         )}
       </div>

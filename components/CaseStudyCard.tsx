@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, CheckCircle2 } from 'lucide-react';
 import { CaseStudy } from '@/lib/caseStudies';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface CaseStudyCardProps {
   caseStudy: CaseStudy;
@@ -10,6 +11,7 @@ interface CaseStudyCardProps {
 }
 
 export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) {
+  const { t } = useLocale();
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -26,12 +28,12 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
               {caseStudy.title}
             </h2>
             {caseStudy.client && (
-              <p className="text-gray-400 text-sm">Client: {caseStudy.client}</p>
+              <p className="text-gray-400 text-sm">{t('common.client')}: {caseStudy.client}</p>
             )}
           </div>
           {caseStudy.featured && (
             <span className="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/30">
-              Featured
+              {t('common.featured')}
             </span>
           )}
         </div>
@@ -41,7 +43,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-red-400 mb-2 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-red-400"></span>
-          Problem
+          {t('common.problem')}
         </h3>
         <p className="text-gray-300 leading-relaxed">{caseStudy.problem}</p>
       </div>
@@ -50,7 +52,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-green-400 mb-2 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-green-400"></span>
-          Solution
+          {t('common.solution')}
         </h3>
         <p className="text-gray-300 leading-relaxed">{caseStudy.solution}</p>
       </div>
@@ -59,7 +61,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-red-400 mb-3 flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-red-400"></span>
-          Tech Stack
+          {t('common.techStack')}
         </h3>
         <div className="flex flex-wrap gap-2">
           {caseStudy.techStack.map((tech) => (
@@ -77,7 +79,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-red-400 mb-2 flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5" />
-          Results
+          {t('common.results')}
         </h3>
         <p className="text-gray-300 leading-relaxed mb-3">{caseStudy.results}</p>
         {caseStudy.metrics && caseStudy.metrics.length > 0 && (
@@ -103,7 +105,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 hover:border-red-400 hover:text-red-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               <Github className="w-4 h-4" />
-              <span className="text-sm font-medium">View Code</span>
+              <span className="text-sm font-medium">{t('common.viewCode')}</span>
             </a>
           )}
           {caseStudy.live && caseStudy.live !== '#' && (
@@ -114,7 +116,7 @@ export default function CaseStudyCard({ caseStudy, index }: CaseStudyCardProps) 
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               <ExternalLink className="w-4 h-4" />
-              <span className="text-sm font-medium">View Live</span>
+              <span className="text-sm font-medium">{t('common.viewLive')}</span>
             </a>
           )}
         </div>

@@ -5,24 +5,19 @@ import Image from 'next/image';
 import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { useLocale } from '@/contexts/LocaleContext';
 import { portfolioStats } from '@/lib/data';
-import {
-  SITE_BRAND,
-  SITE_LEGAL_NAME,
-  SITE_HERO_TAGLINE,
-  SITE_HERO_HEADLINE,
-} from '@/lib/site';
-
-const TECH_STACK = 'Next.js · Supabase · React · n8n · Zapier';
-
-const heroStats = [
-  { value: `${portfolioStats.projects}+`, label: 'Shipped projects' },
-  { value: `${portfolioStats.clients}+`, label: 'Happy clients' },
-  { value: `${portfolioStats.yearsExperience}+`, label: 'Years experience' },
-];
+import { SITE_BRAND, SITE_LEGAL_NAME } from '@/lib/site';
 
 export default function Hero() {
   const prefersReducedMotion = usePrefersReducedMotion();
+  const { t } = useLocale();
+
+  const heroStats = [
+    { value: `${portfolioStats.projects}+`, label: t('hero.statProjects') },
+    { value: `${portfolioStats.clients}+`, label: t('hero.statClients') },
+    { value: `${portfolioStats.yearsExperience}+`, label: t('hero.statYears') },
+  ];
 
   return (
     <section id="home" className="relative bg-[var(--background)] border-b border-[var(--border)]">
@@ -34,16 +29,15 @@ export default function Hero() {
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.5 }}
           >
             <p className="text-sm font-medium text-[var(--muted)] mb-4">
-              {SITE_BRAND} · Full stack developer · Automation
+              {SITE_BRAND} · {t('hero.eyebrow')}
             </p>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-[var(--foreground)] leading-[1.1] mb-6">
-              {SITE_HERO_HEADLINE}
+              {t('hero.headline')}
             </h1>
 
             <p className="text-base sm:text-lg text-[var(--muted)] leading-relaxed max-w-xl mb-8">
-              {SITE_LEGAL_NAME}, known as {SITE_BRAND}, builds web apps, Supabase backends, and
-              workflow automation with n8n and Zapier. {SITE_HERO_TAGLINE.replace(/\s*\|\s*/g, ', ')}.
+              {t('hero.bio', { name: SITE_LEGAL_NAME, brand: SITE_BRAND })}
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-10">
@@ -51,14 +45,14 @@ export default function Hero() {
                 href="/hire"
                 className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
               >
-                Start a project
+                {t('hero.startProject')}
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </LocalizedLink>
               <LocalizedLink
                 href="/projects"
                 className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:border-red-500/50 hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
-                View portfolio
+                {t('hero.viewPortfolio')}
               </LocalizedLink>
             </div>
 
@@ -92,7 +86,7 @@ export default function Hero() {
               </div>
               <div className="px-5 py-4 border-t border-[var(--border)]">
                 <p className="font-semibold text-[var(--foreground)]">{SITE_LEGAL_NAME}</p>
-                <p className="text-sm text-[var(--muted)] mt-1">{TECH_STACK}</p>
+                <p className="text-sm text-[var(--muted)] mt-1">{t('hero.techStack')}</p>
               </div>
             </div>
           </motion.div>

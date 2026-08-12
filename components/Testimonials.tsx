@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { testimonials, feedbackScreenshots } from '@/lib/testimonials';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function Testimonials() {
+  const { t } = useLocale();
   return (
     <section
       id="testimonials"
@@ -13,8 +15,8 @@ export default function Testimonials() {
     >
       <div className="max-w-4xl mx-auto">
         <SectionHeading
-          title="Client Testimonials"
-          description="Verified feedback from recent client engagements"
+          title={t('testimonials.title')}
+          description={t('testimonials.description')}
         />
 
         <div className="space-y-8 mb-16">
@@ -53,8 +55,8 @@ export default function Testimonials() {
 
         <div>
           <SectionHeading
-            title="Verified platform feedback"
-            description="Screenshots from published client reviews on Fiverr"
+            title={t('testimonials.platformTitle')}
+            description={t('testimonials.platformDesc')}
             className="mb-8"
           />
           <div className="grid md:grid-cols-2 gap-6">

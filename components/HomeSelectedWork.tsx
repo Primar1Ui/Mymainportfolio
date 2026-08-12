@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
+import { useLocale } from '@/contexts/LocaleContext';
 import { homepageSelectedAutomations } from '@/lib/automations';
 import { projects } from '@/lib/data';
 
@@ -20,7 +21,7 @@ const selectedWork = [
     imageAlt: automation.alt,
     eyebrow: automation.tags[0],
     href: '/automation',
-    cta: 'View automation details',
+    cta: 'automation' as const,
   })),
   ...homepageWebApps.map((project) => ({
     title: project.title,
@@ -33,11 +34,13 @@ const selectedWork = [
         ? project.metrics[0]
         : project.tech[0],
     href: '/projects',
-    cta: 'View project details',
+    cta: 'project' as const,
   })),
 ];
 
 export default function HomeSelectedWork() {
+  const { t } = useLocale();
+
   return (
     <section
       id="selected-work"
@@ -53,13 +56,13 @@ export default function HomeSelectedWork() {
           className="mb-12 max-w-3xl"
         >
           <p className="text-sm font-medium text-[var(--muted)] uppercase tracking-wide mb-2">
-            Selected Work
+            {t('home.selectedWork.eyebrow')}
           </p>
           <h2 id="selected-work-heading" className="text-2xl md:text-4xl font-bold text-[var(--foreground)] mb-4">
-            Production apps and automation systems
+            {t('home.selectedWork.title')}
           </h2>
           <p className="text-[var(--muted)] leading-relaxed">
-            Real shipped work: web apps, Supabase backends, and n8n or Zapier workflows, not mockups.
+            {t('home.selectedWork.description')}
           </p>
         </motion.div>
 
@@ -104,7 +107,9 @@ export default function HomeSelectedWork() {
                   href={item.href}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-500 hover:text-red-400 transition-colors"
                 >
-                  {item.cta}
+                  {item.cta === 'automation'
+                    ? t('home.selectedWork.ctaAutomation')
+                    : t('home.selectedWork.ctaProject')}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </LocalizedLink>
               </div>
@@ -117,14 +122,14 @@ export default function HomeSelectedWork() {
             href="/projects"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-lg px-5 py-2.5 hover:bg-[var(--surface-solid)] transition-colors"
           >
-            See all projects
+            {t('home.selectedWork.seeProjects')}
             <ArrowRight className="w-4 h-4" />
           </LocalizedLink>
           <LocalizedLink
             href="/automation"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-lg px-5 py-2.5 hover:bg-[var(--surface-solid)] transition-colors"
           >
-            See all automations
+            {t('home.selectedWork.seeAutomations')}
             <ArrowRight className="w-4 h-4" />
           </LocalizedLink>
         </div>

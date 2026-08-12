@@ -14,6 +14,15 @@
     "theme": "Tema",
     "language": "Idioma"
   },
+  "a11y": {
+    "skipToContent": "Saltar al contenido",
+    "breadcrumb": "Ruta de navegación",
+    "backToTop": "Volver arriba",
+    "loadingProjects": "Cargando proyectos",
+    "loadingTestimonials": "Cargando testimonios",
+    "availabilityNotice": "Aviso de disponibilidad",
+    "dismissBanner": "Cerrar aviso de disponibilidad"
+  },
   "notFound": {
     "title": "Página no encontrada",
     "description": "La página que buscas no existe o puede haber cambiado de lugar.",
@@ -27,17 +36,225 @@
     "readMore": "Leer más",
     "backToHome": "Volver al inicio",
     "subscribe": "Suscribirse",
-    "loading": "Cargando..."
-  },
-  "hero": {
-    "greeting": "Hola, soy Oluwatosin (Bambi20)",
-    "tagline": "Desarrollador web full stack",
-    "description": "Creo aplicaciones web, backends con Supabase y flujos de automatización para clientes en Nigeria y el extranjero.",
-    "downloadCV": "Descargar CV",
+    "loading": "Cargando...",
+    "all": "Todos",
+    "featured": "Destacado",
+    "contact": "Contacto",
     "viewProjects": "Ver proyectos",
-    "contactMe": "Contáctame"
+    "email": "Correo",
+    "github": "GitHub",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "primary": "principal",
+    "client": "Cliente",
+    "problem": "Problema",
+    "solution": "Solución",
+    "techStack": "Stack técnico",
+    "results": "Resultados",
+    "viewCode": "Ver código",
+    "viewLive": "Ver en vivo",
+    "project": "Proyecto"
   },
   "footer": {
-    "rights": "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados."
+  },
+  "hero": {
+    "eyebrow": "Desarrollador full stack · Automatización",
+    "headline": "Productos full stack que salen rápido y funcionan en producción",
+    "bio": "{name}, conocido como {brand}, crea apps web, backends con Supabase y automatización con n8n y Zapier. Full stack, apps con IA, automatización.",
+    "startProject": "Empezar un proyecto",
+    "viewPortfolio": "Ver portafolio",
+    "statProjects": "Proyectos entregados",
+    "statClients": "Clientes satisfechos",
+    "statYears": "Años de experiencia",
+    "techStack": "Next.js · Supabase · React · n8n · Zapier"
+  },
+  "home": {
+    "selectedWork": {
+      "eyebrow": "Trabajo seleccionado",
+      "title": "Apps y sistemas de automatización en producción",
+      "description": "Trabajo real ya publicado: apps web, backends con Supabase y flujos con n8n o Zapier, no maquetas.",
+      "ctaAutomation": "Ver detalles de automatización",
+      "ctaProject": "Ver detalles del proyecto",
+      "seeProjects": "Ver todos los proyectos",
+      "seeAutomations": "Ver todas las automatizaciones"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Preguntas frecuentes",
+      "description": "Respuestas rápidas para clientes, reclutadores y buscadores."
+    },
+    "cta": {
+      "title": "¿Listo para construir algo real?",
+      "description": "Ya sea una app web, un backend con Supabase o automatización con n8n y Zapier, cuéntame tu proyecto y te respondo en 24 horas.",
+      "startProject": "Empezar un proyecto",
+      "whatsapp": "Escribir por WhatsApp"
+    }
+  },
+  "hireBanner": {
+    "message": "Disponible para freelance. Envía un brief en la página de contacto y te respondo en 24 horas."
+  },
+  "hire": {
+    "eyebrow": "Contrata a {brand}",
+    "title": "Construyamos tu app web o sistema de automatización",
+    "intro": "Soy {name}, desarrollador full stack bajo el nombre {brand}. Ayudo a fundadores y equipos pequeños a lanzar productos web y automatizaciones que funcionan en producción.",
+    "sendDetails": "Enviar detalles del proyecto",
+    "whatHelp": "En qué puedo ayudarte",
+    "whatHelpDesc": "Elige el tipo de trabajo que necesitas. La mayoría llega con un problema claro y quiere algo práctico, no un documento enorme.",
+    "timelinePrefix": "Plazo habitual:",
+    "howWorks": "Cómo funciona contratar",
+    "goodFit": "Encaja bien si...",
+    "beforeReach": "Antes de escribir",
+    "emailLabel": "Correo:",
+    "readCaseStudies": "Lee primero los casos de estudio",
+    "readyStart": "¿Listo para empezar?",
+    "readyDesc": "Envía los detalles de tu proyecto y te respondo en 24 horas con los siguientes pasos.",
+    "goContact": "Ir al formulario de contacto",
+    "types": {
+      "webApp": {
+        "title": "App web o MVP SaaS",
+        "description": "Producto enfocado con auth, panel y despliegue en Vercel y Supabase.",
+        "timeline": "2 a 4 semanas"
+      },
+      "automation": {
+        "title": "Sistema de automatización",
+        "description": "Flujos con n8n o Zapier que conectan Gmail, Sheets, Airtable, Slack y modelos de IA para quitar trabajo manual.",
+        "timeline": "1 a 2 semanas"
+      },
+      "support": {
+        "title": "Soporte de app existente",
+        "description": "Corrección de bugs, rendimiento, nuevas funciones o integraciones Supabase y API en código que ya tienes.",
+        "timeline": "Flexible"
+      }
+    },
+    "steps": {
+      "one": {
+        "title": "Envía un brief corto",
+        "description": "Cuéntame qué construyes, para quién es y tu plazo. Unas frases bastan para empezar."
+      },
+      "two": {
+        "title": "Recibe un plan claro",
+        "description": "Respondo en 24 horas con alcance, enfoque y siguientes pasos. Sin propuestas vagas ni idas y vueltas eternas."
+      },
+      "three": {
+        "title": "Construir y publicar",
+        "description": "Trabajamos por hitos pequeños, comunicación simple y despliegue a producción cuando el trabajo está listo."
+      }
+    },
+    "fit": {
+      "one": "Quieres algo publicado, no meses de discovery",
+      "two": "Te funciona trabajar async por WhatsApp, correo o videollamada cuando haga falta",
+      "three": "Te importa código limpio, entrega clara y fiabilidad en producción"
+    }
+  },
+  "contact": {
+    "title": "Contáctame",
+    "description": "Cuéntame tu proyecto. Respondo en 24 horas por correo o WhatsApp.",
+    "sidebarTitle": "Contáctame",
+    "whatsappPrefix": "WhatsApp · ",
+    "quickActions": "Acciones rápidas",
+    "websiteHoneypot": "Sitio web",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu.correo@ejemplo.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "Tu mensaje...",
+    "sending": "Enviando...",
+    "send": "Enviar mensaje",
+    "replyNote": "Suelo responder en 24 horas por correo o WhatsApp",
+    "fixErrors": "Corrige los errores antes de enviar.",
+    "success": "¡Mensaje enviado! Te responderé pronto.",
+    "successOverlay": "¡Mensaje enviado!",
+    "unavailable": "El formulario no está disponible ahora. Escríbeme por WhatsApp o correo con los enlaces de arriba.",
+    "rateLimit": "Has enviado muchos mensajes recientemente. Espera un poco o contáctame directo por WhatsApp o correo.",
+    "failed": "No se pudo enviar. Intenta de nuevo o contáctame por WhatsApp o correo.",
+    "networkError": "Error de red. Revisa tu conexión e intenta de nuevo, o contáctame por WhatsApp o correo.",
+    "errors": {
+      "nameRequired": "Escribe tu nombre.",
+      "nameShort": "El nombre debe tener al menos 2 caracteres.",
+      "emailRequired": "Escribe tu correo.",
+      "emailInvalid": "Escribe un correo válido.",
+      "messageRequired": "Escribe un mensaje.",
+      "messageShort": "El mensaje debe tener al menos 10 caracteres."
+    }
+  },
+  "newsletter": {
+    "title": "Mantente al día",
+    "description": "Actualizaciones ocasionales sobre posts y proyectos. Sin spam.",
+    "comingSoon": "Newsletter pronto. Por ahora usa el formulario de contacto o WhatsApp. Respondo en 24 horas.",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "emailLabel": "Correo electrónico",
+    "subscribing": "Suscribiendo…",
+    "thanks": "¡Gracias por suscribirte!",
+    "error": "Algo salió mal. Intenta de nuevo.",
+    "contactInstead": "Contáctame en su lugar"
+  },
+  "blog": {
+    "title": "Blog de {brand}",
+    "description": "Posts prácticos sobre construir y publicar proyectos web.",
+    "readArticle": "Leer artículo",
+    "viewAll": "Ver todos los posts",
+    "noPosts": "Ningún post coincide con esta etiqueta.",
+    "authorTitle": "Sobre el autor",
+    "aboutPage": "Página sobre mí",
+    "hireMe": "Contrátame"
+  },
+  "blogTeaser": {
+    "title": "Desde el blog",
+    "description": "Ideas recientes sobre construir con herramientas web modernas"
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "caseStudiesLink": "Ver casos de estudio detallados →",
+    "searchLabel": "Buscar proyectos por nombre, descripción o tecnología",
+    "searchPlaceholder": "Buscar proyectos...",
+    "filters": "Filtros",
+    "allProjects": "Todos los proyectos",
+    "noMatch": "Ningún proyecto coincide con tu búsqueda",
+    "noMatchHint": "Prueba otra palabra o limpia los filtros para ver todo el portafolio.",
+    "clearFilters": "Limpiar búsqueda y filtros",
+    "impact": "Impacto:",
+    "discuss": "Hablar de un proyecto similar",
+    "chatWhatsapp": "Chat por WhatsApp"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "fullStack": "Desarrollo full stack",
+    "ai": "Integración de IA",
+    "saas": "MVPs SaaS"
+  },
+  "skills": {
+    "title": "Mis habilidades",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Herramientas",
+    "automation": "Automatización",
+    "deployment": "Despliegue"
+  },
+  "services": {
+    "title": "Mis servicios"
+  },
+  "automation": {
+    "title": "Automatización que quita trabajo repetitivo",
+    "description": "Construyo sistemas con n8n, Zapier e IA que conectan herramientas, procesan datos y mantienen flujos sin pasos manuales.",
+    "cta": "Hablar de un proyecto de automatización"
+  },
+  "currentWork": {
+    "title": "En qué estoy trabajando",
+    "description": "Proyectos actuales y enfoque de aprendizaje",
+    "active": "Proyectos activos",
+    "learning": "Aprendizaje"
+  },
+  "testimonials": {
+    "title": "Testimonios de clientes",
+    "description": "Feedback verificado de clientes recientes",
+    "platformTitle": "Feedback verificado en plataforma",
+    "platformDesc": "Capturas de reseñas publicadas en Fiverr"
+  },
+  "caseStudies": {
+    "title": "Casos de estudio",
+    "description": "Desglose del problema, lo que construí y el resultado para el cliente.",
+    "ctaTitle": "¿Trabajamos juntos?",
+    "ctaDesc": "Envía un brief corto en contacto y te respondo en 24 horas."
   }
 }

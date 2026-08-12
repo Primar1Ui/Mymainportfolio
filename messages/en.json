@@ -14,6 +14,15 @@
     "theme": "Theme",
     "language": "Language"
   },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "breadcrumb": "Breadcrumb",
+    "backToTop": "Back to top",
+    "loadingProjects": "Loading projects",
+    "loadingTestimonials": "Loading testimonials",
+    "availabilityNotice": "Availability notice",
+    "dismissBanner": "Dismiss availability banner"
+  },
   "notFound": {
     "title": "Page not found",
     "description": "The page you are looking for does not exist or may have moved.",
@@ -27,17 +36,225 @@
     "readMore": "Read more",
     "backToHome": "Back to home",
     "subscribe": "Subscribe",
-    "loading": "Loading..."
-  },
-  "hero": {
-    "greeting": "Hi, I'm Oluwatosin (Bambi20)",
-    "tagline": "Full Stack Web Developer",
-    "description": "I build web apps, Supabase backends, and automation workflows for clients in Nigeria and abroad.",
-    "downloadCV": "Download CV",
+    "loading": "Loading...",
+    "all": "All",
+    "featured": "Featured",
+    "contact": "Contact",
     "viewProjects": "View Projects",
-    "contactMe": "Contact Me"
+    "email": "Email",
+    "github": "GitHub",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "primary": "primary",
+    "client": "Client",
+    "problem": "Problem",
+    "solution": "Solution",
+    "techStack": "Tech Stack",
+    "results": "Results",
+    "viewCode": "View Code",
+    "viewLive": "View Live",
+    "project": "Project"
   },
   "footer": {
-    "rights": "All rights reserved"
+    "rights": "All rights reserved."
+  },
+  "hero": {
+    "eyebrow": "Full stack developer · Automation",
+    "headline": "Full stack products that launch fast and run in production",
+    "bio": "{name}, known as {brand}, builds web apps, Supabase backends, and workflow automation with n8n and Zapier. Full stack, AI web apps, automation.",
+    "startProject": "Start a project",
+    "viewPortfolio": "View portfolio",
+    "statProjects": "Shipped projects",
+    "statClients": "Happy clients",
+    "statYears": "Years experience",
+    "techStack": "Next.js · Supabase · React · n8n · Zapier"
+  },
+  "home": {
+    "selectedWork": {
+      "eyebrow": "Selected Work",
+      "title": "Production apps and automation systems",
+      "description": "Real shipped work: web apps, Supabase backends, and n8n or Zapier workflows, not mockups.",
+      "ctaAutomation": "View automation details",
+      "ctaProject": "View project details",
+      "seeProjects": "See all projects",
+      "seeAutomations": "See all automations"
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Common questions",
+      "description": "Quick answers for clients, recruiters, and search engines."
+    },
+    "cta": {
+      "title": "Ready to build something real?",
+      "description": "Whether it is a web app, Supabase backend, or n8n and Zapier automation, tell me about your project and I will reply within 24 hours.",
+      "startProject": "Start a project",
+      "whatsapp": "Message on WhatsApp"
+    }
+  },
+  "hireBanner": {
+    "message": "Open for freelance work. Send a brief on the contact page and I will reply within 24 hours."
+  },
+  "hire": {
+    "eyebrow": "Hire {brand}",
+    "title": "Let's build your web app or automation system",
+    "intro": "I am {name}, a full stack developer working as {brand}. I help founders and small teams launch web products and workflow automations that actually run in production.",
+    "sendDetails": "Send project details",
+    "whatHelp": "What I can help with",
+    "whatHelpDesc": "Pick the kind of work you need. Most clients come with one clear problem and want a practical build, not a giant spec document.",
+    "timelinePrefix": "Typical timeline:",
+    "howWorks": "How hiring works",
+    "goodFit": "Good fit if...",
+    "beforeReach": "Before you reach out",
+    "emailLabel": "Email:",
+    "readCaseStudies": "Read case studies first",
+    "readyStart": "Ready to start?",
+    "readyDesc": "Send your project details and I will reply within 24 hours with next steps.",
+    "goContact": "Go to contact form",
+    "types": {
+      "webApp": {
+        "title": "Web app or SaaS MVP",
+        "description": "A focused product build with auth, dashboard, and production deploy on Vercel and Supabase.",
+        "timeline": "2 to 4 weeks"
+      },
+      "automation": {
+        "title": "Automation system",
+        "description": "n8n or Zapier workflows that connect Gmail, Sheets, Airtable, Slack, and AI models to remove manual work.",
+        "timeline": "1 to 2 weeks"
+      },
+      "support": {
+        "title": "Existing app support",
+        "description": "Bug fixes, performance work, new features, or Supabase and API integrations on a codebase you already have.",
+        "timeline": "Flexible"
+      }
+    },
+    "steps": {
+      "one": {
+        "title": "Send a short brief",
+        "description": "Tell me what you are building, who it is for, and your timeline. A few sentences is enough to start."
+      },
+      "two": {
+        "title": "Get a clear plan",
+        "description": "I reply within 24 hours with scope, approach, and next steps. No vague proposals or endless back and forth."
+      },
+      "three": {
+        "title": "Build and ship",
+        "description": "We work in small milestones, keep communication simple, and deploy to production when the work is ready."
+      }
+    },
+    "fit": {
+      "one": "You want something shipped, not a months-long discovery phase",
+      "two": "You are fine working async over WhatsApp, email, or video when needed",
+      "three": "You care about clean code, clear handoff, and production reliability"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Tell me about your project. I reply within 24 hours by email or WhatsApp.",
+    "sidebarTitle": "Get in Touch",
+    "whatsappPrefix": "WhatsApp · ",
+    "quickActions": "Quick actions",
+    "websiteHoneypot": "Website",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your.email@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Your message...",
+    "sending": "Sending...",
+    "send": "Send Message",
+    "replyNote": "I usually reply within 24 hours via email or WhatsApp",
+    "fixErrors": "Please fix the errors below before sending.",
+    "success": "Message sent successfully! I'll get back to you soon.",
+    "successOverlay": "Message sent!",
+    "unavailable": "The contact form is temporarily unavailable. Please reach me directly via WhatsApp or email using the links above.",
+    "rateLimit": "You've sent too many messages recently. Please wait a bit before trying again, or contact me directly via WhatsApp or email.",
+    "failed": "Failed to send message. Please try again or contact me directly via WhatsApp or email.",
+    "networkError": "Network error occurred. Please check your connection and try again, or contact me directly via WhatsApp or email.",
+    "errors": {
+      "nameRequired": "Please enter your name.",
+      "nameShort": "Name must be at least 2 characters.",
+      "emailRequired": "Please enter your email address.",
+      "emailInvalid": "Please enter a valid email address.",
+      "messageRequired": "Please enter a message.",
+      "messageShort": "Message must be at least 10 characters."
+    }
+  },
+  "newsletter": {
+    "title": "Stay in the loop",
+    "description": "Get occasional updates on new posts and projects. No spam.",
+    "comingSoon": "Newsletter coming soon. For now, use the contact form or WhatsApp. I reply within 24 hours.",
+    "emailPlaceholder": "you@example.com",
+    "emailLabel": "Email address",
+    "subscribing": "Subscribing…",
+    "thanks": "Thanks for subscribing!",
+    "error": "Something went wrong. Please try again.",
+    "contactInstead": "Contact me instead"
+  },
+  "blog": {
+    "title": "{brand} Blog",
+    "description": "Practical posts on building and shipping web projects.",
+    "readArticle": "Read article",
+    "viewAll": "View all posts",
+    "noPosts": "No posts match this tag.",
+    "authorTitle": "About the author",
+    "aboutPage": "About page",
+    "hireMe": "Hire me"
+  },
+  "blogTeaser": {
+    "title": "From the blog",
+    "description": "Latest thoughts on building with modern web tools"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "caseStudiesLink": "View detailed case studies →",
+    "searchLabel": "Search projects by name, description, or tech",
+    "searchPlaceholder": "Search projects...",
+    "filters": "Filters",
+    "allProjects": "All projects",
+    "noMatch": "No projects match your search",
+    "noMatchHint": "Try a different keyword or clear your filters to see the full portfolio.",
+    "clearFilters": "Clear search and filters",
+    "impact": "Impact:",
+    "discuss": "Discuss a Similar Project",
+    "chatWhatsapp": "Chat on WhatsApp"
+  },
+  "about": {
+    "title": "About Me",
+    "fullStack": "Full Stack Development",
+    "ai": "AI Integration",
+    "saas": "SaaS MVPs"
+  },
+  "skills": {
+    "title": "My Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools",
+    "automation": "Automation",
+    "deployment": "Deployment"
+  },
+  "services": {
+    "title": "My Services"
+  },
+  "automation": {
+    "title": "Automation that removes busywork",
+    "description": "I build n8n, Zapier, and AI-powered systems that connect tools, process data, and keep business workflows moving without repetitive manual steps.",
+    "cta": "Discuss an automation project"
+  },
+  "currentWork": {
+    "title": "What I'm Working On",
+    "description": "Current projects and learning focus",
+    "active": "Active projects",
+    "learning": "Learning"
+  },
+  "testimonials": {
+    "title": "Client Testimonials",
+    "description": "Verified feedback from recent client engagements",
+    "platformTitle": "Verified platform feedback",
+    "platformDesc": "Screenshots from published client reviews on Fiverr"
+  },
+  "caseStudies": {
+    "title": "Case Studies",
+    "description": "Project breakdowns: the problem, what I built, and the result for the client.",
+    "ctaTitle": "Want to work together?",
+    "ctaDesc": "Send a short brief on the contact page and I will get back to you within 24 hours."
   }
 }

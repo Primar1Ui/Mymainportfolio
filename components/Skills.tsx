@@ -4,16 +4,18 @@ import { motion } from 'framer-motion';
 import { skills } from '@/lib/data';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function Skills() {
   const reduce = usePrefersReducedMotion();
+  const { t } = useLocale();
 
   const skillCategories = [
-    { title: 'Frontend', skills: skills.frontend, color: 'from-red-600 to-red-400' },
-    { title: 'Backend', skills: skills.backend, color: 'from-red-700 to-red-500' },
-    { title: 'Tools', skills: skills.tools, color: 'from-red-500 to-red-600' },
-    { title: 'Automation', skills: skills.automation, color: 'from-red-500 to-red-400' },
-    { title: 'Deployment', skills: skills.deployment, color: 'from-red-600 to-red-700' },
+    { titleKey: 'skills.frontend' as const, skills: skills.frontend, color: 'from-red-600 to-red-400' },
+    { titleKey: 'skills.backend' as const, skills: skills.backend, color: 'from-red-700 to-red-500' },
+    { titleKey: 'skills.tools' as const, skills: skills.tools, color: 'from-red-500 to-red-600' },
+    { titleKey: 'skills.automation' as const, skills: skills.automation, color: 'from-red-500 to-red-400' },
+    { titleKey: 'skills.deployment' as const, skills: skills.deployment, color: 'from-red-600 to-red-700' },
   ];
 
   return (
@@ -22,12 +24,12 @@ export default function Skills() {
       className="py-20 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <SectionHeading title="My Skills" />
+        <SectionHeading title={t('skills.title')} />
 
         <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
-              key={category.title}
+              key={category.titleKey}
               initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -38,7 +40,7 @@ export default function Skills() {
               className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300"
             >
               <h3 className="text-xl font-semibold mb-4 text-white">
-                {category.title}
+                {t(category.titleKey)}
               </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => {
@@ -49,7 +51,7 @@ export default function Skills() {
                   return (
                   <div key={skillName} className="space-y-1.5">
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-300 font-medium" id={`skill-label-${category.title}-${skillIndex}`}>
+                      <span className="text-gray-300 font-medium" id={`skill-label-${category.titleKey}-${skillIndex}`}>
                         {skillName}
                       </span>
                       {typeof skill === 'object' && 'level' in skill && (
@@ -61,7 +63,7 @@ export default function Skills() {
                       aria-valuenow={skillLevel}
                       aria-valuemin={0}
                       aria-valuemax={100}
-                      aria-labelledby={`skill-label-${category.title}-${skillIndex}`}
+                      aria-labelledby={`skill-label-${category.titleKey}-${skillIndex}`}
                       className="h-2 rounded-full bg-gray-800 overflow-hidden"
                     >
                       <motion.div

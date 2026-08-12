@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { Sparkles, BookOpen } from 'lucide-react';
 import { currentWork } from '@/lib/currentWork';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function CurrentWork() {
+  const { t } = useLocale();
   return (
     <section
       id="current-work"
@@ -13,8 +15,8 @@ export default function CurrentWork() {
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeading
-          title="What I'm Working On"
-          description="Current projects and learning focus"
+          title={t('currentWork.title')}
+          description={t('currentWork.description')}
         />
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -29,7 +31,7 @@ export default function CurrentWork() {
               <div className="p-2 rounded-lg bg-red-500/20">
                 <Sparkles className="w-5 h-5 text-red-400" />
               </div>
-              <h3 className="text-lg font-semibold text-white">Active projects</h3>
+              <h3 className="text-lg font-semibold text-white">{t('currentWork.active')}</h3>
             </div>
             <ul className="space-y-2">
               {currentWork.projects.map((item, i) => (
@@ -52,7 +54,7 @@ export default function CurrentWork() {
               <div className="p-2 rounded-lg bg-red-600/20">
                 <BookOpen className="w-5 h-5 text-red-400" />
               </div>
-              <h3 className="text-lg font-semibold text-white">Learning</h3>
+              <h3 className="text-lg font-semibold text-white">{t('currentWork.learning')}</h3>
             </div>
             <ul className="space-y-2">
               {currentWork.learning.map((item, i) => (

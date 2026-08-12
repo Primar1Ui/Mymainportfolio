@@ -12,7 +12,8 @@ import {
 } from '@/lib/site';
 
 export type BreadcrumbItem = {
-  label: string;
+  label?: string;
+  labelKey?: string;
   path: string;
 };
 

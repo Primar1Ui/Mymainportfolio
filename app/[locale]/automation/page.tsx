@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function AutomationPage() {
   return (
-    <PageShell breadcrumbs={[{ label: 'Automation', path: '/automation' }]}>
+    <PageShell breadcrumbs={[{ labelKey: 'nav.automation', path: '/automation' }]}>
       <AutomationShowcase />
     </PageShell>
   );

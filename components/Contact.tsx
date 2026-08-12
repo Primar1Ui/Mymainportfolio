@@ -6,6 +6,8 @@ import { Send, Mail, Phone, Loader2, CheckCircle2, Github, MessageCircle } from 
 import { trackFunnel } from '@/lib/analytics';
 import SectionHeading from '@/components/SectionHeading';
 import { whatsappContacts } from '@/lib/data';
+import { useLocale } from '@/contexts/LocaleContext';
+import { SITE_EMAIL } from '@/lib/site';
 
 type FieldErrors = {
   name?: string;
@@ -13,34 +15,40 @@ type FieldErrors = {
   message?: string;
 };
 
-function validateContactForm(data: { name: string; email: string; message: string }): FieldErrors {
+type TranslateFn = (key: string, vars?: Record<string, string>) => string;
+
+function validateContactForm(
+  data: { name: string; email: string; message: string },
+  t: TranslateFn
+): FieldErrors {
   const errors: FieldErrors = {};
   const name = data.name.trim();
   const email = data.email.trim();
   const message = data.message.trim();
 
   if (!name) {
-    errors.name = 'Please enter your name.';
+    errors.name = t('contact.errors.nameRequired');
   } else if (name.length < 2) {
-    errors.name = 'Name must be at least 2 characters.';
+    errors.name = t('contact.errors.nameShort');
   }
 
   if (!email) {
-    errors.email = 'Please enter your email address.';
+    errors.email = t('contact.errors.emailRequired');
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.email = 'Please enter a valid email address.';
+    errors.email = t('contact.errors.emailInvalid');
   }
 
   if (!message) {
-    errors.message = 'Please enter a message.';
+    errors.message = t('contact.errors.messageRequired');
   } else if (message.length < 10) {
-    errors.message = 'Message must be at least 10 characters.';
+    errors.message = t('contact.errors.messageShort');
   }
 
   return errors;
 }
 
 export default function Contact() {
+  const { t } = useLocale();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -64,11 +72,11 @@ export default function Contact() {
     e.preventDefault();
     trackFunnel.contactFormSubmit();
 
-    const errors = validateContactForm(formData);
+    const errors = validateContactForm(formData, t);
     setFieldErrors(errors);
     if (Object.keys(errors).length > 0) {
       setStatus('error');
-      setStatusMessage('Please fix the errors below before sending.');
+      setStatusMessage(t('contact.fixErrors'));
       return;
     }
 
@@ -90,7 +98,7 @@ export default function Contact() {
       if (response.ok) {
         trackFunnel.contactFormSuccess();
         setStatus('success');
-        setStatusMessage('Message sent successfully! I\'ll get back to you soon.');
+        setStatusMessage(t('contact.success'));
         setFieldErrors({});
         setFormData({ name: '', email: '', message: '', website: '' });
       } else {
@@ -98,16 +106,16 @@ export default function Contact() {
         setStatus('error');
         // Check if it's a config error (form unavailable)
         if (data.errorType === 'config') {
-          setStatusMessage('The contact form is temporarily unavailable. Please reach me directly via WhatsApp or email using the links above.');
+          setStatusMessage(t('contact.unavailable'));
         } else if (data.errorType === 'rate_limit') {
-          setStatusMessage('You\'ve sent too many messages recently. Please wait a bit before trying again, or contact me directly via WhatsApp or email.');
+          setStatusMessage(t('contact.rateLimit'));
         } else {
-          setStatusMessage(data.error || 'Failed to send message. Please try again or contact me directly via WhatsApp or email.');
+          setStatusMessage(data.error || t('contact.failed'));
         }
       }
     } catch (error) {
       setStatus('error');
-      setStatusMessage('Network error occurred. Please check your connection and try again, or contact me directly via WhatsApp or email.');
+      setStatusMessage(t('contact.networkError'));
     } finally {
       setIsLoading(false);
     }
@@ -164,17 +172,14 @@ export default function Contact() {
                 transition={{ delay: 0.35 }}
                 className="text-lg font-semibold text-white"
               >
-                Message sent!
+                {t('contact.successOverlay')}
               </motion.p>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
       <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          title="Get in Touch"
-          description="Tell me about your project. I reply within 24 hours by email or WhatsApp."
-        />
+        <SectionHeading title={t('contact.title')} description={t('contact.description')} />
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
@@ -186,7 +191,7 @@ export default function Contact() {
             className="space-y-6"
           >
             <div className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800">
-              <h3 className="text-xl font-semibold mb-4 text-white">Get in Touch</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">{t('contact.sidebarTitle')}</h3>
               <div className="space-y-4">
                 {whatsappContacts.map((contact) => (
                   <div key={contact.id} className="flex items-center gap-4">
@@ -195,8 +200,9 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-sm">
-                        WhatsApp · {contact.label}
-                        {contact.primary ? ' (primary)' : ''}
+                        {t('contact.whatsappPrefix')}
+                        {contact.label}
+                        {contact.primary ? ` (${t('common.primary')})` : ''}
                       </p>
                       <a
                         href={contact.href}
@@ -215,13 +221,13 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Email</p>
+                    <p className="text-gray-400 text-sm">{t('common.email')}</p>
                     <a
-                      href="mailto:davidtosin306@gmail.com"
+                      href={`mailto:${SITE_EMAIL}`}
                       onClick={() => trackFunnel.emailClick('contact')}
                       className="text-white hover:text-red-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-1"
                     >
-                      davidtosin306@gmail.com
+                      {SITE_EMAIL}
                     </a>
                   </div>
                 </div>
@@ -232,7 +238,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Telegram</p>
+                    <p className="text-gray-400 text-sm">{t('common.telegram')}</p>
                     <a
                       href="https://t.me/mar_gdd"
                       target="_blank"
@@ -249,7 +255,7 @@ export default function Contact() {
                     <Github className="w-5 h-5 text-red-400" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">GitHub</p>
+                    <p className="text-gray-400 text-sm">{t('common.github')}</p>
                     <a
                       href="https://github.com/Primar1Ui"
                       target="_blank"
@@ -262,15 +268,15 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="pt-2 border-t border-gray-800">
-                  <p className="text-gray-400 text-sm mb-3">Quick actions</p>
+                  <p className="text-gray-400 text-sm mb-3">{t('contact.quickActions')}</p>
                   <div className="flex flex-wrap gap-3">
                     <a
-                      href="mailto:davidtosin306@gmail.com"
+                      href={`mailto:${SITE_EMAIL}`}
                       onClick={() => trackFunnel.emailClick('contact-quick')}
                       className="inline-flex items-center gap-2 min-h-10 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 hover:bg-red-500/20 transition-colors text-sm font-medium"
                     >
                       <Mail className="w-4 h-4" aria-hidden="true" />
-                      Email
+                      {t('common.email')}
                     </a>
                     {whatsappContacts.map((contact) => (
                       <a
@@ -282,7 +288,7 @@ export default function Contact() {
                         className="inline-flex items-center gap-2 min-h-10 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 hover:bg-green-500/20 transition-colors text-sm font-medium"
                       >
                         <MessageCircle className="w-4 h-4" aria-hidden="true" />
-                        WhatsApp {contact.countryCode}
+                        {t('common.whatsapp')} {contact.countryCode}
                       </a>
                     ))}
                   </div>
@@ -301,7 +307,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6 relative" noValidate>
               {/* Honeypot field - hidden from users */}
               <div className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true">
-                <label htmlFor="website">Website</label>
+                <label htmlFor="website">{t('contact.websiteHoneypot')}</label>
                 <input
                   type="text"
                   id="website"
@@ -314,7 +320,7 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Name
+                  {t('contact.name')}
                 </label>
                 <input
                   type="text"
@@ -334,7 +340,7 @@ export default function Contact() {
                       ? 'border-red-500/70 focus:border-red-500'
                       : 'border-gray-800 focus:border-red-500'
                   }`}
-                  placeholder="Your name"
+                  placeholder={t('contact.namePlaceholder')}
                 />
                 {fieldErrors.name && (
                   <p id="name-error" role="alert" className="mt-2 text-sm text-red-400">
@@ -344,7 +350,7 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
+                  {t('common.email')}
                 </label>
                 <input
                   type="email"
@@ -364,7 +370,7 @@ export default function Contact() {
                       ? 'border-red-500/70 focus:border-red-500'
                       : 'border-gray-800 focus:border-red-500'
                   }`}
-                  placeholder="your.email@example.com"
+                  placeholder={t('contact.emailPlaceholder')}
                 />
                 {fieldErrors.email && (
                   <p id="email-error" role="alert" className="mt-2 text-sm text-red-400">
@@ -374,7 +380,7 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
@@ -394,7 +400,7 @@ export default function Contact() {
                       ? 'border-red-500/70 focus:border-red-500'
                       : 'border-gray-800 focus:border-red-500'
                   }`}
-                  placeholder="Your message..."
+                  placeholder={t('contact.messagePlaceholder')}
                 />
                 {fieldErrors.message && (
                   <p id="message-error" role="alert" className="mt-2 text-sm text-red-400">
@@ -428,17 +434,17 @@ export default function Contact() {
                 {isLoading ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Sending...</span>
+                    <span>{t('contact.sending')}</span>
                   </>
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    <span>Send Message</span>
+                    <span>{t('contact.send')}</span>
                   </>
                 )}
               </button>
               <p className="text-sm text-gray-500 text-center mt-4">
-                I usually reply within 24 hours via email or WhatsApp
+                {t('contact.replyNote')}
               </p>
             </form>
           </motion.div>

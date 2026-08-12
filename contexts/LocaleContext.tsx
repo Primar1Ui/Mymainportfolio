@@ -8,12 +8,12 @@ import { detectClientLocale } from '@/lib/i18n/client';
 
 export type { Locale };
 
-type Messages = Record<string, Record<string, string>>;
+type Messages = Record<string, unknown>;
 
 interface LocaleContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: string) => string;
+  t: (key: string, vars?: Record<string, string>) => string;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
@@ -31,6 +31,14 @@ function getNested(obj: Record<string, unknown>, path: string): string | undefin
 function readInitialLocale(pathname: string): Locale {
   if (typeof window === 'undefined') return defaultLocale;
   return detectClientLocale(pathname);
+}
+
+function applyVars(text: string, vars?: Record<string, string>): string {
+  if (!vars) return text;
+  return Object.entries(vars).reduce(
+    (acc, [key, value]) => acc.replaceAll(`{${key}}`, value),
+    text
+  );
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
@@ -79,11 +87,16 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const t = useCallback(
-    (key: string): string => {
+    (key: string, vars?: Record<string, string>): string => {
       const value = getNested(messages as unknown as Record<string, unknown>, key);
-      return value ?? key;
+      if (value) return applyVars(value, vars);
+      if (locale !== 'en') {
+        const enValue = getNested(enMessages as unknown as Record<string, unknown>, key);
+        if (enValue) return applyVars(enValue, vars);
+      }
+      return key;
     },
-    [messages]
+    [locale, messages]
   );
 
   return (

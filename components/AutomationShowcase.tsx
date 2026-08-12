@@ -7,6 +7,7 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { automations } from '@/lib/automations';
 import LocalizedLink from '@/components/LocalizedLink';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 const automationIcons = {
   'AI Appointment Booking Assistant': CalendarDays,
@@ -25,6 +26,7 @@ const automationIcons = {
 
 export default function AutomationShowcase() {
   const reduce = usePrefersReducedMotion();
+  const { t } = useLocale();
 
   return (
     <section
@@ -33,8 +35,8 @@ export default function AutomationShowcase() {
     >
       <div className="max-w-7xl mx-auto">
         <SectionHeading
-          title="Automation that removes busywork"
-          description="I build n8n, Zapier, and AI-powered systems that connect tools, process data, and keep business workflows moving without repetitive manual steps."
+          title={t('automation.title')}
+          description={t('automation.description')}
           className="mb-14"
         />
 
@@ -88,7 +90,7 @@ export default function AutomationShowcase() {
             href="/contact"
             className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            Discuss an automation project
+            {t('automation.cta')}
           </LocalizedLink>
         </div>
       </div>

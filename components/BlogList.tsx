@@ -3,12 +3,14 @@
 import { useMemo, useState } from 'react';
 import BlogCard from '@/components/BlogCard';
 import type { BlogPost } from '@/lib/blog';
+import { useLocale } from '@/contexts/LocaleContext';
 
 interface BlogListProps {
   posts: BlogPost[];
 }
 
 export default function BlogList({ posts }: BlogListProps) {
+  const { t } = useLocale();
   const [activeTag, setActiveTag] = useState<string>('all');
 
   const tags = useMemo(
@@ -35,7 +37,7 @@ export default function BlogList({ posts }: BlogListProps) {
               : 'bg-gray-800/50 text-gray-400 border border-gray-700 hover:text-gray-200'
           }`}
         >
-          All
+          {t('common.all')}
         </button>
         {tags.map((tag) => (
           <button
@@ -61,7 +63,7 @@ export default function BlogList({ posts }: BlogListProps) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-gray-400 text-center py-12">No posts match this tag.</p>
+        <p className="text-gray-400 text-center py-12">{t('blog.noPosts')}</p>
       )}
     </div>
   );

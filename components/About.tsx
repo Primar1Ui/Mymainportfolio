@@ -4,22 +4,25 @@ import { motion } from 'framer-motion';
 import { Code2, Zap, Rocket } from 'lucide-react';
 import { SITE_BRAND, SITE_LEGAL_NAME } from '@/lib/site';
 import SectionHeading from '@/components/SectionHeading';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function About() {
+  const { t } = useLocale();
+
   const features = [
     {
       icon: Code2,
-      title: 'Full Stack Development',
+      titleKey: 'about.fullStack' as const,
       description: 'Frontend and backend work with Next.js, React, Node, and Supabase.',
     },
     {
       icon: Zap,
-      title: 'AI Integration',
+      titleKey: 'about.ai' as const,
       description: 'Practical AI features inside web apps: chat, scoring, routing, and content tools.',
     },
     {
       icon: Rocket,
-      title: 'SaaS MVPs',
+      titleKey: 'about.saas' as const,
       description: 'Launch-ready MVPs with auth, billing hooks, and a codebase you can grow.',
     },
   ];
@@ -30,7 +33,7 @@ export default function About() {
       className="py-20 md:py-32 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <SectionHeading title="About Me" />
+        <SectionHeading title={t('about.title')} />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -64,7 +67,7 @@ export default function About() {
           >
             {features.map((feature, index) => (
               <motion.div
-                key={feature.title}
+                key={feature.titleKey}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -77,7 +80,7 @@ export default function About() {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-white">
-                      {feature.title}
+                      {t(feature.titleKey)}
                     </h3>
                     <p className="text-gray-400">{feature.description}</p>
                   </div>

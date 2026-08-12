@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LocaleProvider } from '@/contexts/LocaleContext';
 import KeyboardShortcuts from '@/components/KeyboardShortcuts';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import SkipToContent from '@/components/SkipToContent';
 import PWARegister from '@/components/PWARegister';
 import {
   SITE_URL,
@@ -151,9 +152,7 @@ export default function RootLayout({
             <ErrorBoundary>
               <PWARegister />
               <KeyboardShortcuts />
-            <a href="#main-content" className="skip-to-content">
-              Skip to content
-            </a>
+              <SkipToContent />
             {children}
             </ErrorBoundary>
           </LocaleProvider>

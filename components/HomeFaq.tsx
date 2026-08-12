@@ -3,10 +3,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useLocale } from '@/contexts/LocaleContext';
 import { homeFaqs } from '@/lib/seo';
 
 export default function HomeFaq() {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set());
+  const { t } = useLocale();
 
   const toggleItem = (index: number) => {
     setOpenItems((prev) => {
@@ -33,12 +35,12 @@ export default function HomeFaq() {
           transition={{ duration: 0.45 }}
           className="mb-10"
         >
-          <p className="text-sm font-medium text-[var(--muted)] uppercase tracking-wide mb-2">FAQ</p>
+          <p className="text-sm font-medium text-[var(--muted)] uppercase tracking-wide mb-2">{t('home.faq.eyebrow')}</p>
           <h2 id="faq-heading" className="text-2xl md:text-3xl font-bold text-[var(--foreground)] mb-3">
-            Common questions
+            {t('home.faq.title')}
           </h2>
           <p className="text-[var(--muted)]">
-            Quick answers for clients, recruiters, and search engines.
+            {t('home.faq.description')}
           </p>
         </motion.div>
 

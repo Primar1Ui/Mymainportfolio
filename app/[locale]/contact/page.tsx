@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default function ContactPage() {
   return (
-    <PageShell breadcrumbs={[{ label: 'Contact', path: '/contact' }]}>
+    <PageShell breadcrumbs={[{ labelKey: 'nav.contact', path: '/contact' }]}>
       <Contact />
       <Newsletter />
     </PageShell>

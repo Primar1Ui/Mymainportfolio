@@ -1,3 +1,5 @@
+'use client';
+
 import LocalizedLink from '@/components/LocalizedLink';
 import {
   SITE_BRAND,
@@ -6,15 +8,18 @@ import {
   SITE_GITHUB,
   SITE_LEGAL_NAME,
 } from '@/lib/site';
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function BlogAuthorSidebar() {
+  const { t } = useLocale();
+
   return (
     <aside
       aria-labelledby="about-author-heading"
       className="rounded-xl border border-[var(--border)] bg-[var(--surface-solid)] p-5"
     >
       <h2 id="about-author-heading" className="text-sm font-semibold uppercase tracking-wide text-[var(--muted)] mb-3">
-        About the author
+        {t('blog.authorTitle')}
       </h2>
       <p className="text-base font-semibold text-[var(--foreground)] mb-1">
         {SITE_LEGAL_NAME}
@@ -26,17 +31,17 @@ export default function BlogAuthorSidebar() {
       <ul className="space-y-2 text-sm">
         <li>
           <LocalizedLink href="/about" className="text-red-500 hover:text-red-400">
-            About page
+            {t('blog.aboutPage')}
           </LocalizedLink>
         </li>
         <li>
           <LocalizedLink href="/hire" className="text-red-500 hover:text-red-400">
-            Hire me
+            {t('blog.hireMe')}
           </LocalizedLink>
         </li>
         <li>
           <LocalizedLink href="/contact" className="text-red-500 hover:text-red-400">
-            Contact
+            {t('common.contact')}
           </LocalizedLink>
         </li>
         <li>
@@ -51,7 +56,7 @@ export default function BlogAuthorSidebar() {
             rel="noopener noreferrer"
             className="text-red-500 hover:text-red-400"
           >
-            GitHub
+            {t('common.github')}
           </a>
         </li>
       </ul>

@@ -6,7 +6,11 @@ import { ArrowRight } from 'lucide-react';
 import { primaryWhatsApp } from '@/lib/data';
 import { trackFunnel } from '@/lib/analytics';
 
+import { useLocale } from '@/contexts/LocaleContext';
+
 export default function LandingCTA() {
+  const { t } = useLocale();
+
   return (
     <section
       aria-labelledby="final-cta-heading"
@@ -20,18 +24,17 @@ export default function LandingCTA() {
           transition={{ duration: 0.45 }}
         >
           <h2 id="final-cta-heading" className="text-2xl md:text-4xl font-bold text-[var(--foreground)] mb-4">
-            Ready to build something real?
+            {t('home.cta.title')}
           </h2>
           <p className="text-[var(--muted)] leading-relaxed mb-8">
-            Whether it is a web app, Supabase backend, or n8n and Zapier automation, tell me about
-            your project and I will reply within 24 hours.
+            {t('home.cta.description')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <LocalizedLink
               href="/hire"
               className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
             >
-              Start a project
+              {t('home.cta.startProject')}
               <ArrowRight className="w-4 h-4" />
             </LocalizedLink>
             <a
@@ -41,7 +44,7 @@ export default function LandingCTA() {
               onClick={() => trackFunnel.whatsappClick('home-final-cta')}
               className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:border-red-500/50 hover:text-red-600 transition-colors"
             >
-              Message on WhatsApp
+              {t('home.cta.whatsapp')}
             </a>
           </div>
         </motion.div>
