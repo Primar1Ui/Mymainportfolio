@@ -6,6 +6,9 @@ export const defaultLocale: Locale = 'en';
 
 export const LOCALE_COOKIE = 'portfolio-locale';
 
+/** Response header set by middleware for server-rendered `<html lang>`. */
+export const LOCALE_HEADER = 'x-locale';
+
 export function isValidLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }

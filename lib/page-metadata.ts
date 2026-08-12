@@ -1,15 +1,25 @@
 import type { Metadata } from 'next';
+
+import { isValidLocale, localeOpenGraph, type Locale } from '@/lib/i18n/config';
+import { buildLocaleAlternates } from '@/lib/i18n/metadata';
 import { SITE_BRAND, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/lib/site';
 
 type PageMetaInput = {
   title: string;
   description: string;
+  /** Unprefixed path (`/` for home). */
   path?: string;
+  locale: Locale;
 };
 
-export function createPageMetadata({ title, description, path = '' }: PageMetaInput): Metadata {
-  const url = `${SITE_URL}${path}`;
-  const fullTitle = `${title} | ${SITE_BRAND}`;
+export function createPageMetadata({
+  title,
+  description,
+  path = '/',
+  locale,
+}: PageMetaInput): Metadata {
+  const fullTitle = path === '/' ? title : `${title} | ${SITE_BRAND}`;
+  const alternates = buildLocaleAlternates(path, locale);
 
   return {
     title: fullTitle,
@@ -17,19 +27,27 @@ export function createPageMetadata({ title, description, path = '' }: PageMetaIn
     openGraph: {
       title: fullTitle,
       description,
-      url,
+      url: alternates.canonical,
       siteName: SITE_TITLE,
       type: 'website',
+      locale: localeOpenGraph[locale],
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
     },
-    alternates: {
-      canonical: url,
-    },
+    alternates,
   };
+}
+
+export async function generateLocalePageMetadata(
+  params: Promise<{ locale: string }>,
+  input: Omit<PageMetaInput, 'locale'>
+): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) return {};
+  return createPageMetadata({ ...input, locale });
 }
 
 export const defaultKeywords = [
@@ -41,4 +59,4 @@ export const defaultKeywords = [
   'automation',
 ];
 
-export { SITE_DESCRIPTION };
+export { SITE_DESCRIPTION, SITE_URL };

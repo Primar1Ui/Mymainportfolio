@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import ProjectSkeletonGrid from '@/components/skeletons/ProjectSkeletonGrid';
-import { createPageMetadata } from '@/lib/page-metadata';
+import { generateLocalePageMetadata } from '@/lib/page-metadata';
 
 const Projects = dynamic(() => import('@/components/Projects'), {
   loading: () => (
@@ -19,12 +19,16 @@ const Projects = dynamic(() => import('@/components/Projects'), {
   ),
 });
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Projects',
-  description:
-    'Portfolio of web apps, SaaS tools, AI integrations, and automation projects by Bambi20.',
-  path: '/projects',
-});
+type PageProps = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  return generateLocalePageMetadata(params, {
+    title: 'Projects',
+    description:
+      'Portfolio of web apps, SaaS tools, AI integrations, and automation projects by Bambi20.',
+    path: '/projects',
+  });
+}
 
 export default function ProjectsPage() {
   return (

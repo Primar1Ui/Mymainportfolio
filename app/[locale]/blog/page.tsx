@@ -2,15 +2,19 @@ import type { Metadata } from 'next';
 import { blogPosts } from '@/lib/blog';
 import BlogList from '@/components/BlogList';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { createPageMetadata } from '@/lib/page-metadata';
+import { generateLocalePageMetadata } from '@/lib/page-metadata';
 import { SITE_BRAND } from '@/lib/site';
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Blog',
-  description:
-    'Notes on Next.js, Supabase, SaaS builds, automation, and freelance web development from Bambi20.',
-  path: '/blog',
-});
+type PageProps = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  return generateLocalePageMetadata(params, {
+    title: 'Blog',
+    description:
+      'Notes on Next.js, Supabase, SaaS builds, automation, and freelance web development from Bambi20.',
+    path: '/blog',
+  });
+}
 
 export default function BlogPage() {
   return (

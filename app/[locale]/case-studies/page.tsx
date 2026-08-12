@@ -3,15 +3,19 @@ import PageShell from '@/components/PageShell';
 import CaseStudyCard from '@/components/CaseStudyCard';
 import { caseStudies } from '@/lib/caseStudies';
 import LocalizedLink from '@/components/LocalizedLink';
-import { createPageMetadata } from '@/lib/page-metadata';
+import { generateLocalePageMetadata } from '@/lib/page-metadata';
 import SectionHeading from '@/components/SectionHeading';
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Case Studies',
-  description:
-    'Case studies from Bambi20: how web apps and automation projects were scoped, built, and delivered for clients.',
-  path: '/case-studies',
-});
+type PageProps = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  return generateLocalePageMetadata(params, {
+    title: 'Case Studies',
+    description:
+      'Case studies from Bambi20: how web apps and automation projects were scoped, built, and delivered for clients.',
+    path: '/case-studies',
+  });
+}
 
 export default function CaseStudiesPage() {
   return (

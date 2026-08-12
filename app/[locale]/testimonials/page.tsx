@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PageShell from '@/components/PageShell';
 import { TestimonialSkeletonGrid } from '@/components/skeletons/TestimonialSkeleton';
-import { createPageMetadata } from '@/lib/page-metadata';
+import { generateLocalePageMetadata } from '@/lib/page-metadata';
 
 const Testimonials = dynamic(() => import('@/components/Testimonials'), {
   loading: () => (
@@ -19,12 +19,16 @@ const Testimonials = dynamic(() => import('@/components/Testimonials'), {
   ),
 });
 
-export const metadata: Metadata = createPageMetadata({
-  title: 'Testimonials',
-  description:
-    'Client testimonials and Fiverr reviews for Oluwatosin David (Bambi20), full stack developer and automation specialist.',
-  path: '/testimonials',
-});
+type PageProps = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  return generateLocalePageMetadata(params, {
+    title: 'Testimonials',
+    description:
+      'Client testimonials and Fiverr reviews for Oluwatosin David (Bambi20), full stack developer and automation specialist.',
+    path: '/testimonials',
+  });
+}
 
 export default function TestimonialsPage() {
   return (

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LocaleProvider } from '@/contexts/LocaleContext';
@@ -25,6 +26,7 @@ import {
 } from '@/lib/seo';
 import "./globals.css";
 import "./print.css";
+import { defaultLocale, isValidLocale, LOCALE_HEADER } from '@/lib/i18n/config';
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -34,8 +36,6 @@ export const metadata: Metadata = {
   creator: SITE_LEGAL_NAME,
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     siteName: SITE_NAME,
@@ -86,15 +86,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerLocale = headers().get(LOCALE_HEADER);
+  const htmlLang = headerLocale && isValidLocale(headerLocale) ? headerLocale : defaultLocale;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={htmlLang} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='light'||s==='dark')?s:'dark';document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#fafafa':'#0f0a0a');}catch(e){document.documentElement.classList.add('dark');}})();`,
           }}
         />
-        <link rel="canonical" href={SITE_URL} />
         <link rel="manifest" href="/manifest.json" />
         <link
           rel="alternate"
