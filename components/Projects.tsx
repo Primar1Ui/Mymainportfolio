@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -67,13 +67,13 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <SectionHeading title="Featured Projects" className="mb-4" />
-          <Link
+          <LocalizedLink
             href="/case-studies"
             onClick={() => trackFunnel.projectsViewCaseStudies()}
             className="inline-flex items-center gap-2 text-[var(--muted)] hover:text-red-500 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] rounded px-2 py-1"
           >
             View detailed case studies →
-          </Link>
+          </LocalizedLink>
         </div>
 
         <motion.div
@@ -247,14 +247,14 @@ export default function Projects() {
                     </a>
                   )}
                   {(!project.live || project.live === '#') && (!project.github || project.github === '#') && (
-                    <Link
+                    <LocalizedLink
                       href="/contact"
                       onClick={handleContactClick}
                       className="w-full flex items-center justify-center gap-2 min-h-11 px-4 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                     >
                       <Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
                       <span>Discuss a Similar Project</span>
-                    </Link>
+                    </LocalizedLink>
                   )}
                 </div>
 

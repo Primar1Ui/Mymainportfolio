@@ -1,4 +1,5 @@
 import { isHomePath } from '@/lib/i18n/config';
+import { stripLocaleFromPathname } from '@/lib/i18n/navigation';
 
 export type NavItem = {
   key: string;
@@ -66,13 +67,15 @@ export function isNavItemActive(
   pathname: string,
   hash: string
 ): boolean {
+  const normalizedPath = stripLocaleFromPathname(pathname);
+
   if (item.matchPath === '/') {
     return isHomePath(pathname);
   }
 
   const pathMatches = item.matchNested
-    ? pathname === item.matchPath || pathname.startsWith(`${item.matchPath}/`)
-    : pathname === item.matchPath;
+    ? normalizedPath === item.matchPath || normalizedPath.startsWith(`${item.matchPath}/`)
+    : normalizedPath === item.matchPath;
 
   if (!pathMatches) return false;
 

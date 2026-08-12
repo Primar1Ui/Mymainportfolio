@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { Calendar, ArrowRight } from 'lucide-react';
 import type { BlogPost } from '@/lib/blog';
@@ -19,7 +19,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
       transition={{ delay: index * 0.1, duration: 0.4 }}
       className="group p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300"
     >
-      <Link href={`/blog/${post.slug}`} className="block">
+      <LocalizedLink href={`/blog/${post.slug}`} className="block">
         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
           <Calendar className="w-4 h-4" />
           <time dateTime={post.date}>{post.date}</time>
@@ -49,7 +49,7 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
           Read more
           <ArrowRight className="w-4 h-4" />
         </span>
-      </Link>
+      </LocalizedLink>
     </motion.article>
   );
 }

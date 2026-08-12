@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { portfolioStats, primaryWhatsApp } from '@/lib/data';
 import { trackFunnel } from '@/lib/analytics';
 import { SITE_BRAND, SITE_LEGAL_NAME } from '@/lib/site';
@@ -49,12 +49,12 @@ export default function HomeBio() {
             Message on WhatsApp
             <ChevronRight className="w-5 h-5 shrink-0" aria-hidden="true" />
           </a>
-          <Link
+          <LocalizedLink
             href="/contact"
             className="inline-flex items-center justify-center gap-2 min-h-12 px-6 sm:px-8 py-3 border border-[var(--border)] text-[var(--muted-strong)] hover:text-[var(--foreground)] hover:border-red-500/50 text-sm sm:text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-solid)]"
           >
             Contact page
-          </Link>
+          </LocalizedLink>
         </div>
       </motion.div>
     </section>

@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useCallback, useState } from 'react';
+import { detectClientLocale } from '@/lib/i18n/client';
+import { localizedPath } from '@/lib/i18n/navigation';
 
 const GITHUB_URL = 'https://github.com/Primar1Ui';
 
 function navigateTo(path: string) {
-  window.location.assign(path);
+  const locale = detectClientLocale(window.location.pathname);
+  window.location.assign(localizedPath(path, locale));
 }
 
 function focusProjectSearch() {

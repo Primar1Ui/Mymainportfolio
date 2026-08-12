@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -84,14 +84,14 @@ export default function HireLanding() {
               run in production.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
+              <LocalizedLink
                 href="/contact"
                 onClick={() => trackFunnel.contactCtaClick('hire-hero')}
                 className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
               >
                 Send project details
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </LocalizedLink>
               <a
                 href={primaryWhatsApp.href}
                 target="_blank"
@@ -204,13 +204,13 @@ export default function HireLanding() {
                 {SITE_EMAIL}
               </a>
             </p>
-            <Link
+            <LocalizedLink
               href="/case-studies"
               className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-red-500 hover:text-red-400"
             >
               Read case studies first
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </section>
@@ -223,14 +223,14 @@ export default function HireLanding() {
           <p className="text-[var(--muted)] mb-8">
             Send your project details and I will reply within 24 hours with next steps.
           </p>
-          <Link
+          <LocalizedLink
             href="/contact"
             onClick={() => trackFunnel.contactCtaClick('hire-footer')}
             className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
           >
             Go to contact form
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </LocalizedLink>
         </div>
       </section>
     </>

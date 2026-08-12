@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight, Home } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -25,26 +25,26 @@ export default function NotFoundPage() {
             {t('notFound.description')}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
+            <LocalizedLink
               href="/"
               className="btn-primary gap-2 min-h-11 px-5 py-2.5 rounded-lg text-sm"
             >
               <Home className="w-4 h-4" aria-hidden />
               {t('notFound.backHome')}
-            </Link>
-            <Link
+            </LocalizedLink>
+            <LocalizedLink
               href="/hire"
               className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:bg-[var(--surface-solid)] transition-colors"
             >
               {t('notFound.hire')}
               <ArrowRight className="w-4 h-4" aria-hidden />
-            </Link>
-            <Link
+            </LocalizedLink>
+            <LocalizedLink
               href="/contact"
               className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:bg-[var(--surface-solid)] transition-colors"
             >
               {t('notFound.contact')}
-            </Link>
+            </LocalizedLink>
           </div>
           <p className="mt-10 text-xs text-[var(--muted)]">
             {SITE_BRAND}

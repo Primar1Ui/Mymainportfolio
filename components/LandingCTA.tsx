@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { primaryWhatsApp } from '@/lib/data';
@@ -27,13 +27,13 @@ export default function LandingCTA() {
             your project and I will reply within 24 hours.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link
+            <LocalizedLink
               href="/hire"
               className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
             >
               Start a project
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </LocalizedLink>
             <a
               href={primaryWhatsApp.href}
               target="_blank"

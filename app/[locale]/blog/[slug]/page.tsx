@@ -5,26 +5,33 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import BlogAuthorSidebar from '@/components/BlogAuthorSidebar';
 import { blogPostingSchema } from '@/lib/seo';
 import { SITE_URL, SITE_BRAND, SITE_LEGAL_NAME } from '@/lib/site';
+import { isValidLocale, locales, type Locale } from '@/lib/i18n/config';
+import { localizedPath } from '@/lib/i18n/navigation';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return locales.flatMap((locale) =>
+    blogPosts.map((post) => ({ locale, slug: post.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return { title: 'Post not found' };
+
+  const path = localizedPath(`/blog/${post.slug}`, locale as Locale);
+
   return {
     title: `${post.title} | ${SITE_BRAND} Blog`,
     description: post.description,
     openGraph: {
       title: post.title,
       description: post.description,
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url: `${SITE_URL}${path}`,
       type: 'article',
       publishedTime: post.date,
       authors: [SITE_LEGAL_NAME],
@@ -110,9 +117,16 @@ function renderContent(content: string) {
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+
+  if (!isValidLocale(locale)) {
+    notFound();
+  }
+
   const post = getPostBySlug(slug);
   if (!post) notFound();
+
+  const postPath = localizedPath(`/blog/${post.slug}`, locale);
 
   return (
     <main id="main-content" className="min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8" tabIndex={-1}>
@@ -127,6 +141,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               date: post.date,
               slug: post.slug,
               tags: post.tags,
+              path: postPath,
             })
           ),
         }}

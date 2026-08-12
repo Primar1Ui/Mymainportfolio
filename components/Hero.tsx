@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { portfolioStats } from '@/lib/data';
@@ -47,19 +47,19 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-10">
-              <Link
+              <LocalizedLink
                 href="/hire"
                 className="btn-primary gap-2 min-h-12 px-6 py-3 rounded-lg text-sm"
               >
                 Start a project
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-              <Link
+              </LocalizedLink>
+              <LocalizedLink
                 href="/projects"
                 className="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 rounded-lg border border-[var(--border)] text-[var(--foreground)] text-sm font-semibold hover:border-red-500/50 hover:text-red-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
               >
                 View portfolio
-              </Link>
+              </LocalizedLink>
             </div>
 
             <dl className="grid grid-cols-3 gap-4 max-w-md">

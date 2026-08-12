@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { getLatestPost } from '@/lib/blog';
 import SectionHeading from '@/components/SectionHeading';
@@ -28,19 +28,19 @@ export default function LatestBlogTeaser() {
           <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">{post.title}</h3>
           <p className="text-gray-400 leading-relaxed mb-6 line-clamp-3">{post.description}</p>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-            <Link
+            <LocalizedLink
               href={`/blog/${post.slug}`}
               className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               Read article
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-            <Link
+            </LocalizedLink>
+            <LocalizedLink
               href="/blog"
               className="inline-flex items-center justify-center gap-2 min-h-11 px-5 py-2.5 rounded-xl border border-gray-700 text-gray-300 font-medium hover:border-red-400 hover:text-red-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
             >
               View all posts
-            </Link>
+            </LocalizedLink>
           </div>
         </article>
       </div>

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import PageShell from '@/components/PageShell';
 import CaseStudyCard from '@/components/CaseStudyCard';
 import { caseStudies } from '@/lib/caseStudies';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { createPageMetadata } from '@/lib/page-metadata';
 import SectionHeading from '@/components/SectionHeading';
 
@@ -38,18 +38,18 @@ export default function CaseStudiesPage() {
                 Send a short brief on the contact page and I will get back to you within 24 hours.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
+                <LocalizedLink
                   href="/contact"
                   className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-semibold text-white hover:shadow-lg hover:shadow-red-500/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
                   Contact
-                </Link>
-                <Link
+                </LocalizedLink>
+                <LocalizedLink
                   href="/projects"
                   className="px-6 py-3 bg-gray-800 border border-gray-700 rounded-xl font-semibold text-gray-100 hover:border-red-400 hover:text-red-400 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 >
                   View Projects
-                </Link>
+                </LocalizedLink>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { X, Rocket } from 'lucide-react';
 
 const STORAGE_KEY = 'hire-me-banner-dismissed';
@@ -42,12 +42,12 @@ export default function HireMeBanner() {
           <span>Open for freelance work. Send a brief on the contact page and I will reply within 24 hours.</span>
         </p>
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <Link
+          <LocalizedLink
             href="/contact"
             className="inline-flex flex-1 sm:flex-none items-center justify-center gap-2 min-h-11 px-4 py-2 bg-white text-red-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-red-600"
           >
             Get in touch
-          </Link>
+          </LocalizedLink>
           <button
             type="button"
             onClick={handleDismiss}

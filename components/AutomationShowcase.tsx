@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Bot, GitBranch, Workflow, Boxes, Users, CalendarCheck, Sparkles, FileSpreadsheet, CalendarDays, BellRing } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { automations } from '@/lib/automations';
+import LocalizedLink from '@/components/LocalizedLink';
 import SectionHeading from '@/components/SectionHeading';
 
 const automationIcons = {
@@ -83,12 +84,12 @@ export default function AutomationShowcase() {
         </div>
 
         <div className="text-center mt-10">
-          <a
+          <LocalizedLink
             href="/contact"
             className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             Discuss an automation project
-          </a>
+          </LocalizedLink>
         </div>
       </div>
     </section>

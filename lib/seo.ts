@@ -161,16 +161,14 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
 }
 
 export function breadcrumbSchema(items: BreadcrumbItem[]) {
-  const trail = [{ label: 'Home', path: '/' }, ...items.filter((item) => item.path !== '/')];
-
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: trail.map((item, index) => ({
+    itemListElement: items.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: item.label,
-      item: item.path === '/' ? SITE_URL : `${SITE_URL}${item.path}`,
+      item: `${SITE_URL}${item.path.startsWith('/') ? item.path : `/${item.path}`}`,
     })),
   };
 }
@@ -181,7 +179,10 @@ export function blogPostingSchema(post: {
   date: string;
   slug: string;
   tags: string[];
+  path?: string;
 }) {
+  const pagePath = post.path ?? `/blog/${post.slug}`;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -196,7 +197,7 @@ export function blogPostingSchema(post: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${SITE_URL}/blog/${post.slug}`,
+      '@id': `${SITE_URL}${pagePath}`,
     },
     image: `${SITE_URL}/images/og-image.png`,
     keywords: post.tags.join(', '),

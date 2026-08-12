@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import {
   SITE_BRAND,
   SITE_DESCRIPTION,
@@ -25,19 +25,19 @@ export default function BlogAuthorSidebar() {
       </p>
       <ul className="space-y-2 text-sm">
         <li>
-          <Link href="/about" className="text-red-500 hover:text-red-400">
+          <LocalizedLink href="/about" className="text-red-500 hover:text-red-400">
             About page
-          </Link>
+          </LocalizedLink>
         </li>
         <li>
-          <Link href="/hire" className="text-red-500 hover:text-red-400">
+          <LocalizedLink href="/hire" className="text-red-500 hover:text-red-400">
             Hire me
-          </Link>
+          </LocalizedLink>
         </li>
         <li>
-          <Link href="/contact" className="text-red-500 hover:text-red-400">
+          <LocalizedLink href="/contact" className="text-red-500 hover:text-red-400">
             Contact
-          </Link>
+          </LocalizedLink>
         </li>
         <li>
           <a href={`mailto:${SITE_EMAIL}`} className="text-red-500 hover:text-red-400">

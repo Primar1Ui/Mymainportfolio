@@ -1,7 +1,10 @@
 'use client';
 
+import { useCallback } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLocale } from '@/contexts/LocaleContext';
-import type { Locale } from '@/contexts/LocaleContext';
+import { LOCALE_COOKIE, type Locale } from '@/lib/i18n/config';
+import { switchLocalePath } from '@/lib/i18n/navigation';
 
 const locales: { code: Locale; label: string }[] = [
   { code: 'en', label: 'EN' },
@@ -10,7 +13,24 @@ const locales: { code: Locale; label: string }[] = [
 ];
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const { locale } = useLocale();
+
+  const handleSwitch = useCallback(
+    (code: Locale) => {
+      if (code === locale) return;
+
+      const nextPath = switchLocalePath(pathname, code);
+      document.cookie = `${LOCALE_COOKIE}=${code}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
+      try {
+        localStorage.setItem(LOCALE_COOKIE, code);
+      } catch {}
+
+      router.push(nextPath);
+    },
+    [locale, pathname, router]
+  );
 
   return (
     <div
@@ -22,7 +42,7 @@ export default function LanguageSwitcher() {
         <button
           key={code}
           type="button"
-          onClick={() => setLocale(code)}
+          onClick={() => handleSwitch(code)}
           className={`min-h-9 min-w-9 px-2 py-1 text-xs font-semibold rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] ${
             locale === code
               ? 'bg-red-500/20 text-red-500'

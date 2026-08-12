@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
 import { homepageSelectedAutomations } from '@/lib/automations';
 import { projects } from '@/lib/data';
@@ -100,33 +100,33 @@ export default function HomeSelectedWork() {
                     </li>
                   ))}
                 </ul>
-                <Link
+                <LocalizedLink
                   href={item.href}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-500 hover:text-red-400 transition-colors"
                 >
                   {item.cta}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
+                </LocalizedLink>
               </div>
             </motion.article>
           ))}
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
+          <LocalizedLink
             href="/projects"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-lg px-5 py-2.5 hover:bg-[var(--surface-solid)] transition-colors"
           >
             See all projects
             <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
+          </LocalizedLink>
+          <LocalizedLink
             href="/automation"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--foreground)] border border-[var(--border)] rounded-lg px-5 py-2.5 hover:bg-[var(--surface-solid)] transition-colors"
           >
             See all automations
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </LocalizedLink>
         </div>
       </div>
     </section>

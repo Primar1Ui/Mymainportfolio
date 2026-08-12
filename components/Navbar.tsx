@@ -16,6 +16,8 @@ import {
   type NavDropdown,
 } from '@/lib/navigation';
 import { isHomePath } from '@/lib/i18n/config';
+import { localizedPath } from '@/lib/i18n/navigation';
+import type { Locale } from '@/lib/i18n/config';
 import ThemeToggle from '@/components/ThemeToggle';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { SITE_BRAND } from '@/lib/site';
@@ -42,11 +44,12 @@ type DesktopDropdownProps = {
   dropdown: NavDropdown;
   isActive: boolean;
   isItemActive: (item: NavItem) => boolean;
+  locale: Locale;
   t: (key: string) => string;
   onNavigate: () => void;
 };
 
-function DesktopDropdown({ dropdown, isActive, isItemActive, t, onNavigate }: DesktopDropdownProps) {
+function DesktopDropdown({ dropdown, isActive, isItemActive, locale, t, onNavigate }: DesktopDropdownProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -108,7 +111,7 @@ function DesktopDropdown({ dropdown, isActive, isItemActive, t, onNavigate }: De
                 return (
                   <Link
                     key={item.key}
-                    href={item.href}
+                    href={localizedPath(item.href, locale)}
                     role="menuitem"
                     onClick={() => {
                       setOpen(false);
@@ -136,11 +139,12 @@ function DesktopDropdown({ dropdown, isActive, isItemActive, t, onNavigate }: De
 type MobileDropdownProps = {
   dropdown: NavDropdown;
   isItemActive: (item: NavItem) => boolean;
+  locale: Locale;
   t: (key: string) => string;
   onNavigate: () => void;
 };
 
-function MobileDropdown({ dropdown, isItemActive, t, onNavigate }: MobileDropdownProps) {
+function MobileDropdown({ dropdown, isItemActive, locale, t, onNavigate }: MobileDropdownProps) {
   const [expanded, setExpanded] = useState(false);
   const groupActive = dropdown.items.some((item) => isItemActive(item));
 
@@ -167,7 +171,7 @@ function MobileDropdown({ dropdown, isItemActive, t, onNavigate }: MobileDropdow
             return (
               <Link
                 key={item.key}
-                href={item.href}
+                href={localizedPath(item.href, locale)}
                 onClick={onNavigate}
                 className={mobileLinkClass(active)}
                 aria-current={active ? 'page' : undefined}
@@ -190,7 +194,7 @@ export default function Navbar() {
   const menuPanelRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const prefersReducedMotion = usePrefersReducedMotion();
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -259,7 +263,7 @@ export default function Navbar() {
           return (
             <Link
               key={item.key}
-              href={item.href}
+              href={localizedPath(item.href, locale)}
               onClick={closeMenu}
               className={navLinkClass(active)}
               aria-current={active ? 'page' : undefined}
@@ -275,12 +279,13 @@ export default function Navbar() {
             dropdown={entry}
             isActive={isDropdownActive(entry.items, pathname, hash)}
             isItemActive={isItemActive}
+            locale={locale}
             t={t}
             onNavigate={closeMenu}
           />
         );
       }),
-    [hash, isItemActive, pathname, t]
+    [hash, isItemActive, locale, pathname, t]
   );
 
   const mobileNav = useMemo(
@@ -292,7 +297,7 @@ export default function Navbar() {
           return (
             <Link
               key={item.key}
-              href={item.href}
+              href={localizedPath(item.href, locale)}
               onClick={closeMenu}
               className={mobileLinkClass(active)}
               aria-current={active ? 'page' : undefined}
@@ -307,12 +312,13 @@ export default function Navbar() {
             key={entry.labelKey}
             dropdown={entry}
             isItemActive={isItemActive}
+            locale={locale}
             t={t}
             onNavigate={closeMenu}
           />
         );
       }),
-    [isItemActive, t]
+    [isItemActive, locale, t]
   );
 
   return (
@@ -338,7 +344,7 @@ export default function Navbar() {
               transition={prefersReducedMotion ? { duration: 0 } : {}}
             >
               <Link
-                href="/"
+                href={localizedPath('/', locale)}
                 onClick={closeMenu}
                 className="inline-flex items-center min-h-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)]"
                 aria-label={`B20 ${SITE_BRAND} home`}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Loader2, Check, AlertCircle } from 'lucide-react';
+import LocalizedLink from '@/components/LocalizedLink';
 
 const NEWSLETTER_ENABLED = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
 
@@ -110,12 +111,12 @@ export default function Newsletter() {
             )}
           </>
         ) : (
-          <a
+          <LocalizedLink
             href="/contact"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold hover:shadow-lg hover:shadow-red-500/30 transition-all focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-background"
           >
             Contact me instead
-          </a>
+          </LocalizedLink>
         )}
       </div>
     </motion.section>
