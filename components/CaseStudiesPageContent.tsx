@@ -4,10 +4,11 @@ import CaseStudyCard from '@/components/CaseStudyCard';
 import LocalizedLink from '@/components/LocalizedLink';
 import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
-import { caseStudies } from '@/lib/caseStudies';
+import { getCaseStudies } from '@/lib/caseStudies';
 
 export default function CaseStudiesPageContent() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const caseStudies = getCaseStudies(locale);
 
   return (
     <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8">

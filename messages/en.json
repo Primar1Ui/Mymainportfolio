@@ -219,9 +219,15 @@
   },
   "about": {
     "title": "About Me",
+    "p1": "I'm {name}. Online I go by {brand}. I work as a freelance full stack developer on web apps, internal tools, and automation projects.",
+    "p2": "Most of my work sits in the Next.js and Supabase stack. I also build n8n and Zapier workflows when a client needs leads routed, content scheduled, or support tickets handled without manual copy paste.",
+    "p3": "I keep communication simple: clear scope, regular updates, and code you can hand to another developer later if needed.",
     "fullStack": "Full Stack Development",
+    "fullStackDesc": "Frontend and backend work with Next.js, React, Node, and Supabase.",
     "ai": "AI Integration",
-    "saas": "SaaS MVPs"
+    "aiDesc": "Practical AI features inside web apps: chat, scoring, routing, and content tools.",
+    "saas": "SaaS MVPs",
+    "saasDesc": "Launch-ready MVPs with auth, billing hooks, and a codebase you can grow."
   },
   "skills": {
     "title": "My Skills",
@@ -256,5 +262,47 @@
     "description": "Project breakdowns: the problem, what I built, and the result for the client.",
     "ctaTitle": "Want to work together?",
     "ctaDesc": "Send a short brief on the contact page and I will get back to you within 24 hours."
+  },
+  "meta": {
+    "home": {
+      "title": "Bambi20 | Full Stack Web Developer & Automation",
+      "description": "Oluwatosin David (Bambi20) builds modern web apps, Supabase backends, AI integrations, and n8n or Zapier automations for founders and small teams."
+    },
+    "about": {
+      "title": "About",
+      "description": "About Oluwatosin David (Bambi20): full stack developer background, current work, and technical skills."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Notes on Next.js, Supabase, SaaS builds, automation, and freelance web development from Bambi20."
+    },
+    "caseStudies": {
+      "title": "Case Studies",
+      "description": "Case studies from Bambi20: how web apps and automation projects were scoped, built, and delivered for clients."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact Oluwatosin David (Bambi20) for full stack development, SaaS builds, AI integrations, and automation work."
+    },
+    "hire": {
+      "title": "Hire Me",
+      "description": "Hire Oluwatosin David (Bambi20) for web apps, SaaS MVPs, Supabase backends, and n8n or Zapier automation. Clear scope, fast replies, production-ready delivery."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Portfolio of web apps, SaaS tools, AI integrations, and automation projects by Bambi20."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Services from Bambi20: full stack development, SaaS MVPs, Supabase backends, AI integrations, and workflow automation."
+    },
+    "automation": {
+      "title": "Automation",
+      "description": "n8n and Zapier workflow builds by Bambi20: AI customer support, appointment booking, lead routing, and content automation."
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "description": "Client testimonials and Fiverr reviews for Oluwatosin David (Bambi20), full stack developer and automation specialist."
+    }
   }
 }

@@ -22,8 +22,6 @@ import {
   websiteSchema,
   professionalServiceSchema,
   localBusinessSchema,
-  faqSchema,
-  homeFaqs,
 } from '@/lib/seo';
 import "./globals.css";
 import "./print.css";
@@ -139,11 +137,6 @@ export default function RootLayout({
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(homeFaqs)) }}
         />
       </head>
       <body>

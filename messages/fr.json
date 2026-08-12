@@ -219,9 +219,15 @@
   },
   "about": {
     "title": "À propos de moi",
+    "p1": "Je suis {name}. En ligne, j'utilise {brand}. Je travaille comme développeur full stack freelance sur des apps web, des outils internes et des projets d'automatisation.",
+    "p2": "La plupart de mon travail repose sur Next.js et Supabase. Je construis aussi des workflows n8n et Zapier quand un client doit router des leads, planifier du contenu ou traiter des tickets support sans copier-coller manuel.",
+    "p3": "Je garde la communication simple: périmètre clair, mises à jour régulières et du code qu'un autre développeur pourra reprendre plus tard si besoin.",
     "fullStack": "Développement full stack",
+    "fullStackDesc": "Travail frontend et backend avec Next.js, React, Node et Supabase.",
     "ai": "Intégration IA",
-    "saas": "MVPs SaaS"
+    "aiDesc": "Fonctions IA pratiques dans les apps web: chat, scoring, routage et outils de contenu.",
+    "saas": "MVPs SaaS",
+    "saasDesc": "MVPs prêts à lancer avec auth, hooks de facturation et une base de code extensible."
   },
   "skills": {
     "title": "Mes compétences",
@@ -256,5 +262,47 @@
     "description": "Le problème, ce que j'ai construit et le résultat pour le client.",
     "ctaTitle": "On travaille ensemble?",
     "ctaDesc": "Envoyez un brief court via contact et je réponds sous 24 heures."
+  },
+  "meta": {
+    "home": {
+      "title": "Bambi20 | Développeur web full stack et automatisation",
+      "description": "Oluwatosin David (Bambi20) construit des apps web modernes, des backends Supabase, des intégrations IA et des automatisations n8n ou Zapier pour fondateurs et petites équipes."
+    },
+    "about": {
+      "title": "À propos",
+      "description": "À propos d'Oluwatosin David (Bambi20): parcours de développeur full stack, travail actuel et compétences techniques."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Notes sur Next.js, Supabase, MVPs SaaS, automatisation et développement web freelance par Bambi20."
+    },
+    "caseStudies": {
+      "title": "Études de cas",
+      "description": "Études de cas Bambi20: comment des apps web et projets d'automatisation ont été cadrés, construits et livrés."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contactez Oluwatosin David (Bambi20) pour du développement full stack, des MVPs SaaS, des intégrations IA et de l'automatisation."
+    },
+    "hire": {
+      "title": "Embauchez-moi",
+      "description": "Embauchez Oluwatosin David (Bambi20) pour des apps web, MVPs SaaS, backends Supabase et automatisation n8n ou Zapier. Périmètre clair, réponses rapides, livraison prête pour la production."
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Portfolio d'apps web, outils SaaS, intégrations IA et projets d'automatisation par Bambi20."
+    },
+    "services": {
+      "title": "Services",
+      "description": "Services Bambi20: développement full stack, MVPs SaaS, backends Supabase, intégrations IA et automatisation de workflows."
+    },
+    "automation": {
+      "title": "Automatisation",
+      "description": "Workflows n8n et Zapier par Bambi20: support IA, prise de rendez-vous, routage de leads et automatisation de contenu."
+    },
+    "testimonials": {
+      "title": "Témoignages",
+      "description": "Témoignages clients et avis Fiverr pour Oluwatosin David (Bambi20), développeur full stack et spécialiste automatisation."
+    }
   }
 }

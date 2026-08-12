@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { homeFaqs } from '@/lib/seo';
+import { getHomeFaqs } from '@/lib/content/faqs';
+import { faqSchema } from '@/lib/seo';
 
 export default function HomeFaq() {
   const [openItems, setOpenItems] = useState<Set<number>>(new Set());
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const homeFaqs = getHomeFaqs(locale);
 
   const toggleItem = (index: number) => {
     setOpenItems((prev) => {
@@ -27,6 +29,11 @@ export default function HomeFaq() {
       aria-labelledby="faq-heading"
       className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-t border-[var(--border)]"
     >
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(homeFaqs)) }}
+      />
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

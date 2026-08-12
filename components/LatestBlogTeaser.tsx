@@ -7,8 +7,8 @@ import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
 
 export default function LatestBlogTeaser() {
-  const { t } = useLocale();
-  const post = getLatestPost();
+  const { t, locale } = useLocale();
+  const post = getLatestPost(locale);
   if (!post) return null;
 
   return (

@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 
+import { getPageMeta } from '@/lib/i18n/dictionaries';
 import { isValidLocale, localeOpenGraph, type Locale } from '@/lib/i18n/config';
 import { buildLocaleAlternates } from '@/lib/i18n/metadata';
 import { SITE_BRAND, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/lib/site';
+import type { Messages } from '@/lib/i18n/dictionaries';
 
 type PageMetaInput = {
   title: string;
@@ -48,6 +50,17 @@ export async function generateLocalePageMetadata(
   const { locale } = await params;
   if (!isValidLocale(locale)) return {};
   return createPageMetadata({ ...input, locale });
+}
+
+export async function generateDictionaryPageMetadata(
+  params: Promise<{ locale: string }>,
+  pageKey: keyof Messages['meta'],
+  path: string
+): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) return {};
+  const { title, description } = getPageMeta(locale, pageKey);
+  return createPageMetadata({ title, description, path, locale });
 }
 
 export const defaultKeywords = [

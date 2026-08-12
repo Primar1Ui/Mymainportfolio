@@ -1,17 +1,12 @@
 import type { Metadata } from 'next';
 import PageShell from '@/components/PageShell';
 import AutomationShowcase from '@/components/AutomationShowcase';
-import { generateLocalePageMetadata } from '@/lib/page-metadata';
+import { generateDictionaryPageMetadata } from '@/lib/page-metadata';
 
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  return generateLocalePageMetadata(params, {
-    title: 'Automation',
-    description:
-      'n8n and Zapier workflow builds by Bambi20: AI customer support, appointment booking, lead routing, and content automation.',
-    path: '/automation',
-  });
+  return generateDictionaryPageMetadata(params, 'automation', '/automation');
 }
 
 export default function AutomationPage() {

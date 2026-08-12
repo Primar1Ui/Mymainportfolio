@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { blogPosts, getPostBySlug } from '@/lib/blog';
+import { getAllBlogSlugs, getPostBySlug } from '@/lib/blog';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import BlogAuthorSidebar from '@/components/BlogAuthorSidebar';
 import { blogPostingSchema } from '@/lib/seo';
@@ -15,7 +15,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
   return locales.flatMap((locale) =>
-    blogPosts.map((post) => ({ locale, slug: post.slug }))
+    getAllBlogSlugs().map((slug) => ({ locale, slug }))
   );
 }
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale, slug } = await params;
   if (!isValidLocale(locale)) return {};
 
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, locale);
   if (!post) return { title: 'Post not found' };
 
   const basePath = `/blog/${post.slug}`;
@@ -129,7 +129,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, locale);
   if (!post) notFound();
 
   const postPath = localizedPath(`/blog/${post.slug}`, locale);

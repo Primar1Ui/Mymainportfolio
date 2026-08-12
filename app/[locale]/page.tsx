@@ -7,17 +7,12 @@ import LandingCTA from '@/components/LandingCTA';
 import LegacyHashRedirect from '@/components/LegacyHashRedirect';
 import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
-import { generateLocalePageMetadata } from '@/lib/page-metadata';
-import { SITE_TITLE, SITE_DESCRIPTION } from '@/lib/site';
+import { generateDictionaryPageMetadata } from '@/lib/page-metadata';
 
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  return generateLocalePageMetadata(params, {
-    title: SITE_TITLE,
-    description: SITE_DESCRIPTION,
-    path: '/',
-  });
+  return generateDictionaryPageMetadata(params, 'home', '/');
 }
 
 export default function LocalizedHomePage() {

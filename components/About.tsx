@@ -13,17 +13,17 @@ export default function About() {
     {
       icon: Code2,
       titleKey: 'about.fullStack' as const,
-      description: 'Frontend and backend work with Next.js, React, Node, and Supabase.',
+      descriptionKey: 'about.fullStackDesc' as const,
     },
     {
       icon: Zap,
       titleKey: 'about.ai' as const,
-      description: 'Practical AI features inside web apps: chat, scoring, routing, and content tools.',
+      descriptionKey: 'about.aiDesc' as const,
     },
     {
       icon: Rocket,
       titleKey: 'about.saas' as const,
-      description: 'Launch-ready MVPs with auth, billing hooks, and a codebase you can grow.',
+      descriptionKey: 'about.saasDesc' as const,
     },
   ];
 
@@ -44,18 +44,10 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-lg text-gray-300 leading-relaxed">
-              I&apos;m {SITE_LEGAL_NAME}. Online I go by {SITE_BRAND}. I work as a freelance full stack
-              developer on web apps, internal tools, and automation projects.
+              {t('about.p1', { name: SITE_LEGAL_NAME, brand: SITE_BRAND })}
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Most of my work sits in the Next.js and Supabase stack. I also build n8n and Zapier
-              workflows when a client needs leads routed, content scheduled, or support tickets handled
-              without manual copy paste.
-            </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              I keep communication simple: clear scope, regular updates, and code you can hand to another
-              developer later if needed.
-            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">{t('about.p2')}</p>
+            <p className="text-lg text-gray-300 leading-relaxed">{t('about.p3')}</p>
           </motion.div>
 
           <motion.div
@@ -82,7 +74,7 @@ export default function About() {
                     <h3 className="text-xl font-semibold mb-2 text-white">
                       {t(feature.titleKey)}
                     </h3>
-                    <p className="text-gray-400">{feature.description}</p>
+                    <p className="text-gray-400">{t(feature.descriptionKey)}</p>
                   </div>
                 </div>
               </motion.div>
