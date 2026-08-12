@@ -5,15 +5,11 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { MessageCircle, Briefcase, Search, SlidersHorizontal, ChevronDown, ExternalLink, Github } from 'lucide-react';
-import { projects, primaryWhatsApp } from '@/lib/data';
+import { getProjects } from '@/lib/data';
+import { primaryWhatsApp } from '@/lib/data';
 import { trackFunnel } from '@/lib/analytics';
 import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
-
-const allTags = Array.from(new Set(projects.flatMap((p) => p.tech))).sort();
-const categories = Array.from(
-  new Set(projects.map((p) => ('category' in p ? p.category : null)).filter(Boolean))
-) as string[];
 
 function filterButtonClass(isActive: boolean, variant: 'category' | 'tag' | 'all') {
   const active =
@@ -28,7 +24,17 @@ function filterButtonClass(isActive: boolean, variant: 'category' | 'tag' | 'all
 }
 
 export default function Projects() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const projects = getProjects(locale);
+  const allTags = useMemo(
+    () => Array.from(new Set(projects.flatMap((p) => p.tech))).sort(),
+    [projects]
+  );
+  const categories = useMemo(
+    () => Array.from(new Set(projects.map((p) => p.category))).sort(),
+    [projects]
+  );
+
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -39,7 +45,7 @@ export default function Projects() {
       list = list.filter(
         (p) =>
           p.tech.includes(activeFilter) ||
-          ('category' in p && p.category === activeFilter)
+          p.category === activeFilter
       );
     }
     if (searchQuery.trim()) {
@@ -48,18 +54,22 @@ export default function Projects() {
         (p) =>
           p.title.toLowerCase().includes(q) ||
           p.description.toLowerCase().includes(q) ||
-          p.tech.some((t) => t.toLowerCase().includes(q))
+          p.tech.some((tech) => tech.toLowerCase().includes(q))
       );
     }
     return list;
-  }, [activeFilter, searchQuery]);
+  }, [activeFilter, searchQuery, projects]);
 
   const handleContactClick = () => {
     trackFunnel.contactCtaClick('projects');
   };
 
   const activeFilterLabel =
-    activeFilter === 'all' ? t('projects.allProjects') : activeFilter;
+    activeFilter === 'all'
+      ? t('projects.allProjects')
+      : activeFilter === 'frontend' || activeFilter === 'full-stack'
+        ? t(`projects.categories.${activeFilter}`)
+        : activeFilter;
 
   return (
     <section
@@ -144,7 +154,7 @@ export default function Projects() {
                 aria-pressed={activeFilter === category}
                 className={filterButtonClass(activeFilter === category, 'category')}
               >
-                {category}
+                {t(`projects.categories.${category}`)}
               </button>
             ))}
             {allTags.map((tag) => (
@@ -181,14 +191,14 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="group p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10"
             >
-              {'image' in project && project.image && (
+              {project.image && (
                 <div className="relative w-full h-44 sm:h-48 mb-4 rounded-xl overflow-hidden bg-gray-800/50">
                   <Image
                     src={project.image}

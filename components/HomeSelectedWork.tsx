@@ -5,41 +5,39 @@ import Image from 'next/image';
 import LocalizedLink from '@/components/LocalizedLink';
 import { ArrowRight } from 'lucide-react';
 import { useLocale } from '@/contexts/LocaleContext';
-import { homepageSelectedAutomations } from '@/lib/automations';
-import { projects } from '@/lib/data';
-
-const homepageWebApps = projects.filter((project) =>
-  ['Portfolio Website', 'BaxAuto Website'].includes(project.title)
-);
-
-const selectedWork = [
-  ...homepageSelectedAutomations.map((automation) => ({
-    title: automation.title,
-    description: automation.description,
-    tech: automation.tags,
-    image: automation.image,
-    imageAlt: automation.alt,
-    eyebrow: automation.tags[0],
-    href: '/automation',
-    cta: 'automation' as const,
-  })),
-  ...homepageWebApps.map((project) => ({
-    title: project.title,
-    description: project.description,
-    tech: project.tech,
-    image: project.image ?? '/images/projects/placeholder.svg',
-    imageAlt: `${project.title} preview`,
-    eyebrow:
-      'metrics' in project && Array.isArray(project.metrics)
-        ? project.metrics[0]
-        : project.tech[0],
-    href: '/projects',
-    cta: 'project' as const,
-  })),
-];
+import { getHomepageAutomations } from '@/lib/automations';
+import { getHomepageProjects } from '@/lib/data';
 
 export default function HomeSelectedWork() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+
+  const selectedWork = [
+    ...getHomepageAutomations(locale).map((automation) => ({
+      id: automation.id,
+      title: automation.title,
+      description: automation.description,
+      tech: automation.tags,
+      image: automation.image,
+      imageAlt: automation.alt,
+      eyebrow: automation.tags[0],
+      href: '/automation',
+      cta: 'automation' as const,
+    })),
+    ...getHomepageProjects(locale).map((project) => ({
+      id: project.id,
+      title: project.title,
+      description: project.description,
+      tech: project.tech,
+      image: project.image ?? '/images/projects/placeholder.svg',
+      imageAlt: `${project.title} preview`,
+      eyebrow:
+        project.metrics && project.metrics.length > 0
+          ? project.metrics[0]
+          : project.tech[0],
+      href: '/projects',
+      cta: 'project' as const,
+    })),
+  ];
 
   return (
     <section
@@ -69,7 +67,7 @@ export default function HomeSelectedWork() {
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {selectedWork.map((item, index) => (
             <motion.article
-              key={item.title}
+              key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -215,7 +215,11 @@
     "clearFilters": "Effacer recherche et filtres",
     "impact": "Impact:",
     "discuss": "Discuter d'un projet similaire",
-    "chatWhatsapp": "Chat WhatsApp"
+    "chatWhatsapp": "Chat WhatsApp",
+    "categories": {
+      "frontend": "Frontend",
+      "full-stack": "Full stack"
+    }
   },
   "about": {
     "title": "À propos de moi",
@@ -238,7 +242,18 @@
     "deployment": "Déploiement"
   },
   "services": {
-    "title": "Mes services"
+    "title": "Mes services",
+    "items": [
+      "Développement frontend",
+      "Développement backend",
+      "Applications web full stack",
+      "Intégration IA dans les apps",
+      "Automatisation n8n",
+      "Qualification de leads par IA",
+      "Configuration Supabase et auth",
+      "Corrections de bugs et optimisation",
+      "Développement de MVPs SaaS"
+    ]
   },
   "automation": {
     "title": "L'automatisation qui enlève le travail répétitif",
@@ -249,7 +264,17 @@
     "title": "Sur quoi je travaille",
     "description": "Projets en cours et axes d'apprentissage",
     "active": "Projets actifs",
-    "learning": "Apprentissage"
+    "learning": "Apprentissage",
+    "activeItems": [
+      "Livraison de systèmes n8n pour APIs, contenu et flux de leads",
+      "Construction et affinage de dashboards SaaS IA avec Next.js et Supabase",
+      "Polissage de ce portfolio pour conversion, SEO et profondeur des études de cas"
+    ],
+    "learningItems": [
+      "Exploration des patterns App Router Next.js et budgets performance",
+      "Approfondissement des edge functions Supabase et données temps réel",
+      "Amélioration de l orchestration agents IA et automatisation avec Groq et n8n"
+    ]
   },
   "testimonials": {
     "title": "Témoignages clients",
@@ -304,5 +329,22 @@
       "title": "Témoignages",
       "description": "Témoignages clients et avis Fiverr pour Oluwatosin David (Bambi20), développeur full stack et spécialiste automatisation."
     }
+  },
+  "feed": {
+    "title": "Blog Bambi20",
+    "description": "Articles techniques, tutoriels et notes sur le développement web, Next.js, Supabase et SaaS."
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "close": "Fermer l aide des raccourcis",
+    "focusSearch": "Focus recherche projets",
+    "openGithub": "Ouvrir GitHub",
+    "scrollHome": "Aller à l accueil",
+    "scrollProjects": "Aller aux projets",
+    "scrollAutomation": "Aller à l automatisation",
+    "scrollContact": "Aller au contact",
+    "openBlog": "Ouvrir le blog",
+    "showHelp": "Afficher cette aide",
+    "closeDialogs": "Fermer les dialogues"
   }
 }

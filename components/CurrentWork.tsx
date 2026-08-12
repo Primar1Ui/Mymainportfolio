@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { Sparkles, BookOpen } from 'lucide-react';
-import { currentWork } from '@/lib/currentWork';
 import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 export default function CurrentWork() {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const { currentWork } = getDictionary(locale);
+
   return (
     <section
       id="current-work"
@@ -34,7 +36,7 @@ export default function CurrentWork() {
               <h3 className="text-lg font-semibold text-white">{t('currentWork.active')}</h3>
             </div>
             <ul className="space-y-2">
-              {currentWork.projects.map((item, i) => (
+              {currentWork.activeItems.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-400 text-sm">
                   <span className="text-red-400 mt-0.5">•</span>
                   <span>{item}</span>
@@ -45,7 +47,7 @@ export default function CurrentWork() {
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
             className="p-6 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-red-500/40 transition-colors"
@@ -57,7 +59,7 @@ export default function CurrentWork() {
               <h3 className="text-lg font-semibold text-white">{t('currentWork.learning')}</h3>
             </div>
             <ul className="space-y-2">
-              {currentWork.learning.map((item, i) => (
+              {currentWork.learningItems.map((item, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-400 text-sm">
                   <span className="text-red-400 mt-0.5">•</span>
                   <span>{item}</span>

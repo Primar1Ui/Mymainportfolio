@@ -2,31 +2,43 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Bot, GitBranch, Workflow, Boxes, Users, CalendarCheck, Sparkles, FileSpreadsheet, CalendarDays, BellRing } from 'lucide-react';
+import {
+  Bot,
+  GitBranch,
+  Workflow,
+  Boxes,
+  Users,
+  CalendarCheck,
+  Sparkles,
+  FileSpreadsheet,
+  CalendarDays,
+  BellRing,
+} from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { automations } from '@/lib/automations';
+import { getAutomations } from '@/lib/automations';
 import LocalizedLink from '@/components/LocalizedLink';
 import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
 
 const automationIcons = {
-  'AI Appointment Booking Assistant': CalendarDays,
-  'AI Customer Support Automation': Bot,
-  'CamJRoberts Reminder': BellRing,
-  'n8n API Automation': Workflow,
-  'Automated Content Operations': GitBranch,
-  'AI Lead Qualification': Bot,
-  'AI Inventory & Auto-Restock': Boxes,
-  'AI Recruiting Funnel': Users,
-  'AI Content Routing with Groq': Sparkles,
-  'Zapier Event RSVP System': CalendarCheck,
-  'Zapier RSVP Slack Alerts': Bot,
-  'Zapier Form-to-Sheet Sync': FileSpreadsheet,
+  'ai-appointment-booking': CalendarDays,
+  'ai-customer-support': Bot,
+  'camjroberts-reminder': BellRing,
+  'n8n-api-automation': Workflow,
+  'content-operations': GitBranch,
+  'ai-lead-qualification': Bot,
+  'ai-inventory-restock': Boxes,
+  'ai-recruiting-funnel': Users,
+  'groq-content-routing': Sparkles,
+  'zapier-rsvp-paths': CalendarCheck,
+  'zapier-rsvp-slack': Bot,
+  'zapier-forms-sheets': FileSpreadsheet,
 } as const;
 
 export default function AutomationShowcase() {
   const reduce = usePrefersReducedMotion();
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const automations = getAutomations(locale);
 
   return (
     <section
@@ -42,10 +54,10 @@ export default function AutomationShowcase() {
 
         <div className="grid gap-7 lg:grid-cols-3">
           {automations.map((automation, index) => {
-            const Icon = automationIcons[automation.title as keyof typeof automationIcons] ?? Workflow;
+            const Icon = automationIcons[automation.id as keyof typeof automationIcons] ?? Workflow;
             return (
               <motion.article
-                key={automation.title}
+                key={automation.id}
                 initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

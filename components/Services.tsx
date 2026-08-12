@@ -1,15 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { services } from '@/lib/data';
 import { CheckCircle2 } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import SectionHeading from '@/components/SectionHeading';
 import { useLocale } from '@/contexts/LocaleContext';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 export default function Services() {
   const reduce = usePrefersReducedMotion();
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const { services } = getDictionary(locale);
 
   return (
     <section
@@ -20,7 +21,7 @@ export default function Services() {
         <SectionHeading title={t('services.title')} />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+          {services.items.map((service, index) => (
             <motion.div
               key={service}
               initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 20 }}
@@ -47,4 +48,3 @@ export default function Services() {
     </section>
   );
 }
-

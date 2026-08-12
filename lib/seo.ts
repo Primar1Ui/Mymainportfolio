@@ -10,6 +10,7 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from '@/lib/site';
+import type { Locale } from '@/lib/i18n/config';
 
 export type BreadcrumbItem = {
   label?: string;
@@ -67,26 +68,35 @@ export function personSchema() {
   };
 }
 
-export function websiteSchema() {
+export function websiteSchema(options?: { description?: string; locale?: Locale; siteUrl?: string }) {
+  const locale = options?.locale ?? 'en';
+  const siteUrl = options?.siteUrl ?? SITE_URL;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: SITE_TITLE,
     alternateName: SITE_BRAND,
-    url: SITE_URL,
-    description: SITE_DESCRIPTION,
-    inLanguage: SITE_GEO.languages,
+    url: siteUrl,
+    description: options?.description ?? SITE_DESCRIPTION,
+    inLanguage: locale,
     author: authorPersonSchema(),
   };
 }
 
-export function professionalServiceSchema() {
+export function professionalServiceSchema(options?: {
+  description?: string;
+  locale?: Locale;
+  siteUrl?: string;
+}) {
+  const siteUrl = options?.siteUrl ?? SITE_URL;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: SITE_BRAND,
-    description: SITE_DESCRIPTION,
-    url: SITE_URL,
+    description: options?.description ?? SITE_DESCRIPTION,
+    url: siteUrl,
     email: SITE_EMAIL,
     areaServed: SITE_GEO.countries.map((code) => ({
       '@type': 'Country',

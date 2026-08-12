@@ -1,3 +1,10 @@
+import { getProjects } from './content/projects';
+import { defaultLocale } from './i18n/config';
+
+export type { Project } from './content/types';
+
+export { getProjects, getHomepageProjects, HOMEPAGE_PROJECT_IDS } from './content/projects';
+
 export const skills = {
   frontend: [
     { name: 'HTML', level: 95 },
@@ -40,56 +47,11 @@ export const skills = {
   ],
 };
 
-export const projects = [
-  {
-    title: "Portfolio Website",
-    description: "High-performance developer portfolio optimized for SEO.",
-    tech: ["Next.js", "Framer Motion"],
-    category: "frontend",
-    github: "https://github.com/Primar1Ui/refined-man-page",
-    live: "https://v0-personal-portfolio-website-mocha-eta.vercel.app/",
-    role: "Designer & developer",
-    results: "Designed and developed a fast, SEO-friendly personal brand site with a strong contact funnel.",
-    image: "/images/projects/portfolio-website.png",
-  },
-  {
-    title: "BaxAuto Website",
-    description: "Marketing website for BaxAuto, focused on clear service presentation and clean UI.",
-    tech: ["Next.js", "Tailwind CSS"],
-    category: "frontend",
-    github: "https://github.com/Primar1Ui/v0-baxauto-website-development",
-    live: "https://v0-baxauto-website-development-qyak.vercel.app/",
-    role: "Frontend developer",
-    results: "Delivered a responsive landing experience tailored to the client brand.",
-    image: "/images/projects/baxauto-website.png",
-  },
-  {
-    title: "Smart Expense & Budget Dashboard",
-    description: "Web app for tracking expenses and managing budgets with an intuitive dashboard.",
-    tech: ["React", "Next.js", "Tailwind CSS"],
-    category: "full-stack",
-    github: "https://github.com/Primar1Ui/smart-spend-dashboard",
-    live: "https://smart-spend-dashboard.vercel.app/",
-    role: "Full-stack developer",
-    results: "Built a smart spend dashboard for expense tracking and budget visibility.",
-    image: "/images/projects/smart-spend-dashboard.png",
-    featured: true,
-    metrics: ["Expense tracking", "Budget dashboard", "Production deploy"],
-  },
-  {
-    title: "Refined Man",
-    description: "Premium men's accessories e-commerce site with clean UI and smooth experience.",
-    tech: ["Next.js", "Tailwind CSS"],
-    category: "frontend",
-    live: "https://refined-man.vercel.app/",
-    role: "Frontend developer",
-    results: "Designed and built a polished men's accessories storefront.",
-    image: "/images/projects/refined-man.png",
-  }
-];
+/** English projects. Prefer getProjects(locale). */
+export const projects = getProjects(defaultLocale);
 
 export const portfolioStats = {
-  projects: projects.length,
+  projects: getProjects(defaultLocale).length,
   clients: 3,
   yearsExperience: 3,
   githubContributions: 100,
@@ -116,16 +78,3 @@ export const whatsappContacts = [
 ] as const;
 
 export const primaryWhatsApp = whatsappContacts.find((c) => c.primary)!;
-
-export const services = [
-  "Frontend Development",
-  "Backend Development",
-  "Full-Stack Web Applications",
-  "AI App Integration",
-  "n8n Workflow Automation",
-  "AI Lead Qualification",
-  "Supabase Setup & Authentication",
-  "Bug Fixing & Optimization",
-  "SaaS MVP Development"
-];
-

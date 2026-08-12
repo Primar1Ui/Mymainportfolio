@@ -215,7 +215,11 @@
     "clearFilters": "Clear search and filters",
     "impact": "Impact:",
     "discuss": "Discuss a Similar Project",
-    "chatWhatsapp": "Chat on WhatsApp"
+    "chatWhatsapp": "Chat on WhatsApp",
+    "categories": {
+      "frontend": "Frontend",
+      "full-stack": "Full stack"
+    }
   },
   "about": {
     "title": "About Me",
@@ -238,7 +242,18 @@
     "deployment": "Deployment"
   },
   "services": {
-    "title": "My Services"
+    "title": "My Services",
+    "items": [
+      "Frontend Development",
+      "Backend Development",
+      "Full-Stack Web Applications",
+      "AI App Integration",
+      "n8n Workflow Automation",
+      "AI Lead Qualification",
+      "Supabase Setup & Authentication",
+      "Bug Fixing & Optimization",
+      "SaaS MVP Development"
+    ]
   },
   "automation": {
     "title": "Automation that removes busywork",
@@ -249,7 +264,17 @@
     "title": "What I'm Working On",
     "description": "Current projects and learning focus",
     "active": "Active projects",
-    "learning": "Learning"
+    "learning": "Learning",
+    "activeItems": [
+      "Shipping n8n automation systems for API, content, and lead workflows",
+      "Building and refining AI-powered SaaS dashboards with Next.js and Supabase",
+      "Polishing this portfolio for conversion, SEO, and case-study depth"
+    ],
+    "learningItems": [
+      "Exploring Next.js App Router patterns and performance budgets",
+      "Deep diving into Supabase edge functions and realtime data",
+      "Improving AI agent + automation orchestration with Groq and n8n"
+    ]
   },
   "testimonials": {
     "title": "Client Testimonials",
@@ -304,5 +329,22 @@
       "title": "Testimonials",
       "description": "Client testimonials and Fiverr reviews for Oluwatosin David (Bambi20), full stack developer and automation specialist."
     }
+  },
+  "feed": {
+    "title": "Bambi20 Blog",
+    "description": "Technical articles, tutorials, and thoughts on web development, Next.js, Supabase, and SaaS."
+  },
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "close": "Close shortcuts help",
+    "focusSearch": "Focus project search",
+    "openGithub": "Open GitHub",
+    "scrollHome": "Scroll to home",
+    "scrollProjects": "Scroll to projects",
+    "scrollAutomation": "Scroll to automation",
+    "scrollContact": "Scroll to contact",
+    "openBlog": "Open blog",
+    "showHelp": "Show this help",
+    "closeDialogs": "Close dialogs"
   }
 }

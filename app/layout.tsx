@@ -19,8 +19,6 @@ import {
 } from '@/lib/site';
 import {
   personSchema,
-  websiteSchema,
-  professionalServiceSchema,
   localBusinessSchema,
 } from '@/lib/seo';
 import "./globals.css";
@@ -97,12 +95,6 @@ export default function RootLayout({
           }}
         />
         <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${SITE_BRAND} Blog RSS`}
-          href={`${SITE_URL}/feed`}
-        />
         <meta name="theme-color" content="#0f0a0a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -122,16 +114,6 @@ export default function RootLayout({
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
-        />
-        <script
-          type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema()) }}
         />
         <script
           type="application/ld+json"

@@ -4,22 +4,24 @@ import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Keyboard, X } from 'lucide-react';
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts';
-
-const SHORTCUTS = [
-  { keys: ['Ctrl', 'K'], description: 'Focus project search' },
-  { keys: ['G'], description: 'Open GitHub' },
-  { keys: ['H'], description: 'Scroll to home' },
-  { keys: ['P'], description: 'Scroll to projects' },
-  { keys: ['A'], description: 'Scroll to automation' },
-  { keys: ['C'], description: 'Scroll to contact' },
-  { keys: ['B'], description: 'Open blog' },
-  { keys: ['?'], description: 'Show this help' },
-  { keys: ['Esc'], description: 'Close dialogs' },
-];
+import { useLocale } from '@/contexts/LocaleContext';
 
 export default function KeyboardShortcuts() {
   const { showHelp, closeHelp } = useKeyboardShortcuts();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLocale();
+
+  const shortcuts = [
+    { keys: ['Ctrl', 'K'], descriptionKey: 'shortcuts.focusSearch' as const },
+    { keys: ['G'], descriptionKey: 'shortcuts.openGithub' as const },
+    { keys: ['H'], descriptionKey: 'shortcuts.scrollHome' as const },
+    { keys: ['P'], descriptionKey: 'shortcuts.scrollProjects' as const },
+    { keys: ['A'], descriptionKey: 'shortcuts.scrollAutomation' as const },
+    { keys: ['C'], descriptionKey: 'shortcuts.scrollContact' as const },
+    { keys: ['B'], descriptionKey: 'shortcuts.openBlog' as const },
+    { keys: ['?'], descriptionKey: 'shortcuts.showHelp' as const },
+    { keys: ['Esc'], descriptionKey: 'shortcuts.closeDialogs' as const },
+  ];
 
   useEffect(() => {
     if (!showHelp) return;
@@ -57,7 +59,7 @@ export default function KeyboardShortcuts() {
               <div className="flex items-center gap-2">
                 <Keyboard className="w-5 h-5 text-red-400" aria-hidden />
                 <h2 id="shortcuts-title" className="text-lg font-semibold text-white">
-                  Keyboard shortcuts
+                  {t('shortcuts.title')}
                 </h2>
               </div>
               <button
@@ -65,21 +67,21 @@ export default function KeyboardShortcuts() {
                 type="button"
                 onClick={closeHelp}
                 className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
-                aria-label="Close shortcuts help"
+                aria-label={t('shortcuts.close')}
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <ul className="px-5 py-4 space-y-3">
-              {SHORTCUTS.map((item) => (
-                <li key={item.description} className="flex items-center justify-between gap-4">
-                  <span className="text-sm text-gray-300">{item.description}</span>
+              {shortcuts.map((item) => (
+                <li key={item.descriptionKey} className="flex items-center justify-between gap-4">
+                  <span className="text-sm text-gray-300">{t(item.descriptionKey)}</span>
                   <span className="flex items-center gap-1 shrink-0">
                     {item.keys.map((key) => (
                       <kbd
                         key={key}
-                        className="min-w-[1.75rem] px-2 py-1 text-xs font-medium text-center rounded-md border border-gray-700 bg-gray-900/80 text-gray-200"
+                        className="px-2 py-1 text-xs font-mono rounded-md bg-gray-800 border border-gray-700 text-gray-300"
                       >
                         {key}
                       </kbd>
@@ -88,11 +90,6 @@ export default function KeyboardShortcuts() {
                 </li>
               ))}
             </ul>
-
-            <p className="px-5 pb-4 text-xs text-gray-500">
-              Press <kbd className="px-1.5 py-0.5 rounded border border-gray-700 bg-gray-900/80">?</kbd> anytime to
-              reopen this panel.
-            </p>
           </motion.div>
         </motion.div>
       )}

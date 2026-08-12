@@ -3,15 +3,16 @@
 import LocalizedLink from '@/components/LocalizedLink';
 import {
   SITE_BRAND,
-  SITE_DESCRIPTION,
   SITE_EMAIL,
   SITE_GITHUB,
   SITE_LEGAL_NAME,
 } from '@/lib/site';
 import { useLocale } from '@/contexts/LocaleContext';
+import { getPageMeta } from '@/lib/i18n/dictionaries';
 
 export default function BlogAuthorSidebar() {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const bio = getPageMeta(locale, 'home').description;
 
   return (
     <aside
@@ -26,7 +27,7 @@ export default function BlogAuthorSidebar() {
       </p>
       <p className="text-sm text-[var(--muted)] mb-3">{SITE_BRAND}</p>
       <p className="text-sm text-[var(--muted)] leading-relaxed mb-4">
-        {SITE_DESCRIPTION}
+        {bio}
       </p>
       <ul className="space-y-2 text-sm">
         <li>
