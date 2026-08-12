@@ -94,7 +94,7 @@ export default function RootLayout({
             __html: `(function(){try{var s=localStorage.getItem('theme');var t=(s==='light'||s==='dark')?s:'dark';document.documentElement.classList.add(t);document.documentElement.style.colorScheme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',t==='light'?'#fafafa':'#0f0a0a');}catch(e){document.documentElement.classList.add('dark');}})();`,
           }}
         />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href={`/${htmlLang}/manifest.webmanifest`} />
         <meta name="theme-color" content="#0f0a0a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

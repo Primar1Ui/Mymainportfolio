@@ -347,6 +347,11 @@
     "showHelp": "Mostrar esta ayuda",
     "closeDialogs": "Cerrar diálogos"
   },
+  "pwa": {
+    "name": "Bambi20 | Desarrollador web full stack",
+    "shortName": "Bambi20",
+    "description": "Oluwatosin David (Bambi20) construye apps web modernas, backends Supabase, integraciones de IA y automatización de flujos de trabajo."
+  },
   "errorBoundary": {
     "title": "Algo salió mal",
     "description": "Ocurrió un error inesperado. Intenta refrescar la página.",

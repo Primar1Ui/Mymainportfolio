@@ -23,6 +23,7 @@ export async function generateMetadata({
   if (!isValidLocale(locale)) return {};
 
   return {
+    manifest: `/${locale}/manifest.webmanifest`,
     alternates: {
       types: {
         'application/rss+xml': `${SITE_URL}/${locale}/feed`,

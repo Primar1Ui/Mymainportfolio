@@ -1,6 +1,6 @@
 /* Service worker — static assets only; network-first for navigations */
-const CACHE_NAME = 'david-portfolio-v2';
-const STATIC_ASSETS = ['/favicon.svg', '/manifest.json'];
+const CACHE_NAME = 'david-portfolio-v3';
+const STATIC_ASSETS = ['/favicon.svg'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -37,6 +37,7 @@ function isStaticAsset(url) {
   return (
     url.pathname.startsWith('/_next/static/') ||
     url.pathname === '/favicon.svg' ||
+    /^\/(?:en|es|fr)\/manifest\.webmanifest$/.test(url.pathname) ||
     url.pathname === '/manifest.json' ||
     /\.(?:png|jpg|jpeg|gif|webp|svg|woff2?)$/i.test(url.pathname)
   );

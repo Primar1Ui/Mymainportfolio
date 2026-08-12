@@ -118,6 +118,29 @@ Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 (optional)
 
 ---
 
+## Post-i18n maintenance
+
+Ongoing tasks after Option B rollout (not a new i18n phase):
+
+| Task | Detail |
+|------|--------|
+| PWA manifest | Localized at `/{locale}/manifest.webmanifest`; legacy `/manifest.json` redirects by cookie/`Accept-Language` |
+| UI strings | Run `pnpm check:i18n` when adding keys (also runs before `pnpm build`) |
+| Content | New blog posts, projects, or automations need `en` + `es` + `fr` entries under `lib/content/` |
+| SEO | GSC indexing for `/es/` and `/fr/`; Rich Results Test on localized home and blog URLs |
+
+### SEO monitoring runbook (owner)
+
+1. **Search Console:** In [Google Search Console](https://search.google.com/search-console), open the property and use URL Inspection on:
+   - `https://mymainportfolio-one.vercel.app/es/`
+   - `https://mymainportfolio-one.vercel.app/fr/`
+   - One blog URL per locale (e.g. `/es/blog/...`, `/fr/blog/...`)
+2. **Rich Results:** Run [Google Rich Results Test](https://search.google.com/test/rich-results) on the same URLs; confirm `WebSite`, `ProfessionalService`, and `BlogPosting` (where applicable) parse without errors.
+3. **Sitemap:** After large content additions, confirm `sitemap.xml` lists hreflang alternates and resubmit in GSC if needed.
+4. **Install prompts:** Optional smoke test: install PWA from `/es/` and `/fr/` and confirm the app name/description match the locale.
+
+---
+
 ## Notes
 
 - Testimonial quotes that mention “David” from clients stay unchanged (third-party text).
