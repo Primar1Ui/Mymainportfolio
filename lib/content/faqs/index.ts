@@ -14,6 +14,3 @@ const byLocale: Record<Locale, FaqItem[]> = {
 export function getHomeFaqs(locale: Locale): FaqItem[] {
   return byLocale[locale] ?? byLocale[defaultLocale];
 }
-
-/** @deprecated Use getHomeFaqs(locale) instead. */
-export const homeFaqs = homeFaqsEn;

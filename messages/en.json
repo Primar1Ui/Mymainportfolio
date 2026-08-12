@@ -346,5 +346,11 @@
     "openBlog": "Open blog",
     "showHelp": "Show this help",
     "closeDialogs": "Close dialogs"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try refreshing the page.",
+    "retry": "Try again",
+    "persist": "If the problem persists, please contact me via the links in the footer."
   }
 }

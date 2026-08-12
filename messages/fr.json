@@ -346,5 +346,11 @@
     "openBlog": "Ouvrir le blog",
     "showHelp": "Afficher cette aide",
     "closeDialogs": "Fermer les dialogues"
+  },
+  "errorBoundary": {
+    "title": "Une erreur est survenue",
+    "description": "Une erreur inattendue s est produite. Essayez de rafraîchir la page.",
+    "retry": "Réessayer",
+    "persist": "Si le problème persiste, contactez-moi via les liens du pied de page."
   }
 }

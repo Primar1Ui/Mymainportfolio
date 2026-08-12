@@ -96,9 +96,25 @@ Track progress phase by phase. Mark items `[x]` when shipped to `main`.
 Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6 (optional)
 ```
 
-**Current focus:** All planned phases complete (optional Phase 6 shipped)
+**Current focus:** i18n Option B complete (Phases 1–7). See **Internationalization (Option B)** below.
 
-**Completed:** Phases 1–6 per `BAMBI20_IMPLEMENTATION_PLAN.md`
+**Completed:** Phases 1–6 per this doc; i18n rollout Phases 1–7 complete.
+
+---
+
+## Internationalization (Option B) — Complete
+
+| Phase | Scope | Status |
+|-------|--------|--------|
+| 1 | Red/white rebrand | [x] |
+| 2 | `/[locale]/` routing + language switcher | [x] |
+| 3 | Metadata, sitemap hreflang, server `html lang` | [x] |
+| 4 | UI chrome (`messages/*.json` + `t()`) | [x] |
+| 5 | Localized blog, case studies, FAQ, about copy | [x] |
+| 6 | Projects/automations content, locale RSS, JSON-LD | [x] |
+| 7 | Cleanup: ErrorBoundary i18n, dead code, `check:i18n` | [x] |
+
+**Verify:** `pnpm check:i18n` && `pnpm build`
 
 ---
 

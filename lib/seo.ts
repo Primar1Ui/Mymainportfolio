@@ -18,7 +18,7 @@ export type BreadcrumbItem = {
   path: string;
 };
 
-export { getHomeFaqs, homeFaqs } from '@/lib/content/faqs';
+export { getHomeFaqs } from '@/lib/content/faqs';
 
 export function personSameAs(): string[] {
   const links = [SITE_GITHUB, SITE_TELEGRAM];

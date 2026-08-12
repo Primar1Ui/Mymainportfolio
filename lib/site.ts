@@ -21,7 +21,7 @@ export const SITE_LINKEDIN = process.env.NEXT_PUBLIC_LINKEDIN_URL?.trim() ?? '';
 /** Primary markets for GEO signals */
 export const SITE_GEO = {
   countries: ['NG', 'US', 'GB', 'CA', 'AU'],
-  languages: ['en'],
+  languages: ['en', 'es', 'fr'],
   regionLabel: 'Nigeria and United States',
 } as const;
 

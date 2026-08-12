@@ -346,5 +346,11 @@
     "openBlog": "Abrir blog",
     "showHelp": "Mostrar esta ayuda",
     "closeDialogs": "Cerrar diálogos"
+  },
+  "errorBoundary": {
+    "title": "Algo salió mal",
+    "description": "Ocurrió un error inesperado. Intenta refrescar la página.",
+    "retry": "Intentar de nuevo",
+    "persist": "Si el problema continúa, contáctame con los enlaces del pie de página."
   }
 }
